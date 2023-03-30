@@ -1,10 +1,35 @@
-import * as React from 'react';
-import { View, Text } from 'react-native';
+import * as React from "react";
+import {
+  Title,
+  Container,
+  ContainerIteins,
+  ContainerButton,
+  TextButton,
+  Separador,
+} from "./styles";
 
-export default function Activites() {
+export default function Activites({ navigation }) {
   return (
-    <View>
-      <Text>Thiago</Text>
-    </View>
+    <Container>
+      <ContainerIteins>
+        <Title>Atividades</Title>
+        <Separador />
+        <ContainerButton onPress={() => navigation.navigate("Modules1")}>
+          <TextButton>Módulo 1</TextButton>
+        </ContainerButton>
+        <ContainerButton>
+          <TextButton>Módulo 2</TextButton>
+        </ContainerButton>
+        <ContainerButton>
+          <TextButton>Módulo 3</TextButton>
+        </ContainerButton>
+        <ContainerButton>
+          <TextButton>Módulo 4</TextButton>
+        </ContainerButton>
+        <ContainerButton>
+          <TextButton>Módulo 5</TextButton>
+        </ContainerButton>
+      </ContainerIteins>
+    </Container>
   );
 }
