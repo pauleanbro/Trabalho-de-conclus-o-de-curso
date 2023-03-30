@@ -15,6 +15,9 @@ export const ContainerExercicios = styled.View`
   margin-bottom: 50px;
   justify-content: space-between;
 `;
+export const Separador = styled.View`
+  margin-right: 5px;
+`;
 
 export const Check = styled.TouchableOpacity`
   width: 30px;
@@ -22,7 +25,6 @@ export const Check = styled.TouchableOpacity`
   background-color: #ffffff;
   border: solid 4px #000000;
   border-radius: 5px;
-  margin-right: 30px;
 `;
 
 export const Title = styled.Text`

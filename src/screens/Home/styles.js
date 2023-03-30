@@ -11,7 +11,7 @@ export const ContainerIteins = styled.View`
 `;
 
 export const Separador = styled.View`
-  margin-top: 300px;
+  margin-top: 90px;
 `;
 
 export const ContainerButton = styled.TouchableOpacity`

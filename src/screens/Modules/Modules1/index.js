@@ -5,7 +5,13 @@ import {
   ContainerIteins,
   ContainerExercicios,
   Check,
+  Separador,
 } from "./styles";
+import HitCheck from "../../../assets/hitCheck.js";
+import DeniedCheck from "../../../assets/deniedCheck.js";
+
+const Hit = HitCheck;
+const Denied = DeniedCheck;
 
 export default function Modules1({ navigation }) {
   return (
@@ -13,11 +19,12 @@ export default function Modules1({ navigation }) {
       <ContainerIteins>
         <ContainerExercicios>
           <Title>Exercício 1</Title>
-          <Check />
+          <Hit />
+          <Separador />
         </ContainerExercicios>
         <ContainerExercicios>
           <Title>Exercício 2</Title>
-          <Check />
+            <Denied />
         </ContainerExercicios>
         <ContainerExercicios>
           <Title>Exercício 3</Title>
