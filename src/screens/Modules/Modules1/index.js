@@ -17,10 +17,9 @@ export default function Modules1({ navigation }) {
   return (
     <Container>
       <ContainerIteins>
-        <ContainerExercicios>
+        <ContainerExercicios onPress={() => navigation.navigate("Exercises1")}>
           <Title>Exercício 1</Title>
           <Hit />
-          <Separador />
         </ContainerExercicios>
         <ContainerExercicios>
           <Title>Exercício 2</Title>

@@ -10,7 +10,7 @@ export const ContainerIteins = styled.View`
   padding-top: 36px;
 `;
 
-export const ContainerExercicios = styled.View`
+export const ContainerExercicios = styled.TouchableOpacity`
   flex-direction: row;
   margin-bottom: 50px;
   justify-content: space-between;
@@ -30,4 +30,5 @@ export const Check = styled.TouchableOpacity`
 export const Title = styled.Text`
   font-size: 25px;
   color: #282828;
+  font-family: 'Roboto-Medium';
 `;

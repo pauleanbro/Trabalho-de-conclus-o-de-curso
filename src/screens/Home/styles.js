@@ -26,9 +26,11 @@ export const ContainerButton = styled.TouchableOpacity`
 export const Title = styled.Text`
   font-size: 25px;
   color: #282828;
+  font-family: 'Roboto-Regular';
 `;
 
 export const TextButton = styled.Text`
   font-size: 25px;
   color: #ffffff;
+  font-family: 'Roboto-Bold';
 `;

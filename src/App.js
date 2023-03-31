@@ -6,6 +6,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Home from './screens/Home'
 import Activites from './screens/Activites'
 import Modules1 from './screens/Modules/Modules1'
+import Exercises1 from './screens/Modules//Modules1/Exercises/Exercises1'
 
 const Stack = createNativeStackNavigator();
 
@@ -16,6 +17,7 @@ function App() {
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Activites" component={Activites} />
         <Stack.Screen name="Modules1" component={Modules1} />
+        <Stack.Screen name="Exercises1" component={Exercises1} />
       </Stack.Navigator>
     </NavigationContainer>
   );
