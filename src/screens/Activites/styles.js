@@ -33,3 +33,4 @@ export const TextButton = styled.Text`
   font-size: 25px;
   color: #ffffff;
 `;
+

@@ -21,4 +21,5 @@ export const TextItens = styled.Text`
   color: #282828;
   font-family: 'Roboto-Regular';
   flex-wrap: wrap;
+  margin: 20px;
 `;

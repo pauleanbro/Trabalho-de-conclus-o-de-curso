@@ -51,5 +51,10 @@
 	<false/>
   <key>UIStatusBarStyle</key>
   <string>UIStatusBarStyleDefault</string>
+	<array>
+		<string>AleloTexto-Bold.ttf</string>
+		<string>AleloTexto-Medium.ttf</string>
+		<string>AleloTexto-Regular.ttf</string>
+	</array>
 </dict>
 </plist>

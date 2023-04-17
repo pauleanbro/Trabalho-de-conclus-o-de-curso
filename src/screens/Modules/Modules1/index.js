@@ -5,7 +5,8 @@ import {
   ContainerIteins,
   ContainerExercicios,
   Check,
-  Separador,
+  Border,
+  Text,
 } from "./styles";
 import HitCheck from "../../../assets/hitCheck.js";
 import DeniedCheck from "../../../assets/deniedCheck.js";
@@ -17,22 +18,27 @@ export default function Modules1({ navigation }) {
   return (
     <Container>
       <ContainerIteins>
-        <ContainerExercicios onPress={() => navigation.navigate("Exercises1")}>
-          <Title>Exercício 1</Title>
+        <Text>Exercícios</Text>
+        <ContainerExercicios onPress={() => navigation.navigate("Ex1Md1")}>
+          <Title>Lição 1</Title>
           <Hit />
         </ContainerExercicios>
-        <ContainerExercicios>
-          <Title>Exercício 2</Title>
+        <Border />
+        <ContainerExercicios onPress={() => navigation.navigate("Ex2Md1")}>
+          <Title>Lição 2</Title>
             <Denied />
         </ContainerExercicios>
+        <Border />
         <ContainerExercicios>
-          <Title>Exercício 3</Title>
+          <Title>Lição 3</Title>
           <Check />
         </ContainerExercicios>
+        <Border />
         <ContainerExercicios>
-          <Title>Exercício 4</Title>
+          <Title>Lição 4</Title>
           <Check />
         </ContainerExercicios>
+        <Border />
       </ContainerIteins>
     </Container>
   );

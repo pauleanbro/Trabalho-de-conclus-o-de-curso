@@ -12,7 +12,7 @@ const data = [
   ["M", "N", "O", "P", "Ç"],
 ];
 
-const Exercises1 = () => {
+const Ex1Md1 = () => {
   const [selectedLetters, setSelectedLetters] = useState([]);
   const [undo, setUndo] = useState(false);
   const [words, setWords] = useState([]);
@@ -56,4 +56,4 @@ const Exercises1 = () => {
   );
 };
 
-export default Exercises1;
+export default Ex1Md1;
