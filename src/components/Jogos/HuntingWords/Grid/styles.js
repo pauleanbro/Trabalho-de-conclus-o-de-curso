@@ -1,8 +1,6 @@
 import styled from "styled-components/native";
 
 export const Container = styled.View`
-  align-items: center;
-  justify-content: center;
 `;
 
 export const ButtonWord = styled.TouchableOpacity`
@@ -10,10 +8,12 @@ export const ButtonWord = styled.TouchableOpacity`
   height: 50px;
   align-items: center;
   justify-content: center;
+  background-color: #D9D9D9;
+  margin: 5px;
 `;
 
 export const TextButton = styled.Text`
   font-size: 20px;
-  color: #282828;
-  font-family: 'Roboto-Regular';
+  color: #000000;
+  font-family: 'Roboto-Bold';
 `;

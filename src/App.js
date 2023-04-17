@@ -8,6 +8,7 @@ import Activites from './screens/Activites'
 import Modules1 from './screens/Modules/Modules1'
 import Ex1Md1 from './screens/Modules//Modules1/Exercises/Ex1Md1'
 import Ex2Md1 from './screens/Modules//Modules1/Exercises/Ex2Md1'
+import Ex3Md1 from './screens/Modules//Modules1/Exercises/Ex3Md1'
 
 const Stack = createNativeStackNavigator();
 
@@ -20,6 +21,7 @@ function App() {
         <Stack.Screen name="Modules1" component={Modules1} />
         <Stack.Screen name="Ex1Md1" component={Ex1Md1} />
         <Stack.Screen name="Ex2Md1" component={Ex2Md1} />
+        <Stack.Screen name="Ex3Md1" component={Ex3Md1} />
       </Stack.Navigator>
     </NavigationContainer>
   );

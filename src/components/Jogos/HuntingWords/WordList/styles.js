@@ -1,6 +1,9 @@
 import styled from "styled-components/native";
 
 export const Container = styled.View`
+`;
+
+export const ContainerApagar = styled.View`
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
@@ -22,7 +25,7 @@ export const ContainerButton = styled.TouchableOpacity`
   background-color: #000000;
   width: 45px;
   height: 25px;
-  border-radius: 10px;
+  border-radius: 100px;
   align-items: center;
   justify-content: center;
 `;

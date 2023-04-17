@@ -44,5 +44,5 @@ export const Border = styled.View`
   width: 100%;
   height: 1.5px;
   background-color: #E8E8E8;
-  margin: 20px 0 20px 0;
+  margin: 15px 0 25px 0;
 `;

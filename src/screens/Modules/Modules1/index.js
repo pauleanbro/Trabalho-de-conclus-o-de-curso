@@ -29,7 +29,7 @@ export default function Modules1({ navigation }) {
             <Denied />
         </ContainerExercicios>
         <Border />
-        <ContainerExercicios>
+        <ContainerExercicios onPress={() => navigation.navigate("Ex3Md1")}>
           <Title>Lição 3</Title>
           <Check />
         </ContainerExercicios>
