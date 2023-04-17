@@ -34,7 +34,7 @@ export default function Modules1({ navigation }) {
           <Check />
         </ContainerExercicios>
         <Border />
-        <ContainerExercicios>
+        <ContainerExercicios onPress={() => navigation.navigate("Ex4Md1")}>
           <Title>Lição 4</Title>
           <Check />
         </ContainerExercicios>

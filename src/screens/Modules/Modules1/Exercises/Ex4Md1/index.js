@@ -5,24 +5,18 @@ import {
   ContainerItens,
   TextItens,
   WordsItens,
-  ContainerWords,
-  TextWords,
   ContainerButton,
   TextButton,
   Border,
+  ContainerWords,
+  TextWords,
 } from "./styles";
 import Grid from "../../../../../components/Jogos/HuntingWords/Grid";
 import WordList from "../../../../../components/Jogos/HuntingWords/WordList";
 
-const data = [
-  ["A", "P", "C", "D", "G", "I", "G"],
-  ["E", "R", "G", "H", "L", "H", "E"],
-  ["B", "O", "L", "O", "Z", "B", "A"],
-  ["M", "V", "O", "P", "Q", "K", "O"],
-  ["S", "A", "L", "A", "R", "I", "O"],
-];
+const data = [["A", "E", "I", "O", "U"]];
 
-const Ex1Md1 = () => {
+const Ex4Md1 = () => {
   const [selectedLetters, setSelectedLetters] = useState([]);
   const [undo, setUndo] = useState(false);
   const [words, setWords] = useState([]);
@@ -54,9 +48,9 @@ const Ex1Md1 = () => {
   return (
     <Container>
       <ContainerWords>
-        <TextWords>SALARIO</TextWords>
-        <TextWords>BOLO</TextWords>
-        <TextWords>PROVA</TextWords>
+        <TextWords>AMANDA</TextWords>
+        <TextWords>GUSTAVO</TextWords>
+        <TextWords>GUILHERME</TextWords>
       </ContainerWords>
       <ContainerItens>
         <Grid data={data} onLetterPress={handleLetterPress} />
@@ -64,10 +58,12 @@ const Ex1Md1 = () => {
       <WordList word={selectedWord} onUndo={handleUndo} onSave={handleSave} />
       <WordsItens>
         {words.map((words, index) => (
-          <TextItens key={index}>{words}</TextItens>
+          <>
+            <TextItens key={index}>{words}</TextItens>
+          </>
         ))}
+        <Border />
       </WordsItens>
-      <Border />
       <View style={{ alignItems: "center" }}>
         <ContainerButton>
           <TextButton>Enviar</TextButton>
@@ -77,4 +73,4 @@ const Ex1Md1 = () => {
   );
 };
 
-export default Ex1Md1;
+export default Ex4Md1;
