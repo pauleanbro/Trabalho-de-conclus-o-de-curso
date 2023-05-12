@@ -29,9 +29,9 @@ export const Check = styled.TouchableOpacity`
 export const Text = styled.Text`
   font-size: 26px;
   color: #282828;
-  font-family: 'Roboto-Bold';
   text-align: center;
   margin-bottom: 30px;
+  font-family: 'Roboto';
 `;
 
 export const Title = styled.Text`
