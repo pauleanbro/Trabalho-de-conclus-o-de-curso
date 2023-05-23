@@ -30,29 +30,29 @@ const Ex1Md1 = ({ navigation }) => {
 
   const [palavras, setPalavras] = useState([]);
 
-  const saveWords = async (words) => {
+  const saveWords = async (key, words) => {
     try {
       const serializedWords = JSON.stringify(words);
-      await AsyncStorage.setItem('palavras', serializedWords);
+      await AsyncStorage.setItem(key, serializedWords);
       console.log('Palavras salvas com sucesso!');
     } catch (error) {
       console.log('Erro ao salvar as palavras:', error);
     }
   };
-
-  useEffect(() => {
-    const loadWords = async () => {
-      try {
-        const serializedWords = await AsyncStorage.getItem('palavras');
-        if (serializedWords !== null) {
-          const loadedWords = JSON.parse(serializedWords);
-          setWords(loadedWords);
-        }
-      } catch (error) {
-        console.log('Erro ao carregar as palavras:', error);
-      }
-    };
   
+  const loadWords = async () => {
+    try {
+      const serializedWords = await AsyncStorage.getItem('palavrasEx1Md1');
+      if (serializedWords !== null) {
+        const loadedWords = JSON.parse(serializedWords);
+        setWords(loadedWords);
+      }
+    } catch (error) {
+      console.log('Erro ao carregar as palavras:', error);
+    }
+  };
+  
+  useEffect(() => {
     loadWords();
   }, []);
   
@@ -75,9 +75,10 @@ const Ex1Md1 = ({ navigation }) => {
       const newWords = [...words, selectedWord];
       setWords(newWords);
       setSelectedLetters([]);
-      saveWords(newWords); // Salva as palavras atualizadas no AsyncStorage
+      saveWords('palavrasEx1Md1', newWords); // Salva as palavras atualizadas no AsyncStorage
     }
   };
+  
   
 
   const selectedWord = selectedLetters
