@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { View } from "react-native";
 import {
   Container,
@@ -17,6 +17,7 @@ import {
   ButtonEnviarCinza
 } from "./styles";
 import Grid from "../../../../../components/Jogos/HuntingWords/Grid";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const data = [
   ["TRA", "TRE", "TRI", "TRO", "TRU"],
@@ -30,6 +31,33 @@ const Ex1Md1 = ({ navigation }) => {
   const [words, setWords] = useState([]);
 
   const [palavras, setPalavras] = useState([]);
+
+  const saveWords = async (words) => {
+    try {
+      const serializedWords = JSON.stringify(words);
+      await AsyncStorage.setItem('palavras', serializedWords);
+      console.log('Palavras salvas com sucesso!');
+    } catch (error) {
+      console.log('Erro ao salvar as palavras:', error);
+    }
+  };
+
+  useEffect(() => {
+    const loadWords = async () => {
+      try {
+        const serializedWords = await AsyncStorage.getItem('palavras');
+        if (serializedWords !== null) {
+          const loadedWords = JSON.parse(serializedWords);
+          setWords(loadedWords);
+        }
+      } catch (error) {
+        console.log('Erro ao carregar as palavras:', error);
+      }
+    };
+  
+    loadWords();
+  }, []);
+  
 
   const handleLetterPress = (row, col) => {
     setSelectedLetters([...selectedLetters, { row, col }]);
@@ -46,10 +74,13 @@ const Ex1Md1 = ({ navigation }) => {
       .map((letter) => data[letter.row][letter.col])
       .join("");
     if (selectedWord !== "") {
-      setWords([...words, selectedWord]);
+      const newWords = [...words, selectedWord];
+      setWords(newWords);
       setSelectedLetters([]);
+      saveWords(newWords); // Salva as palavras atualizadas no AsyncStorage
     }
   };
+  
 
   const selectedWord = selectedLetters
     .map((letter) => data[letter.row][letter.col])
