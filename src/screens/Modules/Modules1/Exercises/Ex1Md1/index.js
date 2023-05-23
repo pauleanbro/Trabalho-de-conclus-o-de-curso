@@ -7,25 +7,29 @@ import {
   WordsItens,
   ContainerWords,
   TextWords,
-  ContainerButton,
+  ButtonEnviar,
   TextButton,
   Border,
+  ButtonExcluir,
+  ButtonSalvar,
+  TextButtonAux,
+  ContainerButtons,
+  ButtonEnviarCinza
 } from "./styles";
 import Grid from "../../../../../components/Jogos/HuntingWords/Grid";
-import WordList from "../../../../../components/Jogos/HuntingWords/WordList";
 
 const data = [
-  ["A", "P", "C", "D", "G", "I", "G"],
-  ["E", "R", "G", "H", "L", "H", "E"],
-  ["B", "O", "L", "O", "Z", "B", "A"],
-  ["M", "V", "O", "P", "Q", "K", "O"],
-  ["S", "A", "L", "A", "R", "I", "O"],
+  ["TRA", "TRE", "TRI", "TRO", "TRU"],
+  ["BA", "BE", "BI", "BO", "BU"],
+  ["LHA", "LHE", "LHI", "LHO", "LHU"],
 ];
 
-const Ex1Md1 = () => {
+const Ex1Md1 = ({ navigation }) => {
   const [selectedLetters, setSelectedLetters] = useState([]);
   const [undo, setUndo] = useState(false);
   const [words, setWords] = useState([]);
+
+  const [palavras, setPalavras] = useState([]);
 
   const handleLetterPress = (row, col) => {
     setSelectedLetters([...selectedLetters, { row, col }]);
@@ -52,28 +56,46 @@ const Ex1Md1 = () => {
     .join("");
 
   return (
-    <Container>
-      <ContainerWords>
-        <TextWords>SALARIO</TextWords>
-        <TextWords>BOLO</TextWords>
-        <TextWords>PROVA</TextWords>
-      </ContainerWords>
-      <ContainerItens>
-        <Grid data={data} onLetterPress={handleLetterPress} />
-      </ContainerItens>
-      <WordList word={selectedWord} onUndo={handleUndo} onSave={handleSave} />
-      <WordsItens>
-        {words.map((words, index) => (
-          <TextItens key={index}>{words}</TextItens>
-        ))}
-      </WordsItens>
-      <Border />
-      <View style={{ alignItems: "center" }}>
-        <ContainerButton>
-          <TextButton>Enviar</TextButton>
-        </ContainerButton>
-      </View>
-    </Container>
+    <>
+      <Container>
+        <ContainerWords>
+          <TextWords>Escreva 4 palavras com as letras a baixo:</TextWords>
+        </ContainerWords>
+        <ContainerItens>
+          <Grid data={data} onLetterPress={handleLetterPress} />
+        </ContainerItens>
+        <ContainerButtons>
+          <ButtonSalvar onPress={handleSave}>
+            <TextButtonAux>Salvar</TextButtonAux>
+          </ButtonSalvar>
+          <ButtonExcluir onPress={handleUndo}>
+            <TextButtonAux>Excluir</TextButtonAux>
+          </ButtonExcluir>
+        </ContainerButtons>
+        <TextWords>{selectedWord}</TextWords>
+        <Border />
+        <WordsItens>
+          {words.map((words, index) => (
+            <>
+              <TextItens key={index}>{words}</TextItens>
+            </>
+          ))}
+        </WordsItens>
+      </Container>
+      {selectedWord === true ? (
+        <View style={{ alignItems: "center", backgroundColor: "#FFFFFF" }}>
+          <ButtonEnviarCinza>
+            <TextButton>Enviar</TextButton>
+          </ButtonEnviarCinza>
+        </View>
+      ) : (
+        <View style={{ alignItems: "center", backgroundColor: "#FFFFFF" }}>
+          <ButtonEnviar onPress={() => navigation.navigate("Modules1")}>
+            <TextButton>Enviar</TextButton>
+          </ButtonEnviar>
+        </View>
+      )}
+    </>
   );
 };
 

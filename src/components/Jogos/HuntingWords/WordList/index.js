@@ -11,7 +11,6 @@ import {
 const WordList = ({ word, onUndo, onSave }) => {
   return (
     <Container>
-      <TextWord style={{ margin: 5 }}>{word}</TextWord>
       <ContainerApagar>
         <ContainerButton onPress={onSave}>
           <TextButton>Salvar</TextButton>
