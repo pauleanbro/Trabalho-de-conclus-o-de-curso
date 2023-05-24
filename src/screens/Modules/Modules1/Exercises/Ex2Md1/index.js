@@ -78,8 +78,6 @@ const Ex1Md1 = ({ navigation }) => {
       saveWords('palavrasEx1Md1', newWords); // Salva as palavras atualizadas no AsyncStorage
     }
   };
-  
-  
 
   const selectedWord = selectedLetters
     .map((letter) => data[letter.row][letter.col])

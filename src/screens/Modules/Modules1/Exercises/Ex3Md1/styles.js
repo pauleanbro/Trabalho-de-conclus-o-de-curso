@@ -1,12 +1,14 @@
 import styled from "styled-components/native";
 
 export const Container = styled.View`
-  flex: 1;
   background-color: #ffffff;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const LetrasMaiusculas = styled.Text`
-   font-size: 26px;
+  font-size: 26px;
   color: #282828;
   text-align: center;
   margin-bottom: 30px;
@@ -21,4 +23,10 @@ export const ContainerButton = styled.TouchableOpacity`
   align-items: center;
   justify-content: center;
   margin-bottom: 30px;
+`;
+
+
+export const TextButton = styled.Text`
+  font-size: 25px;
+  color: #ffffff;
 `;
