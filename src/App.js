@@ -12,6 +12,7 @@ import Ex3Md1 from './screens/Modules/Modules1/Exercises/Ex3Md1'
 import Ex4Md1 from './screens/Modules/Modules1/Exercises/Ex4Md1'
 import Modules2 from './screens/Modules/Modules2'
 import Ex1Md2 from './screens/Modules/Modules2/Exercises/Ex1Md2'
+import Ex2Md2 from './screens/Modules/Modules2/Exercises/Ex2Md2'
 
 const Stack = createNativeStackNavigator();
 
@@ -28,6 +29,7 @@ function App() {
         <Stack.Screen name="Ex4Md1" component={Ex4Md1} />
         <Stack.Screen name="Modules2" component={Modules2} />
         <Stack.Screen name="Ex1Md2" component={Ex1Md2} />
+        <Stack.Screen name="Ex2Md2" component={Ex2Md2} />
       </Stack.Navigator>
     </NavigationContainer>
   );

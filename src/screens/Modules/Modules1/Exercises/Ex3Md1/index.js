@@ -76,6 +76,8 @@ const Ex3Md1 = () => {
     },
   });
 
+  console.log(currentLine)
+
   return (
     <>
       <View {...panResponder.panHandlers} style={styles.container}>
