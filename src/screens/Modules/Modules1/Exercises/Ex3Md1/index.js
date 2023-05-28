@@ -1,133 +1,88 @@
-import React, { useState } from "react";
-import {
-  Dimensions,
-  PanResponder,
-  Button,
-  View,
-  StyleSheet,
-} from "react-native";
-import Svg, { Circle, Line } from "react-native-svg";
-import { Container, ContainerButton, TextButton } from "./styles";
+import React, { useState } from 'react';
+import { StyleSheet, View, Text } from 'react-native';
+import { PanGestureHandler, State } from 'react-native-gesture-handler';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
-const window = Dimensions.get("window");
+const data = [
+  ["S", "I", "C", "M", "H", "I"],
+  ["A", "U", "K", "A", "J", "A"],
+  ["L", "L", "O", "P", "H", "E"],
+  ["A", "C", "Z", "L", "M", "A"],
+  ["R", "R", "O", "V", "O", "O"],
+  ["I", "U", "U", "V", "H", "A"],
+  ["O", "T", "E", "H", "H", "A"],
+];
 
-const Ex3Md1 = () => {
-  const [lines, setLines] = useState([]);
-  const [currentLine, setCurrentLine] = useState(null);
+const wordList = ["SALARIO", "BALA", "OVO"];
 
-  const dots = [
-    { x: 50, y: window.height / 5, color: "blue" },
-    { x: 50, y: (window.height / 5) * 2, color: "black" },
-    { x: 50, y: (window.height / 5) * 3, color: "red" },
-    { x: 50, y: (window.height / 5) * 4, color: "yellow" },
-    { x: window.width - 50, y: window.height / 5, color: "blue" },
-    { x: window.width - 50, y: (window.height / 5) * 2, color: "black" },
-    { x: window.width - 50, y: (window.height / 5) * 3, color: "red" },
-    { x: window.width - 50, y: (window.height / 5) * 4, color: "yellow" },
-  ];
+const ROW_HEIGHT = 50;
+const COL_WIDTH = 50;
 
-  const panResponder = PanResponder.create({
-    onStartShouldSetPanResponder: () => true,
-    onPanResponderGrant: (evt, gestureState) => {
-      dots.forEach((dot, index) => {
-        if (
-          Math.abs(gestureState.x0 - dot.x) < 30 &&
-          Math.abs(gestureState.y0 - dot.y) < 30 &&
-          dot.x === 50
-        ) {
-          setCurrentLine({
-            start: { x: dot.x, y: dot.y, color: dot.color },
-            end: { x: dot.x, y: dot.y, color: dot.color },
-          });
-        }
-      });
-    },
-    onPanResponderMove: (evt, gestureState) => {
-      if (currentLine) {
-        setCurrentLine({
-          ...currentLine,
-          end: { x: gestureState.moveX, y: gestureState.moveY },
-        });
-      }
-    },
-    onPanResponderRelease: (evt, gestureState) => {
-      if (currentLine) {
-        dots.forEach((dot, index) => {
-          if (
-            Math.abs(gestureState.moveX - dot.x) < 30 &&
-            Math.abs(gestureState.moveY - dot.y) < 30 &&
-            dot.x === window.width - 50 &&
-            dot.color === currentLine.start.color
-          ) {
-            setLines([
-              ...lines,
-              {
-                ...currentLine,
-                end: { x: dot.x, y: dot.y, color: dot.color },
-              },
-            ]);
-            setCurrentLine(null);
-          }
-        });
-      }
-      if (currentLine && !lines.includes(currentLine)) {
-        setCurrentLine(null);
-      }
-    },
-  });
+export default function Ex3Md1() {
+  const [selectedWord, setSelectedWord] = useState("");
+  const [selectedCells, setSelectedCells] = useState([]);
 
-  console.log(currentLine)
+  console.log(selectedCells)
+  console.log(selectedWord)
+
+  const handleGestureEvent = (event) => {
+    const { x, y } = event.nativeEvent;
+    const rowIndex = Math.floor(y / ROW_HEIGHT);
+    const colIndex = Math.floor(x / COL_WIDTH);
+    if (!selectedCells.includes(`${rowIndex}-${colIndex}`)) {
+      setSelectedCells([...selectedCells, `${rowIndex}-${colIndex}`]);
+      setSelectedWord(selectedWord + data[rowIndex][colIndex]);
+    }
+  };
+
+  const handleStateChange = (event) => {
+    if (event.nativeEvent.state === State.END) {
+      checkIfWordExists();
+      setSelectedCells([]);
+      setSelectedWord("");
+    }
+  };
+
+  const checkIfWordExists = () => {
+    if (wordList.includes(selectedWord)) {
+      console.log("Palavra encontrada: ", selectedWord);
+    }
+  };
 
   return (
-    <>
-      <View {...panResponder.panHandlers} style={styles.container}>
-        <Svg
-          height="100%"
-          width="100%"
-          viewBox={`0 0 ${window.width} ${window.height}`}
-        >
-          {dots.map((dot, index) => (
-            <Circle key={index} cx={dot.x} cy={dot.y} r="20" fill={dot.color} />
+    <GestureHandlerRootView style={{ padding: 20 }}>
+      <Text>Encontre as palavras: SALARIO, BALA, OVO</Text>
+      <PanGestureHandler
+        onGestureEvent={handleGestureEvent}
+        onHandlerStateChange={handleStateChange}
+      >
+        <View style={{ height: ROW_HEIGHT * data.length, width: COL_WIDTH * data[0].length }}>
+          {data.map((row, rowIndex) => (
+            <View key={rowIndex} style={{ flexDirection: 'row' }}>
+              {row.map((letter, colIndex) => (
+                <View 
+                  key={colIndex} 
+                  style={[styles.cell, selectedCells.includes(`${rowIndex}-${colIndex}`) ? styles.selectedCell : null]}
+                >
+                  <Text>{letter}</Text>
+                </View>
+              ))}
+            </View>
           ))}
-          {lines.map((line, index) => (
-            <Line
-              key={index}
-              x1={line.start.x}
-              y1={line.start.y}
-              x2={line.end.x}
-              y2={line.end.y}
-              stroke={line.start.color}
-              strokeWidth="2"
-            />
-          ))}
-          {currentLine && (
-            <Line
-              x1={currentLine.start.x}
-              y1={currentLine.start.y}
-              x2={currentLine.end.x}
-              y2={currentLine.end.y}
-              stroke={currentLine.start.color}
-              strokeWidth="2"
-            />
-          )}
-        </Svg>
-        <Container>
-          <ContainerButton onPress={() => {}}>
-            <TextButton>Enviar</TextButton>
-          </ContainerButton>
-        </Container>
-      </View>
-    </>
+        </View>
+      </PanGestureHandler>
+    </GestureHandlerRootView>
   );
-};
-
+}
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#FFFFFF",
-    marginBottom: 40,
-    alignItems: "center",
+  cell: {
+    height: ROW_HEIGHT,
+    width: COL_WIDTH,
+    borderWidth: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
   },
+  selectedCell: {
+    backgroundColor: 'lightblue'
+  }
 });
-
-export default Ex3Md1;

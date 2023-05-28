@@ -18,7 +18,7 @@ const wordList = ["SALARIO", "BALA", "OVO"];
 const ROW_HEIGHT = 50;
 const COL_WIDTH = 50;
 
-export default function Ex2Md2() {
+export default function Ex3Md5() {
   const [selectedWord, setSelectedWord] = useState("");
   const [selectedCells, setSelectedCells] = useState([]);
 

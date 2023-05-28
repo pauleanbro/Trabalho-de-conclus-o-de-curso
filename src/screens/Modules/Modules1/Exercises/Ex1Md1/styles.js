@@ -18,8 +18,9 @@ export const ContainerWords = styled.View`
 `;
 
 export const TextWords = styled.Text`
-  font-size: 20px;
+  font-size: 22px;
   color: #000000;
+  font-weight: bold;
   margin-left: 10px;
 `;
 
@@ -98,5 +99,5 @@ export const Border = styled.View`
   width: 94%;
   height: 1.5px;
   background-color: #000000;
-  margin: 0 0 0 10px;
+  margin: 0 0 10px 10px;
 `;

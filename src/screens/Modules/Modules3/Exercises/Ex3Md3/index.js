@@ -25,7 +25,7 @@ const data = [
   ["LHA", "LHE", "LHI", "LHO", "LHU"],
 ];
 
-const Ex2Md1 = ({ navigation }) => {
+const Ex3Md3 = ({ navigation }) => {
   const [selectedLetters, setSelectedLetters] = useState([]);
   const [undo, setUndo] = useState(false);
   const [words, setWords] = useState([]);
@@ -130,4 +130,4 @@ const Ex2Md1 = ({ navigation }) => {
   );
 };
 
-export default Ex2Md1;
+export default Ex3Md3;

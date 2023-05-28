@@ -20,13 +20,13 @@ export default function Activites({ navigation }) {
         <ContainerButton onPress={() => navigation.navigate("Modules2")}>
           <TextButton>Módulo 2</TextButton>
         </ContainerButton>
-        <ContainerButton>
+        <ContainerButton onPress={() => navigation.navigate("Modules3")}>
           <TextButton>Módulo 3</TextButton>
         </ContainerButton>
-        <ContainerButton>
+        <ContainerButton onPress={() => navigation.navigate("Modules4")}>
           <TextButton>Módulo 4</TextButton>
         </ContainerButton>
-        <ContainerButton>
+        <ContainerButton onPress={() => navigation.navigate("Modules5")}>
           <TextButton>Módulo 5</TextButton>
         </ContainerButton>
       </ContainerIteins>

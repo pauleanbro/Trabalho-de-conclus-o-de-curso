@@ -44,6 +44,11 @@ export default function Modules2({ navigation }) {
           <Check />
         </ContainerExercicios>
         <Border />
+        <ContainerExercicios onPress={() => navigation.navigate("Ex6Md2")}>
+          <Title>Lição 6</Title>
+          <Check />
+        </ContainerExercicios>
+        <Border />
       </ContainerIteins>
     </Container>
   );
