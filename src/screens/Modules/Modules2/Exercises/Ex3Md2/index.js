@@ -52,6 +52,8 @@ const Ex3Md2 = () => {
     },
     onPanResponderRelease: (evt, gestureState) => {
       if (currentLine) {
+        let lineEndedOnDot = false;
+
         dots.forEach((dot, index) => {
           if (
             Math.abs(gestureState.moveX - dot.x) < 30 &&
@@ -59,24 +61,29 @@ const Ex3Md2 = () => {
             dot.x === window.width - 50 &&
             dot.color === currentLine.start.color
           ) {
-            setLines([
-              ...lines,
+            lineEndedOnDot = true;
+            setLines((prevLines) => [
+              ...prevLines,
               {
                 ...currentLine,
                 end: { x: dot.x, y: dot.y, color: dot.color },
               },
             ]);
-            setCurrentLine(null);
           }
         });
-      }
-      if (currentLine && !lines.includes(currentLine)) {
-        setCurrentLine(null);
+
+        // Se a linha não terminar em um ponto, resetar a linha atual
+        if (!lineEndedOnDot) {
+          setCurrentLine(null);
+        } else {
+          // Se a linha terminar em um ponto, manter a linha atual
+          setCurrentLine(currentLine);
+        }
       }
     },
   });
 
-  console.log(currentLine)
+  console.log(currentLine);
 
   return (
     <>

@@ -140,7 +140,7 @@ const Ex1Md2 = ({ navigation }) => {
           <TextButtonAux>Apagar</TextButtonAux>
         </ButtonApagar>
       </View>
-      {word === true ? (
+      {savedWord.length < 6 ? ( 
         <View style={{ alignItems: "center", backgroundColor: "#FFFFFF" }}>
           <ButtonEnviarCinza>
             <TextButton>Enviar</TextButton>
