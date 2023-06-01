@@ -14,7 +14,7 @@ export const ContainerItens = styled.View`
 
 export const ContainerItensPalavras = styled.View`
   flex-direction: row;
-  margin: 0 0 50px 20px;
+  margin: 0px 0 10px 10px;
 `;
 
 export const ContainerWords = styled.View`
@@ -96,6 +96,16 @@ export const ButtonExcluir = styled.TouchableOpacity`
 
 export const ButtonSalvar = styled.TouchableOpacity`
   background-color: #5DB075;
+  width: 60px;
+  height: 30px;
+  border-radius: 30px;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 30px;
+`;
+
+export const ButtonApagar = styled.TouchableOpacity`
+  background-color: #0099F0;
   width: 60px;
   height: 30px;
   border-radius: 30px;
