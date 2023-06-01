@@ -14,10 +14,11 @@ import {
   ButtonSalvar,
   TextButtonAux,
   ContainerButtons,
-  ButtonEnviarCinza
+  ButtonEnviarCinza,
+  ButtonApagar,
 } from "./styles";
 import Grid from "../../../../../components/Jogos/HuntingWords/Grid";
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const data = [
   ["TRA", "TRE", "TRI", "TRO", "TRU"],
@@ -35,29 +36,28 @@ const Ex2Md1 = ({ navigation }) => {
   const saveWords = async (words) => {
     try {
       const serializedWords = JSON.stringify(words);
-      await AsyncStorage.setItem('palavras', serializedWords);
-      console.log('Palavras salvas com sucesso!');
+      await AsyncStorage.setItem("palavras", serializedWords);
+      console.log("Palavras salvas com sucesso!");
     } catch (error) {
-      console.log('Erro ao salvar as palavras:', error);
+      console.log("Erro ao salvar as palavras:", error);
     }
   };
 
   useEffect(() => {
     const loadWords = async () => {
       try {
-        const serializedWords = await AsyncStorage.getItem('palavras');
+        const serializedWords = await AsyncStorage.getItem("palavras");
         if (serializedWords !== null) {
           const loadedWords = JSON.parse(serializedWords);
           setWords(loadedWords);
         }
       } catch (error) {
-        console.log('Erro ao carregar as palavras:', error);
+        console.log("Erro ao carregar as palavras:", error);
       }
     };
-  
+
     loadWords();
   }, []);
-  
 
   const handleLetterPress = (row, col) => {
     setSelectedLetters([...selectedLetters, { row, col }]);
@@ -80,7 +80,18 @@ const Ex2Md1 = ({ navigation }) => {
       saveWords(newWords); // Salva as palavras atualizadas no AsyncStorage
     }
   };
-  
+
+  const handleDelete = async () => {
+    const newWords = words.slice(0, -1); // remove a última palavra
+    setWords(newWords);
+    try {
+      const serializedWords = JSON.stringify(newWords);
+      await AsyncStorage.setItem("palavrasEx1Md1", serializedWords);
+      console.log("Palavra apagada com sucesso!");
+    } catch (error) {
+      console.log("Erro ao apagar a palavra:", error);
+    }
+  };
 
   const selectedWord = selectedLetters
     .map((letter) => data[letter.row][letter.col])
@@ -113,7 +124,12 @@ const Ex2Md1 = ({ navigation }) => {
           ))}
         </WordsItens>
       </Container>
-      {selectedWord === true ? (
+      <View style={{ alignItems: "center", backgroundColor: "#FFFFFF" }}>
+        <ButtonApagar onPress={handleDelete}>
+          <TextButtonAux>Apagar</TextButtonAux>
+        </ButtonApagar>
+      </View>
+      {words.length < 4 ? (
         <View style={{ alignItems: "center", backgroundColor: "#FFFFFF" }}>
           <ButtonEnviarCinza>
             <TextButton>Enviar</TextButton>

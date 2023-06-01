@@ -14,48 +14,50 @@ import {
   ButtonSalvar,
   TextButtonAux,
   ContainerButtons,
-  ButtonEnviarCinza
+  ButtonEnviarCinza,
+  WordsLetras,
+  ButtonApagar,
 } from "./styles";
 import Grid from "../../../../../components/Jogos/HuntingWords/Grid";
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const data = [
-  ["A", "E", "I", "O", "U"]
-];
+const data = [["A", "E", "I", "O", "U"]];
 
 const Ex1Md1 = ({ navigation }) => {
   const [selectedLetters, setSelectedLetters] = useState([]);
   const [undo, setUndo] = useState(false);
   const [words, setWords] = useState([]);
-
   const [palavras, setPalavras] = useState([]);
+
+  const [currentWordIndex, setCurrentWordIndex] = useState(0);
+
+  const wordList = ["Amanda", "Elza", "Ivone", "Odilon", "Ubaldo"];
 
   const saveWords = async (key, words) => {
     try {
       const serializedWords = JSON.stringify(words);
       await AsyncStorage.setItem(key, serializedWords);
-      console.log('Palavras salvas com sucesso!');
+      console.log("Palavras salvas com sucesso!");
     } catch (error) {
-      console.log('Erro ao salvar as palavras:', error);
+      console.log("Erro ao salvar as palavras:", error);
     }
   };
-  
+
   const loadWords = async () => {
     try {
-      const serializedWords = await AsyncStorage.getItem('palavrasEx1Md1');
+      const serializedWords = await AsyncStorage.getItem("palavrasEx1Md1");
       if (serializedWords !== null) {
         const loadedWords = JSON.parse(serializedWords);
         setWords(loadedWords);
       }
     } catch (error) {
-      console.log('Erro ao carregar as palavras:', error);
+      console.log("Erro ao carregar as palavras:", error);
     }
   };
-  
+
   useEffect(() => {
     loadWords();
   }, []);
-  
 
   const handleLetterPress = (row, col) => {
     setSelectedLetters([...selectedLetters, { row, col }]);
@@ -75,7 +77,22 @@ const Ex1Md1 = ({ navigation }) => {
       const newWords = [...words, selectedWord];
       setWords(newWords);
       setSelectedLetters([]);
-      saveWords('palavrasEx1Md1', newWords); // Salva as palavras atualizadas no AsyncStorage
+      saveWords("palavrasEx1Md1", newWords); // Salva as palavras atualizadas no AsyncStorage
+
+      // Mover para a próxima palavra
+      setCurrentWordIndex(currentWordIndex + 1);
+    }
+  };
+
+  const handleDelete = async () => {
+    const newWords = words.slice(0, -1); // remove a última palavra
+    setWords(newWords);
+    try {
+      const serializedWords = JSON.stringify(newWords);
+      await AsyncStorage.setItem("palavrasEx1Md1", serializedWords);
+      console.log("Palavra apagada com sucesso!");
+    } catch (error) {
+      console.log("Erro ao apagar a palavra:", error);
     }
   };
 
@@ -87,7 +104,7 @@ const Ex1Md1 = ({ navigation }) => {
     <>
       <Container>
         <ContainerWords>
-          <TextWords>Amanda</TextWords>
+          <TextWords>{wordList[currentWordIndex]}</TextWords>
         </ContainerWords>
         <ContainerItens>
           <Grid data={data} onLetterPress={handleLetterPress} />
@@ -103,14 +120,28 @@ const Ex1Md1 = ({ navigation }) => {
           </ButtonExcluir>
         </ContainerButtons>
         <WordsItens>
-          {words.map((words, index) => (
-            <>
-              <TextItens key={index}>{words}</TextItens>
-            </>
-          ))}
+          <View styles={{ flexDirection: "column" }}>
+            <WordsLetras>Amanda</WordsLetras>
+            <WordsLetras>Elza</WordsLetras>
+            <WordsLetras>Ivone</WordsLetras>
+            <WordsLetras>Odilon</WordsLetras>
+            <WordsLetras>Ubaldo</WordsLetras>
+          </View>
+          <View style={{ flexDirection: "column" }}>
+            {words.map((words, index) => (
+              <>
+                <TextItens key={index}>{words}</TextItens>
+              </>
+            ))}
+          </View>
         </WordsItens>
+        <View style={{alignItems: 'center'}}>
+          <ButtonApagar onPress={handleDelete}>
+            <TextButtonAux>Apagar</TextButtonAux>
+          </ButtonApagar>
+        </View>
       </Container>
-      {selectedWord === true ? (
+      {words.length < 5 ? (
         <View style={{ alignItems: "center", backgroundColor: "#FFFFFF" }}>
           <ButtonEnviarCinza>
             <TextButton>Enviar</TextButton>

@@ -25,8 +25,9 @@ export const TextWords = styled.Text`
 `;
 
 export const WordsItens = styled.View`
-  flex-direction: column;
+  flex-direction: row;
   align-items: flex-start;
+  justify-content: space-between;
 `;
 
 
@@ -35,7 +36,7 @@ export const TextItens = styled.Text`
   color: #282828;
   font-family: 'Roboto-Regular';
   flex-wrap: wrap;
-  margin: 20px 0 -10px 10px;
+  margin: 10px 150px 10px 0px;
 `;
 
 export const ButtonEnviar = styled.TouchableOpacity`
@@ -74,6 +75,16 @@ export const ButtonExcluir = styled.TouchableOpacity`
   margin-bottom: 30px;
 `;
 
+export const ButtonApagar = styled.TouchableOpacity`
+  background-color: #0099F0;
+  width: 60px;
+  height: 30px;
+  border-radius: 30px;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 30px;
+`;
+
 export const ButtonSalvar = styled.TouchableOpacity`
   background-color: #5DB075;
   width: 60px;
@@ -100,4 +111,11 @@ export const Border = styled.View`
   height: 1.5px;
   background-color: #000000;
   margin: 0 0 10px 10px;
+`;
+
+export const WordsLetras = styled.Text`
+  font-size: 22px;
+  color: #000000;
+  font-weight: bold;
+  margin: 10px;
 `;
