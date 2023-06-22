@@ -5,7 +5,7 @@ export const Container = styled.View`
 `;
 
 export const ButtonWord = styled.TouchableOpacity`
-  width: 70px;
+  width: 76px;
   height: 40px;
   align-items: center;
   justify-content: center;

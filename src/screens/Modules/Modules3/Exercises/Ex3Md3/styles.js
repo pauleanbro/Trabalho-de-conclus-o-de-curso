@@ -100,3 +100,13 @@ export const Border = styled.View`
   background-color: #000000;
   margin: 0 0 0 10px;
 `;
+
+export const ButtonApagar = styled.TouchableOpacity`
+  background-color: #0099F0;
+  width: 60px;
+  height: 30px;
+  border-radius: 30px;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 30px;
+`;

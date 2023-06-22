@@ -81,16 +81,25 @@ const Ex2Md1 = ({ navigation }) => {
     }
   };
 
-  const handleDelete = async () => {
-    const newWords = words.slice(0, -1); // remove a última palavra
-    setWords(newWords);
-    try {
-      const serializedWords = JSON.stringify(newWords);
-      await AsyncStorage.setItem("palavrasEx1Md1", serializedWords);
-      console.log("Palavra apagada com sucesso!");
-    } catch (error) {
-      console.log("Erro ao apagar a palavra:", error);
+  const handleDelete = () => {
+    if (words.length > 0) {
+      const newWords = words.slice(0, -1); // remove a última palavra
+      setWords(newWords);
     }
+  };
+
+  const handleSend = async () => {
+    // Salve a lista final de palavras no AsyncStorage antes de navegar para a próxima tela
+    try {
+      const serializedWords = JSON.stringify(words);
+      await AsyncStorage.setItem("palavras", serializedWords);
+      console.log("Palavras salvas com sucesso!");
+    } catch (error) {
+      console.log("Erro ao salvar as palavras:", error);
+    }
+
+    // Navegue para a próxima tela
+    navigation.navigate("Modules1");
   };
 
   const selectedWord = selectedLetters
@@ -131,7 +140,7 @@ const Ex2Md1 = ({ navigation }) => {
       </View>
       {words.length < 4 ? (
         <View style={{ alignItems: "center", backgroundColor: "#FFFFFF" }}>
-          <ButtonEnviarCinza>
+          <ButtonEnviarCinza onPress={handleSend}>
             <TextButton>Enviar</TextButton>
           </ButtonEnviarCinza>
         </View>
