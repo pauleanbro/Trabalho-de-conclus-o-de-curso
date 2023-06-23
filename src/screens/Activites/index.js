@@ -8,9 +8,12 @@ import {
   Separador,
 } from "./styles";
 
+import HeaderBack from "../../components/Header";
+
 export default function Activites({ navigation }) {
   return (
     <Container>
+      <HeaderBack text="Atividades" onPress={() => navigation.navigate("Home")} />
       <ContainerIteins>
         <Title>Atividades</Title>
         <Separador />

@@ -11,12 +11,16 @@ import {
 import HitCheck from "../../../assets/hitCheck.js";
 import DeniedCheck from "../../../assets/deniedCheck.js";
 
+import HeaderBack from "../../../components/Header"
+
+
 const Hit = HitCheck;
 const Denied = DeniedCheck;
 
 export default function Modules5({ navigation }) {
   return (
     <Container>
+      <HeaderBack text="Modulo 5" onPress={() => navigation.navigate("Home")} />
       <ContainerIteins>
         <Text>Exercícios</Text>
         <ContainerExercicios onPress={() => navigation.navigate("Ex1Md5")}>
