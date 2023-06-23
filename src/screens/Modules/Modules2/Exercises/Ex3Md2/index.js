@@ -9,9 +9,11 @@ import {
 import Svg, { Circle, Line } from "react-native-svg";
 import { Container, ContainerButton, TextButton } from "./styles";
 
+import HeaderBack from "../../../../../components/Header";
+
 const window = Dimensions.get("window");
 
-const Ex3Md2 = () => {
+const Ex3Md2 = ({navigation}) => {
   const [lines, setLines] = useState([]);
   const [currentLine, setCurrentLine] = useState(null);
 
@@ -87,6 +89,11 @@ const Ex3Md2 = () => {
 
   return (
     <>
+      <HeaderBack
+        text="Exercicio 3"
+        onPress={() => navigation.navigate("Modules2")}
+      />
+
       <View {...panResponder.panHandlers} style={styles.container}>
         <Svg
           height="100%"

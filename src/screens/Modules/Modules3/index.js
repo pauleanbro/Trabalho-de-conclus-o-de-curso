@@ -19,17 +19,17 @@ const Denied = DeniedCheck;
 export default function Modules3({ navigation }) {
   return (
     <Container>
-      <HeaderBack text="Modulo 3" onPress={() => navigation.navigate("Home")} />
+      <HeaderBack text="Modulo 3" onPress={() => navigation.navigate("Activites")} />
       <ContainerIteins>
         <Text>Exercícios</Text>
         <ContainerExercicios onPress={() => navigation.navigate("Ex1Md3")}>
           <Title>Lição 1</Title>
-          <Hit />
+          <Check />
         </ContainerExercicios>
         <Border />
         <ContainerExercicios onPress={() => navigation.navigate("Ex2Md3")}>
           <Title>Lição 2</Title>
-            <Denied />
+          <Check />
         </ContainerExercicios>
         <Border />
         <ContainerExercicios onPress={() => navigation.navigate("Ex3Md3")}>

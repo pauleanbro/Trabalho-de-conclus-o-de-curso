@@ -21,6 +21,8 @@ import {
 import Grid from "../../../../../components/Jogos/NamesOptions/GridName";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
+import HeaderBack from '../../../../../components/Header'
+
 const data = [
   ["Dezembro", "Fevereiro", "Março", "Janeiro"],
   ["Abril", "Julho", "Agosto", "Maio"],
@@ -61,6 +63,11 @@ const Ex1Md3 = ({ navigation }) => {
 
   return (
     <>
+      <HeaderBack
+        text="Exercicio 1"
+        onPress={() => navigation.navigate("Modules3")}
+      />
+
       <Container>
         <ContainerWords>
           <TextWords>Escolha nomes correspondentes:</TextWords>

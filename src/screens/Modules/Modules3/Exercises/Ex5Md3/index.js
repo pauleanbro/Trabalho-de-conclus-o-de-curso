@@ -13,6 +13,8 @@ import {
   ButtonColorVerde,
 } from "./styles";
 
+import HeaderBack from "../../../../../components/Header";
+
 export default function Ex5Md3({ navigation }) {
   const [colors, setColors] = useState({
     verde: null,
@@ -65,6 +67,11 @@ export default function Ex5Md3({ navigation }) {
 
   return (
     <Container>
+      <HeaderBack
+        text="Exercicio 5"
+        onPress={() => navigation.navigate("Modules3")}
+      />
+
       <Title>Crie Cores:</Title>
       <View
         style={{

@@ -20,12 +20,12 @@ const Denied = DeniedCheck;
 export default function Modules4({ navigation }) {
   return (
     <Container>
-      <HeaderBack text="Modulo 4" onPress={() => navigation.navigate("Home")} />
+      <HeaderBack text="Modulo 4" onPress={() => navigation.navigate("Activites")} />
       <ContainerIteins>
         <Text>Exercícios</Text>
         <ContainerExercicios onPress={() => navigation.navigate("Ex1Md4")}>
           <Title>Lição 1</Title>
-          <Hit />
+          <Check />
         </ContainerExercicios>
       </ContainerIteins>
     </Container>

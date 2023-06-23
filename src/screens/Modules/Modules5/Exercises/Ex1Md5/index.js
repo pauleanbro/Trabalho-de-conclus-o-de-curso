@@ -4,6 +4,8 @@ import { PanGestureHandler, State } from "react-native-gesture-handler";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { Title } from "./styles";
 
+import HeaderBack from "../../../../../components/Header";
+
 const data = [
   ["B", "E", "B", "P", "S", "I", "R", "A"],
   ["A", "S", "R", "R", "A", "A", "R", "A"],
@@ -18,7 +20,14 @@ const data = [
   ["O", "T", "A", "U", "R", "O", "R", "A"],
 ];
 
-const wordList = ["AURORA", "BANANEIRAS", "BRINCADEIRA", "ESTILINGUE", "PRIMAVERA", "SAUDADE"];
+const wordList = [
+  "AURORA",
+  "BANANEIRAS",
+  "BRINCADEIRA",
+  "ESTILINGUE",
+  "PRIMAVERA",
+  "SAUDADE",
+];
 
 const ROW_HEIGHT = 50;
 const COL_WIDTH = 50;
@@ -54,48 +63,57 @@ export default function Ex1Md5() {
   };
 
   return (
-    <GestureHandlerRootView
-      style={{
-        flex: 1,
-        padding: 20,
-        alignItems: "center",
-        backgroundColor: "#ffffff",
-      }}
-    >
-      <Title>AURORA - BANANEIRAS - BRINCADEIRA - ESTILINGUE - PRIMAVERA - SAUDADE</Title>
-      <PanGestureHandler
-        onGestureEvent={handleGestureEvent}
-        onHandlerStateChange={handleStateChange}
+    <>
+      <HeaderBack
+        text="Exercicio 1"
+        onPress={() => navigation.navigate("Modules5")}
+      />
+
+      <GestureHandlerRootView
+        style={{
+          flex: 1,
+          padding: 20,
+          alignItems: "center",
+          backgroundColor: "#ffffff",
+        }}
       >
-        <View
-          style={{
-            height: ROW_HEIGHT * data.length,
-            width: COL_WIDTH * data[0].length,
-          }}
+        <Title>
+          AURORA - BANANEIRAS - BRINCADEIRA - ESTILINGUE - PRIMAVERA - SAUDADE
+        </Title>
+        <PanGestureHandler
+          onGestureEvent={handleGestureEvent}
+          onHandlerStateChange={handleStateChange}
         >
-          {data.map((row, rowIndex) => (
-            <View key={rowIndex} style={{ flexDirection: "row" }}>
-              {row.map((letter, colIndex) => (
-                <View
-                  key={colIndex}
-                  style={[
-                    styles.cell,
-                    foundWordsCells.includes(`${rowIndex}-${colIndex}`)
-                      ? styles.foundWordCell
-                      : null,
-                    selectedCells.includes(`${rowIndex}-${colIndex}`)
-                      ? styles.selectedCell
-                      : null,
-                  ]}
-                >
-                  <Text>{letter}</Text>
-                </View>
-              ))}
-            </View>
-          ))}
-        </View>
-      </PanGestureHandler>
-    </GestureHandlerRootView>
+          <View
+            style={{
+              height: ROW_HEIGHT * data.length,
+              width: COL_WIDTH * data[0].length,
+            }}
+          >
+            {data.map((row, rowIndex) => (
+              <View key={rowIndex} style={{ flexDirection: "row" }}>
+                {row.map((letter, colIndex) => (
+                  <View
+                    key={colIndex}
+                    style={[
+                      styles.cell,
+                      foundWordsCells.includes(`${rowIndex}-${colIndex}`)
+                        ? styles.foundWordCell
+                        : null,
+                      selectedCells.includes(`${rowIndex}-${colIndex}`)
+                        ? styles.selectedCell
+                        : null,
+                    ]}
+                  >
+                    <Text>{letter}</Text>
+                  </View>
+                ))}
+              </View>
+            ))}
+          </View>
+        </PanGestureHandler>
+      </GestureHandlerRootView>
+    </>
   );
 }
 const styles = StyleSheet.create({

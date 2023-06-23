@@ -19,6 +19,7 @@ import {
 } from "./styles";
 import Grid from "../../../../../components/Jogos/HuntingWords/Grid";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import HeaderBack from "../../../../../components/Header";
 
 const data = [
   ["VA", "VE", "VI", "VO", "VU"],
@@ -97,6 +98,11 @@ const Ex3Md3 = ({ navigation }) => {
 
   return (
     <>
+      <HeaderBack
+        text="Exercicio 3"
+        onPress={() => navigation.navigate("Modules3")}
+      />
+
       <Container>
         <ContainerWords>
           <TextWords>Escreva 4 palavras com as letras a baixo:</TextWords>

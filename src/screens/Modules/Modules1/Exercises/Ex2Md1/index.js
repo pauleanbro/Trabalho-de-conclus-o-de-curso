@@ -20,6 +20,8 @@ import {
 import Grid from "../../../../../components/Jogos/HuntingWords/Grid";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
+import HeaderBack from '../../../../../components/Header'
+
 const data = [
   ["TRA", "TRE", "TRI", "TRO", "TRU"],
   ["BA", "BE", "BI", "BO", "BU"],
@@ -99,6 +101,7 @@ const Ex2Md1 = ({ navigation }) => {
   return (
     <>
       <Container>
+      <HeaderBack text="Exercicio 2" onPress={() => navigation.navigate("Modules1")} />
         <ContainerWords>
           <TextWords>Escreva 4 palavras com as letras a baixo:</TextWords>
         </ContainerWords>

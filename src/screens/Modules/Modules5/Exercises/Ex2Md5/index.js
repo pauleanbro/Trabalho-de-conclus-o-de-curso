@@ -9,6 +9,8 @@ import {
   ButtonEnviarCinza,
 } from "./styles";
 
+import HeaderBack from "../../../../../components/Header";
+
 const Ex2Md5 = ({ navigation }) => {
   const [selectedButtons, setSelectedButtons] = useState([]);
   const buttonNumbers = [85, 87, 89, 80];
@@ -31,7 +33,10 @@ const Ex2Md5 = ({ navigation }) => {
         setSelectedButtons(JSON.parse(value));
       }
     } catch (error) {
-      console.error("Error retrieving selected buttons from AsyncStorage:", error);
+      console.error(
+        "Error retrieving selected buttons from AsyncStorage:",
+        error
+      );
     }
   };
 
@@ -56,6 +61,11 @@ const Ex2Md5 = ({ navigation }) => {
 
   return (
     <>
+      <HeaderBack
+        text="Exercicio 2"
+        onPress={() => navigation.navigate("Modules5")}
+      />
+
       <Container>
         <Title>86</Title>
         <View style={styles.buttonContainer}>

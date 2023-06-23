@@ -21,6 +21,8 @@ import {
 import Grid from "../../../../../components/Jogos/HuntingWords/Grid";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
+import HeaderBack from '../../../../../components/Header'
+
 const data = [["A", "E", "I", "O", "U"]];
 
 const Ex1Md1 = ({ navigation }) => {
@@ -103,6 +105,10 @@ const Ex1Md1 = ({ navigation }) => {
   return (
     <>
       <Container>
+        <HeaderBack
+          text="Exercicio 1"
+          onPress={() => navigation.navigate("Modules1")}
+        />
         <ContainerWords>
           <TextWords>{wordList[currentWordIndex]}</TextWords>
         </ContainerWords>
@@ -135,7 +141,7 @@ const Ex1Md1 = ({ navigation }) => {
             ))}
           </View>
         </WordsItens>
-        <View style={{alignItems: 'center'}}>
+        <View style={{ alignItems: "center" }}>
           <ButtonApagar onPress={handleDelete}>
             <TextButtonAux>Apagar</TextButtonAux>
           </ButtonApagar>

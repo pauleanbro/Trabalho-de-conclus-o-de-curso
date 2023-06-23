@@ -21,6 +21,8 @@ import {
 import Grid from "../../../../../components/Jogos/NamesOptions/GridName";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
+import HeaderBack from "../../../../../components/Header";
+
 const data = [
   ["Pedro", "Odete", "Sofia", "Antônio", "Carmem"],
   ["Lina", "Maria", "João", "Alzira", "Jandira"],
@@ -61,6 +63,11 @@ const Ex5Md2 = ({ navigation }) => {
 
   return (
     <>
+      <HeaderBack
+        text="Exercicio 5"
+        onPress={() => navigation.navigate("Modules2")}
+      />
+
       <Container>
         <ContainerWords>
           <TextWords>Escolha nomes correspondentes:</TextWords>
@@ -74,19 +81,27 @@ const Ex5Md2 = ({ navigation }) => {
           </ButtonExcluir>
         </ContainerButtons>
         <ContainerNames>
-          <TextItens onPress={() => handleNameClick(0)}>{selectedNames[0]}</TextItens>
+          <TextItens onPress={() => handleNameClick(0)}>
+            {selectedNames[0]}
+          </TextItens>
           <Border />
         </ContainerNames>
         <ContainerNames>
-          <TextItens onPress={() => handleNameClick(0)}>{selectedNames[1]}</TextItens>
+          <TextItens onPress={() => handleNameClick(0)}>
+            {selectedNames[1]}
+          </TextItens>
           <Border />
         </ContainerNames>
         <ContainerNames>
-          <TextItens onPress={() => handleNameClick(0)}>{selectedNames[2]}</TextItens>
+          <TextItens onPress={() => handleNameClick(0)}>
+            {selectedNames[2]}
+          </TextItens>
           <Border />
         </ContainerNames>
         <ContainerNames>
-          <TextItens onPress={() => handleNameClick(0)}>{selectedNames[3]}</TextItens>
+          <TextItens onPress={() => handleNameClick(0)}>
+            {selectedNames[3]}
+          </TextItens>
           <Border />
         </ContainerNames>
       </Container>

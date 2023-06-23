@@ -18,6 +18,8 @@ import {
   ContainerItensPalavras,
 } from "./styles";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import HeaderBack from '../../../../../components/Header'
+
 
 const data = [
   ["FA", "DE", "DI", "GA", "CA"],
@@ -83,6 +85,8 @@ const Ex1Md2 = ({ navigation }) => {
   return (
     <>
       <Container>
+      <HeaderBack text="Exercicio 1" onPress={() => navigation.navigate("Modules2")} />
+
         <ContainerWords>
           <TextWords>{wordList[currentWordIndex]}</TextWords>
         </ContainerWords>
