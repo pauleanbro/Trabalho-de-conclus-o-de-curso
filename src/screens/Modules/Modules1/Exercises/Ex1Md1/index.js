@@ -33,7 +33,7 @@ const Ex1Md1 = ({ navigation }) => {
 
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
 
-  const wordList = ["Amanda", "Elza", "Ivone", "Odilon", "Ubaldo"];
+  const wordList = ["AMANDA", "ELZA", "IVONE", "ODILON", "UBALDO"];
 
   const saveWords = async (key, words) => {
     try {
@@ -141,7 +141,7 @@ const Ex1Md1 = ({ navigation }) => {
             ))}
           </View>
         </WordsItens>
-        <View style={{ alignItems: "center" }}>
+        <View style={{ alignItems: "flex-end", marginRight: 40   }}>
           <ButtonApagar onPress={handleDelete}>
             <TextButtonAux>Apagar</TextButtonAux>
           </ButtonApagar>

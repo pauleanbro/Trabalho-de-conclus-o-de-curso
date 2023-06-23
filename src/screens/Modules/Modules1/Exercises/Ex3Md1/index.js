@@ -1,14 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { StyleSheet, View, Text } from "react-native";
 import { PanGestureHandler, State } from "react-native-gesture-handler";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
-import { Title } from "./styles";
+import { Title, ButtonEnviarCinza, ButtonEnviar, TextButton } from "./styles";
 
 import HeaderBack from "../../../../../components/Header";
 
 const data = [
   ["S", "I", "C", "M", "H", "I"],
-  ["A", "U", "K", "A", "J", "A"],
+  ["A", "U", "B", "A", "L", "A"],
   ["L", "L", "O", "P", "H", "E"],
   ["A", "C", "Z", "L", "M", "A"],
   ["R", "R", "O", "V", "O", "O"],
@@ -21,10 +21,19 @@ const wordList = ["SALARIO", "BALA", "OVO"];
 const ROW_HEIGHT = 50;
 const COL_WIDTH = 50;
 
-export default function Ex3Md1({navigation}) {
+export default function Ex3Md1({ navigation }) {
   const [selectedWord, setSelectedWord] = useState("");
   const [selectedCells, setSelectedCells] = useState([]);
-  const [foundWordsCells, setFoundWordsCells] = useState([]); // novo estado
+  const [foundWordsCells, setFoundWordsCells] = useState([]);
+  const [foundWords, setFoundWords] = useState([]);
+
+  useEffect(() => {
+    const foundWordsCount = foundWords.length;
+    setButtonEnabled(foundWordsCount === 3);
+  }, [foundWords]);
+
+  const [isButtonEnabled, setButtonEnabled] = useState(false);
+  
 
   const handleGestureEvent = (event) => {
     const { x, y } = event.nativeEvent;
@@ -46,8 +55,9 @@ export default function Ex3Md1({navigation}) {
 
   const checkIfWordExists = () => {
     if (wordList.includes(selectedWord)) {
-      console.log("Palavra encontrada: ", selectedWord);
-      setFoundWordsCells((prevCells) => [...prevCells, ...selectedCells]); // adiciona as células selecionadas ao estado
+      setFoundWordsCells((prevCells) => [...prevCells, ...selectedCells]);
+      setFoundWords((prevWords) => [...prevWords, selectedWord]);
+      setSelectedWord("");
     }
   };
 
@@ -78,30 +88,51 @@ export default function Ex3Md1({navigation}) {
           >
             {data.map((row, rowIndex) => (
               <View key={rowIndex} style={{ flexDirection: "row" }}>
-                {row.map((letter, colIndex) => (
-                  <View
-                    key={colIndex}
-                    style={[
-                      styles.cell,
-                      foundWordsCells.includes(`${rowIndex}-${colIndex}`)
-                        ? styles.foundWordCell
-                        : null,
-                      selectedCells.includes(`${rowIndex}-${colIndex}`)
-                        ? styles.selectedCell
-                        : null,
-                    ]}
-                  >
-                    <Text>{letter}</Text>
-                  </View>
-                ))}
+                {row.map((letter, colIndex) => {
+                  const cellKey = `${rowIndex}-${colIndex}`;
+                  const isSelected = selectedCells.includes(cellKey);
+                  const isFound = foundWordsCells.includes(cellKey);
+                  const isWordFound = foundWords.includes(selectedWord);
+                  const isPartOfWord = selectedWord.includes(letter);
+
+                  const cellStyles = [
+                    styles.cell,
+                    isSelected ? styles.selectedCell : null,
+                    isFound ? styles.foundWordCell : null,
+                    isWordFound && isPartOfWord ? styles.correctLetter : null,
+                  ];
+
+                  return (
+                    <View key={colIndex} style={cellStyles}>
+                      <Text>{letter}</Text>
+                    </View>
+                  );
+                })}
               </View>
             ))}
           </View>
         </PanGestureHandler>
       </GestureHandlerRootView>
+      <View
+        style={{
+          alignItems: "center",
+          backgroundColor: "#FFFFFF",
+        }}
+      >
+        {isButtonEnabled ? (
+          <ButtonEnviar onPress={() => navigation.navigate("Modules1")}>
+            <TextButton>Enviar</TextButton>
+          </ButtonEnviar>
+        ) : (
+          <ButtonEnviarCinza>
+            <TextButton>Enviar</TextButton>
+          </ButtonEnviarCinza>
+        )}
+      </View>
     </>
   );
 }
+
 const styles = StyleSheet.create({
   cell: {
     height: ROW_HEIGHT,
@@ -117,5 +148,8 @@ const styles = StyleSheet.create({
   },
   foundWordCell: {
     backgroundColor: "lightgreen",
+  },
+  correctLetter: {
+    backgroundColor: "yellow",
   },
 });

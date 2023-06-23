@@ -20,7 +20,7 @@ import {
 import Grid from "../../../../../components/Jogos/HuntingWords/Grid";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-import HeaderBack from '../../../../../components/Header'
+import HeaderBack from "../../../../../components/Header";
 
 const data = [
   ["TRA", "TRE", "TRI", "TRO", "TRU"],
@@ -101,7 +101,10 @@ const Ex2Md1 = ({ navigation }) => {
   return (
     <>
       <Container>
-      <HeaderBack text="Exercicio 2" onPress={() => navigation.navigate("Modules1")} />
+        <HeaderBack
+          text="Exercicio 2"
+          onPress={() => navigation.navigate("Modules1")}
+        />
         <ContainerWords>
           <TextWords>Escreva 4 palavras com as letras a baixo:</TextWords>
         </ContainerWords>
@@ -125,12 +128,12 @@ const Ex2Md1 = ({ navigation }) => {
             </>
           ))}
         </WordsItens>
+        <View style={{ alignItems: "flex-end", marginRight: 40, marginTop: 50, justifyContent: 'flex-end' }}>
+          <ButtonApagar onPress={handleDelete}>
+            <TextButtonAux>Apagar</TextButtonAux>
+          </ButtonApagar>
+        </View>
       </Container>
-      <View style={{ alignItems: "center", backgroundColor: "#FFFFFF" }}>
-        <ButtonApagar onPress={handleDelete}>
-          <TextButtonAux>Apagar</TextButtonAux>
-        </ButtonApagar>
-      </View>
       {words.length < 4 ? (
         <View style={{ alignItems: "center", backgroundColor: "#FFFFFF" }}>
           <ButtonEnviarCinza>
