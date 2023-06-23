@@ -77,7 +77,7 @@ const Ex4Md2 = ({ navigation }) => {
       const newWords = [...words, selectedWord];
       setWords(newWords);
       setSelectedLetters([]);
-      saveWords(newWords); // Salva as palavras atualizadas no AsyncStorage
+      saveWords(newWords, "Ex4Md2"); // Salva as palavras atualizadas no AsyncStorage
     }
   };
 

@@ -23,7 +23,7 @@ export default function Ex5Md3({ navigation }) {
   const [selectedColors, setSelectedColors] = useState([]);
   const [colorPairs, setColorPairs] = useState([]);
 
-  console.log(selectedColors, '         aqui tem coisa          ', colorPairs);
+  console.log(selectedColors, "         aqui tem coisa          ", colorPairs);
 
   const generateColor = () => {
     const updatedColors = { ...colors };
@@ -53,7 +53,10 @@ export default function Ex5Md3({ navigation }) {
     });
 
     if (selectedColors.length === 1) {
-      setColorPairs((prevColorPairs) => [...prevColorPairs, [selectedColors[0], color]]);
+      setColorPairs((prevColorPairs) => [
+        ...prevColorPairs,
+        [selectedColors[0], color],
+      ]);
       setSelectedColors([]);
     }
 
@@ -99,10 +102,10 @@ export default function Ex5Md3({ navigation }) {
               key={index}
             >
               {color1 === "vermelho" && color2 === "azul" && (
-                <ButtonColorRoxo />
+                <ButtonColorLaranja />
               )}
               {color1 === "vermelho" && color2 === "amarelo" && (
-                <ButtonColorLaranja />
+                <ButtonColorRoxo />
               )}
               {color1 === "azul" && color2 === "amarelo" && (
                 <ButtonColorVerde />
