@@ -96,7 +96,7 @@ export const ButtonSalvar = styled.TouchableOpacity`
 `;
 
 export const TextButtonAux = styled.Text`
-  font-size: 15px;
+  font-size: 20px;
   color: #ffffff;
   font-weight: bold;
 `;

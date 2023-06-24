@@ -19,7 +19,6 @@ import Modules3 from "../screens/Modules/Modules3";
 import Ex1Md3 from "../screens/Modules/Modules3/Exercises/Ex1Md3";
 import Ex2Md3 from "../screens/Modules/Modules3/Exercises/Ex2Md3";
 import Ex3Md3 from "../screens/Modules/Modules3/Exercises/Ex3Md3";
-import Ex4Md3 from "../screens/Modules/Modules3/Exercises/Ex4Md3";
 import Ex5Md3 from "../screens/Modules/Modules3/Exercises/Ex5Md3";
 import Modules4 from "../screens/Modules/Modules4";
 import Ex1Md4 from "../screens/Modules/Modules4/Exercises/Ex1Md4";
@@ -57,7 +56,6 @@ function App() {
         <Stack.Screen name="Ex1Md3" component={Ex1Md3} />
         <Stack.Screen name="Ex2Md3" component={Ex2Md3} />
         <Stack.Screen name="Ex3Md3" component={Ex3Md3} />
-        <Stack.Screen name="Ex4Md3" component={Ex4Md3} />
         <Stack.Screen name="Ex5Md3" component={Ex5Md3} />
         <Stack.Screen name="Modules4" component={Modules4} />
         <Stack.Screen name="Ex1Md4" component={Ex1Md4} />

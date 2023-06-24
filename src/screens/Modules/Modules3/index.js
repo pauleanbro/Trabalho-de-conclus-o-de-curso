@@ -11,7 +11,7 @@ import {
 import HitCheck from "../../../assets/hitCheck.js";
 import DeniedCheck from "../../../assets/deniedCheck.js";
 
-import HeaderBack from "../../../components/Header"
+import HeaderBack from "../../../components/Header";
 
 const Hit = HitCheck;
 const Denied = DeniedCheck;
@@ -19,7 +19,10 @@ const Denied = DeniedCheck;
 export default function Modules3({ navigation }) {
   return (
     <Container>
-      <HeaderBack text="Modulo 3" onPress={() => navigation.navigate("Activites")} />
+      <HeaderBack
+        text="Modulo 3"
+        onPress={() => navigation.navigate("Activites")}
+      />
       <ContainerIteins>
         <Text>Exercícios</Text>
         <ContainerExercicios onPress={() => navigation.navigate("Ex1Md3")}>
@@ -37,13 +40,8 @@ export default function Modules3({ navigation }) {
           <Check />
         </ContainerExercicios>
         <Border />
-        <ContainerExercicios onPress={() => navigation.navigate("Ex4Md3")}>
-          <Title>Lição 4</Title>
-          <Check />
-        </ContainerExercicios>
-        <Border />
         <ContainerExercicios onPress={() => navigation.navigate("Ex5Md3")}>
-          <Title>Lição 5</Title>
+          <Title>Lição 4</Title>
           <Check />
         </ContainerExercicios>
         <Border />

@@ -127,12 +127,12 @@ const Ex3Md3 = ({ navigation }) => {
             </>
           ))}
         </WordsItens>
+        <View style={{ alignItems: "flex-end", backgroundColor: "#FFFFFF", marginRight: 40 }}>
+          <ButtonApagar onPress={handleDelete}>
+            <TextButtonAux>Apagar</TextButtonAux>
+          </ButtonApagar>
+        </View>
       </Container>
-      <View style={{ alignItems: "center", backgroundColor: "#FFFFFF" }}>
-        <ButtonApagar onPress={handleDelete}>
-          <TextButtonAux>Apagar</TextButtonAux>
-        </ButtonApagar>
-      </View>
       {words.length < 4 ? (
         <View style={{ alignItems: "center", backgroundColor: "#FFFFFF" }}>
           <ButtonEnviarCinza>
