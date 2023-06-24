@@ -1,11 +1,12 @@
 import styled from "styled-components/native";
 
 export const Title = styled.Text`
-  font-size: 26px;
+  font-size: 25px;
   color: #282828;
   text-align: center;
   margin-bottom: 30px;
   font-family: 'Roboto';
+  font-weight: 900;
 `;
 
 export const ButtonEnviarCinza = styled.TouchableOpacity`
@@ -31,4 +32,9 @@ export const ButtonEnviar = styled.TouchableOpacity`
 export const TextButton = styled.Text`
   font-size: 25px;
   color: #ffffff;
+`;
+export const TextCaçaPalavras = styled.Text`
+  font-size: 25px;
+  color: #000000;
+  font-weight: 500;
 `;

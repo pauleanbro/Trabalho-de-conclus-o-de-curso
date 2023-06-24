@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { StyleSheet, View, Text } from "react-native";
 import { PanGestureHandler, State } from "react-native-gesture-handler";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
-import { Title, ButtonEnviarCinza, ButtonEnviar, TextButton } from "./styles";
+import { Title, ButtonEnviarCinza, ButtonEnviar, TextButton, TextCaçaPalavras } from "./styles";
 
 import HeaderBack from "../../../../../components/Header";
 
@@ -18,8 +18,8 @@ const data = [
 
 const wordList = ["SALARIO", "BALA", "OVO"];
 
-const ROW_HEIGHT = 50;
-const COL_WIDTH = 50;
+const ROW_HEIGHT = 70;
+const COL_WIDTH = 60;
 
 export default function Ex3Md1({ navigation }) {
   const [selectedWord, setSelectedWord] = useState("");
@@ -71,11 +71,11 @@ export default function Ex3Md1({ navigation }) {
         style={{
           flex: 1,
           padding: 20,
-          alignItems: "center",
+          marginLeft: 10,
           backgroundColor: "#ffffff",
         }}
       >
-        <Title>SALARIO - BALA - OVO</Title>
+        <Title>SALARIO, BALA e OVO</Title>
         <PanGestureHandler
           onGestureEvent={handleGestureEvent}
           onHandlerStateChange={handleStateChange}
@@ -104,7 +104,7 @@ export default function Ex3Md1({ navigation }) {
 
                   return (
                     <View key={colIndex} style={cellStyles}>
-                      <Text>{letter}</Text>
+                      <TextCaçaPalavras>{letter}</TextCaçaPalavras>
                     </View>
                   );
                 })}
