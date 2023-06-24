@@ -33,6 +33,7 @@ export const TextButton = styled.Text`
   font-size: 25px;
   color: #ffffff;
 `;
+
 export const TextCaçaPalavras = styled.Text`
   font-size: 25px;
   color: #000000;

@@ -1,8 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { StyleSheet, View, Text } from "react-native";
 import { PanGestureHandler, State } from "react-native-gesture-handler";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
-import { Title } from "./styles";
+import {
+  Title,
+  ButtonEnviarCinza,
+  ButtonEnviar,
+  TextButton,
+  TextCaçaPalavras,
+} from "./styles";
 
 import HeaderBack from "../../../../../components/Header";
 
@@ -18,13 +24,21 @@ const data = [
 
 const wordList = ["FADIGA", "CAMINHO", "RETINA", "PEDRA", "TINHA", "VIDA"];
 
-const ROW_HEIGHT = 50;
-const COL_WIDTH = 50;
+const ROW_HEIGHT = 65;
+const COL_WIDTH = 55;
 
-export default function Ex3Md1({navigation}) {
+export default function Ex3Md1({ navigation }) {
   const [selectedWord, setSelectedWord] = useState("");
   const [selectedCells, setSelectedCells] = useState([]);
-  const [foundWordsCells, setFoundWordsCells] = useState([]); // novo estado
+  const [foundWordsCells, setFoundWordsCells] = useState([]);
+  const [foundWords, setFoundWords] = useState([]);
+
+  useEffect(() => {
+    const foundWordsCount = foundWords.length;
+    setButtonEnabled(foundWordsCount === 6);
+  }, [foundWords]);
+
+  const [isButtonEnabled, setButtonEnabled] = useState(false);
 
   const handleGestureEvent = (event) => {
     const { x, y } = event.nativeEvent;
@@ -46,8 +60,9 @@ export default function Ex3Md1({navigation}) {
 
   const checkIfWordExists = () => {
     if (wordList.includes(selectedWord)) {
-      console.log("Palavra encontrada: ", selectedWord);
-      setFoundWordsCells((prevCells) => [...prevCells, ...selectedCells]); // adiciona as células selecionadas ao estado
+      setFoundWordsCells((prevCells) => [...prevCells, ...selectedCells]);
+      setFoundWords((prevWords) => [...prevWords, selectedWord]);
+      setSelectedWord("");
     }
   };
 
@@ -55,7 +70,7 @@ export default function Ex3Md1({navigation}) {
     <>
       <HeaderBack
         text="Exercicio 2"
-        onPress={() => navigation.navigate("Modules1")}
+        onPress={() => navigation.navigate("Modules2")}
       />
 
       <GestureHandlerRootView
@@ -92,7 +107,7 @@ export default function Ex3Md1({navigation}) {
                         : null,
                     ]}
                   >
-                    <Text>{letter}</Text>
+                    <TextCaçaPalavras>{letter}</TextCaçaPalavras>
                   </View>
                 ))}
               </View>
@@ -100,6 +115,22 @@ export default function Ex3Md1({navigation}) {
           </View>
         </PanGestureHandler>
       </GestureHandlerRootView>
+      <View
+        style={{
+          alignItems: "center",
+          backgroundColor: "#FFFFFF",
+        }}
+      >
+        {isButtonEnabled ? (
+          <ButtonEnviar onPress={() => navigation.navigate("Modules2")}>
+            <TextButton>Enviar</TextButton>
+          </ButtonEnviar>
+        ) : (
+          <ButtonEnviarCinza>
+            <TextButton>Enviar</TextButton>
+          </ButtonEnviarCinza>
+        )}
+      </View>
     </>
   );
 }

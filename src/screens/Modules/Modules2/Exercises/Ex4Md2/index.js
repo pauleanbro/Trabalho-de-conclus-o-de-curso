@@ -20,7 +20,7 @@ import {
 import Grid from "../../../../../components/Jogos/HuntingWords/Grid";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-import HeaderBack from '../../../../../components/Header'
+import HeaderBack from "../../../../../components/Header";
 
 const data = [
   ["RA", "RE", "RI", "RO", "RU"],
@@ -119,9 +119,6 @@ const Ex4Md2 = ({ navigation }) => {
           <ButtonExcluir onPress={handleUndo}>
             <TextButtonAux>Excluir</TextButtonAux>
           </ButtonExcluir>
-          <ButtonApagar onPress={handleDelete}>
-            <TextButtonAux>Apagar</TextButtonAux>
-          </ButtonApagar>
         </ContainerButtons>
         <TextWords>{selectedWord}</TextWords>
         <Border />
@@ -132,8 +129,13 @@ const Ex4Md2 = ({ navigation }) => {
             </>
           ))}
         </WordsItens>
+        <View style={{ alignItems: "flex-end", marginRight: 45 }}>
+          <ButtonApagar onPress={handleDelete}>
+            <TextButtonAux>Apagar</TextButtonAux>
+          </ButtonApagar>
+        </View>
       </Container>
-      {selectedWord === true ? (
+      {words.length < 4 ? (
         <View style={{ alignItems: "center", backgroundColor: "#FFFFFF" }}>
           <ButtonEnviarCinza>
             <TextButton>Enviar</TextButton>

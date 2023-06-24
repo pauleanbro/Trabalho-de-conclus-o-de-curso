@@ -18,8 +18,7 @@ import {
   ContainerItensPalavras,
 } from "./styles";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import HeaderBack from '../../../../../components/Header'
-
+import HeaderBack from "../../../../../components/Header";
 
 const data = [
   ["FA", "DE", "DI", "GA", "CA"],
@@ -85,7 +84,10 @@ const Ex1Md2 = ({ navigation }) => {
   return (
     <>
       <Container>
-      <HeaderBack text="Exercicio 1" onPress={() => navigation.navigate("Modules2")} />
+        <HeaderBack
+          text="Exercicio 1"
+          onPress={() => navigation.navigate("Modules2")}
+        />
 
         <ContainerWords>
           <TextWords>{wordList[currentWordIndex]}</TextWords>
@@ -131,20 +133,22 @@ const Ex1Md2 = ({ navigation }) => {
           </ButtonExcluir>
         </ContainerButtons>
         {savedWord.map((word, index) => (
-          <Text
-            key={index}
-            style={{ fontSize: 24, marginTop: 20, marginLeft: 10 }}
-          >
-            {word}
-          </Text>
+          <View>
+            <Text
+              key={index}
+              style={{ fontSize: 24, marginLeft: 10, marginTop: 10 }}
+            >
+              {word}
+            </Text>
+          </View>
         ))}
       </Container>
-      <View style={{ alignItems: "center", backgroundColor: "#FFFFFF" }}>
+      <View style={{ alignItems: "flex-end", marginRight: 40, backgroundColor: '#FFFFFF' }}>
         <ButtonApagar onPress={handleDelete}>
           <TextButtonAux>Apagar</TextButtonAux>
         </ButtonApagar>
       </View>
-      {savedWord.length < 6 ? ( 
+      {savedWord.length < 6 ? (
         <View style={{ alignItems: "center", backgroundColor: "#FFFFFF" }}>
           <ButtonEnviarCinza>
             <TextButton>Enviar</TextButton>

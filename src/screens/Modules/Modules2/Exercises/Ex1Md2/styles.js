@@ -15,6 +15,7 @@ export const ContainerItens = styled.View`
 export const ContainerItensPalavras = styled.View`
   flex-direction: row;
   margin: 0px 0 10px 10px;
+  height: 48px;
 `;
 
 export const ContainerWords = styled.View`
@@ -37,21 +38,20 @@ export const WordsItens = styled.View`
   align-items: flex-start;
   align-items: center;
   justify-content: center;
-  background-color: #D9D9D9;
+  background-color: #d9d9d9;
   margin-top: 5px;
 `;
-
 
 export const TextItens = styled.Text`
   font-size: 20px;
   color: #282828;
-  font-family: 'Roboto-Regular';
+  font-family: "Roboto-Regular";
   flex-wrap: wrap;
   margin: 20px 0 -10px 10px;
 `;
 
 export const ButtonEnviar = styled.TouchableOpacity`
-  background-color: #5DB075;
+  background-color: #5db075;
   width: 230px;
   height: 55px;
   border-radius: 30px;
@@ -61,7 +61,7 @@ export const ButtonEnviar = styled.TouchableOpacity`
 `;
 
 export const ButtonEnviarCinza = styled.TouchableOpacity`
-  background-color: #D9D9D9;
+  background-color: #d9d9d9;
   width: 230px;
   height: 55px;
   border-radius: 30px;
@@ -80,35 +80,34 @@ export const ContainerWord = styled.View`
   height: 50px;
   align-items: center;
   justify-content: center;
-  background-color: #D9D9D9;
+  background-color: #d9d9d9;
   margin: 5px;
 `;
-
 export const ButtonExcluir = styled.TouchableOpacity`
-  background-color: #DB675E;
-  width: 60px;
-  height: 30px;
-  border-radius: 30px;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 30px;
-`;
-
-export const ButtonSalvar = styled.TouchableOpacity`
-  background-color: #5DB075;
-  width: 60px;
-  height: 30px;
-  border-radius: 30px;
+  background-color: #db675e;
+  width: 100px;
+  height: 40px;
+  border-radius: 10px;
   align-items: center;
   justify-content: center;
   margin-bottom: 30px;
 `;
 
 export const ButtonApagar = styled.TouchableOpacity`
-  background-color: #0099F0;
-  width: 60px;
-  height: 30px;
-  border-radius: 30px;
+  background-color: #000000;
+  width: 100px;
+  height: 40px;
+  border-radius: 10px;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 30px;
+`;
+
+export const ButtonSalvar = styled.TouchableOpacity`
+  background-color: #5db075;
+  width: 100px;
+  height: 40px;
+  border-radius: 10px;
   align-items: center;
   justify-content: center;
   margin-bottom: 30px;
