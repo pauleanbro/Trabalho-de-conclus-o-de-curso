@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { StyleSheet, View, Text } from "react-native";
 import { PanGestureHandler, State } from "react-native-gesture-handler";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
-import { Title } from "./styles";
+import { Title, Letras, ButtonEnviar, ButtonEnviarCinza, TextButton } from "./styles";
 
 import HeaderBack from "../../../../../components/Header";
 
@@ -25,7 +25,7 @@ const wordList = ["AMOR", "CANÇÃO", "TEMPO", "LUZ", "CORAÇÃO"];
 const ROW_HEIGHT = 50;
 const COL_WIDTH = 50;
 
-export default function Ex3Md5() {
+export default function Ex3Md5({ navigation }) {
   const [selectedWord, setSelectedWord] = useState("");
   const [selectedCells, setSelectedCells] = useState([]);
   const [foundWordsCells, setFoundWordsCells] = useState([]); // novo estado
@@ -59,7 +59,7 @@ export default function Ex3Md5() {
     <>
       <HeaderBack
         text="Exercicio 2"
-        onPress={() => navigation.navigate("Modules1")}
+        onPress={() => navigation.navigate("Modules5")}
       />
 
       <GestureHandlerRootView
@@ -96,13 +96,26 @@ export default function Ex3Md5() {
                         : null,
                     ]}
                   >
-                    <Text>{letter}</Text>
+                    <Letras>{letter}</Letras>
                   </View>
                 ))}
               </View>
             ))}
           </View>
         </PanGestureHandler>
+        {foundWordsCells.length > 3 ? (
+          <View style={{ alignItems: "center", backgroundColor: "#FFFFFF" }}>
+            <ButtonEnviar onPress={() => navigation.navigate("Modules5")}>
+              <TextButton>Enviar</TextButton>
+            </ButtonEnviar>
+          </View>
+        ) : (
+          <View style={{ alignItems: "center", backgroundColor: "#FFFFFF" }}>
+            <ButtonEnviarCinza>
+              <TextButton>Enviar</TextButton>
+            </ButtonEnviarCinza>
+          </View>
+        )}
       </GestureHandlerRootView>
     </>
   );

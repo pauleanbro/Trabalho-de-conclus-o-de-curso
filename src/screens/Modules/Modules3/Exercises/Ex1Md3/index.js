@@ -18,7 +18,7 @@ import {
   ButtonApagar,
   ContainerNames,
 } from "./styles";
-import Grid from "../../../../../components/Jogos/NamesOptions/GridName";
+import Grid from "../../../../../components/Jogos/NamesChoices";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import HeaderBack from '../../../../../components/Header'
@@ -161,11 +161,19 @@ const Ex1Md3 = ({ navigation }) => {
           </ContainerNames>
         </View>
       </Container>
-      <View style={{ alignItems: "center", backgroundColor: "#FFFFFF" }}>
-        <ButtonEnviar onPress={() => {}}>
-          <TextButton>Enviar</TextButton>
-        </ButtonEnviar>
-      </View>
+      {selectedNames.length < 11 ? (
+        <View style={{ alignItems: "center", backgroundColor: "#FFFFFF" }}>
+          <ButtonEnviarCinza>
+            <TextButton>Enviar</TextButton>
+          </ButtonEnviarCinza>
+        </View>
+      ) : (
+        <View style={{ alignItems: "center", backgroundColor: "#FFFFFF" }}>
+          <ButtonEnviar onPress={() => navigation.navigate("Modules1")}>
+            <TextButton>Enviar</TextButton>
+          </ButtonEnviar>
+        </View>
+      )}
     </>
   );
 };

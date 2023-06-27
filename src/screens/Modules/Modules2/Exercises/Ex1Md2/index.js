@@ -97,14 +97,25 @@ const Ex1Md2 = ({ navigation }) => {
             <TouchableOpacity
               key={index}
               style={{
+                width: 70,
+                height: 70,
+                alignItems: "center",
+                justifyContent: "center",
                 backgroundColor: "#D9D9D9",
-                padding: 10,
                 margin: 5,
                 borderRadius: 5,
               }}
               onPress={() => handleLetterClick(letter)}
             >
-              <Text style={{ fontSize: 20 }}>{letter}</Text>
+              <Text
+                style={{
+                  fontSize: 30,
+                  color: "#000000",
+                  fontFamily: "Roboto-Bold",
+                }}
+              >
+                {letter}
+              </Text>
             </TouchableOpacity>
           ))}
         </ContainerItens>
@@ -113,7 +124,7 @@ const Ex1Md2 = ({ navigation }) => {
             <View
               key={index}
               style={{
-                backgroundColor: "#D9D9D9",
+                backgroundColor: "#B3E3F6",
                 padding: 10,
                 marginRight: 5,
                 borderRadius: 5,
@@ -143,7 +154,13 @@ const Ex1Md2 = ({ navigation }) => {
           </View>
         ))}
       </Container>
-      <View style={{ alignItems: "flex-end", marginRight: 40, backgroundColor: '#FFFFFF' }}>
+      <View
+        style={{
+          alignItems: "flex-end",
+          marginRight: 40,
+          backgroundColor: "#FFFFFF",
+        }}
+      >
         <ButtonApagar onPress={handleDelete}>
           <TextButtonAux>Apagar</TextButtonAux>
         </ButtonApagar>

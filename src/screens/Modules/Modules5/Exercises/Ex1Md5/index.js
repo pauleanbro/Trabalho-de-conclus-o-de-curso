@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { StyleSheet, View, Text } from "react-native";
 import { PanGestureHandler, State } from "react-native-gesture-handler";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
-import { Title } from "./styles";
+import { Title, Letras,ButtonEnviar, ButtonEnviarCinza, TextButton } from "./styles";
 
 import HeaderBack from "../../../../../components/Header";
 
@@ -32,7 +32,7 @@ const wordList = [
 const ROW_HEIGHT = 50;
 const COL_WIDTH = 50;
 
-export default function Ex1Md5() {
+export default function Ex1Md5({navigation}) {
   const [selectedWord, setSelectedWord] = useState("");
   const [selectedCells, setSelectedCells] = useState([]);
   const [foundWordsCells, setFoundWordsCells] = useState([]); // novo estado
@@ -72,7 +72,7 @@ export default function Ex1Md5() {
       <GestureHandlerRootView
         style={{
           flex: 1,
-          padding: 20,
+          padding: 10,
           alignItems: "center",
           backgroundColor: "#ffffff",
         }}
@@ -105,13 +105,26 @@ export default function Ex1Md5() {
                         : null,
                     ]}
                   >
-                    <Text>{letter}</Text>
+                    <Letras>{letter}</Letras>
                   </View>
                 ))}
               </View>
             ))}
           </View>
         </PanGestureHandler>
+        {foundWordsCells.length < 4 ? (
+          <View style={{ alignItems: "center", backgroundColor: "#FFFFFF" }}>
+            <ButtonEnviarCinza>
+              <TextButton>Enviar</TextButton>
+            </ButtonEnviarCinza>
+          </View>
+        ) : (
+          <View style={{ alignItems: "center", backgroundColor: "#FFFFFF" }}>
+            <ButtonEnviar onPress={() => navigation.navigate("Modules1")}>
+              <TextButton>Enviar</TextButton>
+            </ButtonEnviar>
+          </View>
+        )}
       </GestureHandlerRootView>
     </>
   );

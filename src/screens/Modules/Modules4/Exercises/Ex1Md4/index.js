@@ -20,7 +20,7 @@ import {
 import Grid from "../../../../../components/Jogos/HuntingWords/Grid";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-import HeaderBack from '../../../../../components/Header'
+import HeaderBack from "../../../../../components/Header";
 
 const data = [
   ["TA", "TE", "TI", "TO", "TU"],
@@ -132,7 +132,13 @@ const Ex1Md4 = ({ navigation }) => {
           ))}
         </WordsItens>
       </Container>
-      <View style={{ alignItems: "center", backgroundColor: "#FFFFFF" }}>
+      <View
+        style={{
+          alignItems: "flex-end",
+          backgroundColor: "#FFFFFF",
+          marginRight: 42,
+        }}
+      >
         <ButtonApagar onPress={handleDelete}>
           <TextButtonAux>Apagar</TextButtonAux>
         </ButtonApagar>

@@ -105,11 +105,19 @@ const Ex5Md2 = ({ navigation }) => {
           <Border />
         </ContainerNames>
       </Container>
-      <View style={{ alignItems: "center", backgroundColor: "#FFFFFF" }}>
-        <ButtonEnviar onPress={() => {}}>
-          <TextButton>Enviar</TextButton>
-        </ButtonEnviar>
-      </View>
+      {selectedNames.length < 4 ? (
+        <View style={{ alignItems: "center", backgroundColor: "#FFFFFF" }}>
+          <ButtonEnviarCinza>
+            <TextButton>Enviar</TextButton>
+          </ButtonEnviarCinza>
+        </View>
+      ) : (
+        <View style={{ alignItems: "center", backgroundColor: "#FFFFFF" }}>
+          <ButtonEnviar onPress={() => navigation.navigate("Modules1")}>
+            <TextButton>Enviar</TextButton>
+          </ButtonEnviar>
+        </View>
+      )}
     </>
   );
 };

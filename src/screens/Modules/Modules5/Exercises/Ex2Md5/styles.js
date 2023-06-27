@@ -23,7 +23,7 @@ export const ButtonEnviar = styled.TouchableOpacity`
   background-color: #5DB075;
   width: 230px;
   height: 55px;
-  border-radius: 30px;
+  border-radius: 10px;
   align-items: center;
   justify-content: center;
   margin-bottom: 30px;
@@ -33,7 +33,7 @@ export const ButtonEnviarCinza = styled.TouchableOpacity`
   background-color: #D9D9D9;
   width: 230px;
   height: 55px;
-  border-radius: 30px;
+  border-radius: 10px;
   align-items: center;
   justify-content: center;
   margin-bottom: 30px;

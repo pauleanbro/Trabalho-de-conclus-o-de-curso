@@ -39,7 +39,7 @@ export const TextItens = styled.Text`
   font-size: 20px;
   color: #282828;
   font-family: "Roboto-Regular";
-  flex-wrap: wrap;
+  font-weight: 700;
   margin: 20px 0 0px 10px;
 `;
 
@@ -47,7 +47,7 @@ export const ButtonEnviar = styled.TouchableOpacity`
   background-color: #5db075;
   width: 230px;
   height: 55px;
-  border-radius: 30px;
+  border-radius: 10px;
   align-items: center;
   justify-content: center;
   margin-bottom: 30px;
@@ -57,7 +57,7 @@ export const ButtonEnviarCinza = styled.TouchableOpacity`
   background-color: #d9d9d9;
   width: 230px;
   height: 55px;
-  border-radius: 30px;
+  border-radius: 10px;
   align-items: center;
   justify-content: center;
   margin-bottom: 30px;
@@ -71,11 +71,12 @@ export const ContainerButtons = styled.View`
 
 export const ButtonExcluir = styled.TouchableOpacity`
   background-color: #db675e;
-  width: 60px;
-  height: 30px;
-  border-radius: 30px;
+  width: 100px;
+  height: 40px;
+  border-radius: 10px;
   align-items: center;
   justify-content: center;
+  margin-bottom: 30px;
 `;
 
 export const ButtonSalvar = styled.TouchableOpacity`
@@ -99,7 +100,7 @@ export const ButtonApagar = styled.TouchableOpacity`
 `;
 
 export const TextButtonAux = styled.Text`
-  font-size: 15px;
+  font-size: 18px;
   color: #ffffff;
   font-weight: bold;
 `;
