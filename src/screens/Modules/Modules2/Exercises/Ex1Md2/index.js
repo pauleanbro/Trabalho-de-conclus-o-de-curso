@@ -41,6 +41,7 @@ const Ex1Md2 = ({ navigation }) => {
     setWord([...word, letter]);
   };
 
+
   const handleReset = () => {
     setWord([]);
   };
@@ -147,24 +148,24 @@ const Ex1Md2 = ({ navigation }) => {
           <View>
             <Text
               key={index}
-              style={{ fontSize: 24, marginLeft: 10, marginTop: 10 }}
+              style={{ fontSize: 22, marginLeft: 10, marginTop: 10 }}
             >
               {word}
             </Text>
           </View>
         ))}
+        <View
+          style={{
+            position: "absolute",
+            left: 280,
+            top: 550,
+          }}
+        >
+          <ButtonApagar onPress={handleDelete}>
+            <TextButtonAux>Apagar</TextButtonAux>
+          </ButtonApagar>
+        </View>
       </Container>
-      <View
-        style={{
-          alignItems: "flex-end",
-          marginRight: 40,
-          backgroundColor: "#FFFFFF",
-        }}
-      >
-        <ButtonApagar onPress={handleDelete}>
-          <TextButtonAux>Apagar</TextButtonAux>
-        </ButtonApagar>
-      </View>
       {savedWord.length < 6 ? (
         <View style={{ alignItems: "center", backgroundColor: "#FFFFFF" }}>
           <ButtonEnviarCinza>

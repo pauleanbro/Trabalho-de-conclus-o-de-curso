@@ -18,7 +18,7 @@ const data = [
 
 const wordList = ["SALARIO", "BALA", "OVO"];
 
-const ROW_HEIGHT = 70;
+const ROW_HEIGHT = 60;
 const COL_WIDTH = 60;
 
 export default function Ex3Md1({ navigation }) {
@@ -71,7 +71,7 @@ export default function Ex3Md1({ navigation }) {
         style={{
           flex: 1,
           padding: 20,
-          marginLeft: 10,
+          marginLeft: 5,
           backgroundColor: "#ffffff",
         }}
       >

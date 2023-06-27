@@ -8,13 +8,13 @@ export const Container = styled.View`
 export const ContainerItens = styled.View`
   flex-direction: row;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   justify-content: center;
 `;
 
 export const ContainerItensPalavras = styled.View`
   flex-direction: row;
-  margin: 0px 0 10px 10px;
+  margin: 0px 0 0px 10px;
   height: 48px;
 `;
 
@@ -57,7 +57,7 @@ export const ButtonEnviar = styled.TouchableOpacity`
   border-radius: 10px;
   align-items: center;
   justify-content: center;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
 `;
 
 export const ButtonEnviarCinza = styled.TouchableOpacity`
@@ -67,7 +67,7 @@ export const ButtonEnviarCinza = styled.TouchableOpacity`
   border-radius: 10px;
   align-items: center;
   justify-content: center;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
 `;
 
 export const ContainerButtons = styled.View`
@@ -128,5 +128,5 @@ export const Border = styled.View`
   width: 94%;
   height: 1.5px;
   background-color: #000000;
-  margin: 0 0 10px 10px;
+  margin: 5px 0 10px 10px;
 `;

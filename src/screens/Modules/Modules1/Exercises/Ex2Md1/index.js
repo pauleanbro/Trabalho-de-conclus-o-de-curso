@@ -33,7 +33,7 @@ const Ex2Md1 = ({ navigation }) => {
   const [undo, setUndo] = useState(false);
   const [words, setWords] = useState([]);
 
-  const [palavras, setPalavras] = useState([]);
+  console.log(words);
 
   const saveWords = async (words, screen) => {
     try {
@@ -121,14 +121,24 @@ const Ex2Md1 = ({ navigation }) => {
         </ContainerButtons>
         <TextWords>{selectedWord}</TextWords>
         <Border />
+        <View style={{flexDirection: 'row', justifyContent: 'space-evenly'}}>
         <WordsItens>
-          {words.map((words, index) => (
-            <>
-              <TextItens key={index}>{words}</TextItens>
-            </>
-          ))}
+          <TextItens>{words[0]}</TextItens>
+          <TextItens>{words[1]}</TextItens>
         </WordsItens>
-        <View style={{ alignItems: "flex-end", marginRight: 40, marginTop: 50, justifyContent: 'flex-end' }}>
+        <WordsItens>
+          <TextItens>{words[2]}</TextItens>
+          <TextItens>{words[3]}</TextItens>
+        </WordsItens>
+        </View>
+        <View
+          style={{
+            alignItems: "flex-end",
+            marginRight: 40,
+            marginTop: 50,
+            justifyContent: "flex-end",
+          }}
+        >
           <ButtonApagar onPress={handleDelete}>
             <TextButtonAux>Apagar</TextButtonAux>
           </ButtonApagar>

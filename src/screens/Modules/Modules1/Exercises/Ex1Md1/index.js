@@ -21,7 +21,7 @@ import {
 import Grid from "../../../../../components/Jogos/HuntingWords/Grid";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-import HeaderBack from '../../../../../components/Header'
+import HeaderBack from "../../../../../components/Header";
 
 const data = [["A", "E", "I", "O", "U"]];
 
@@ -141,7 +141,7 @@ const Ex1Md1 = ({ navigation }) => {
             ))}
           </View>
         </WordsItens>
-        <View style={{ alignItems: "flex-end", marginRight: 40   }}>
+        <View style={{ position: "absolute", left: 300, top: 550 }}>
           <ButtonApagar onPress={handleDelete}>
             <TextButtonAux>Apagar</TextButtonAux>
           </ButtonApagar>

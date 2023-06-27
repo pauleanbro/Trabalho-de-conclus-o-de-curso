@@ -32,10 +32,10 @@ export const WordsItens = styled.View`
 
 
 export const TextItens = styled.Text`
-  font-size: 25px;
+  font-size: 22px;
   color: #282828;
   font-family: 'Roboto-Regular';
-  margin: 10px 100px 10px 0px;
+  margin: 10px 100px 2px 0px;
   font-weight: bold;
 `;
 
@@ -117,5 +117,5 @@ export const WordsLetras = styled.Text`
   font-size: 22px;
   color: #000000;
   font-weight: 400;
-  margin: 10px;
+  margin: 10px 0px 2px 10px;
 `;
