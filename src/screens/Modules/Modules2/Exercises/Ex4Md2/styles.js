@@ -23,6 +23,12 @@ export const TextWords = styled.Text`
   margin-left: 10px;
 `;
 
+export const WordsItens1 = styled.View`
+  flex-direction: column;
+  align-items: flex-start;
+  height: 150px;
+  margin-left: 50px;
+`;
 export const WordsItens = styled.View`
   flex-direction: column;
   align-items: flex-start;
@@ -34,7 +40,7 @@ export const TextItens = styled.Text`
   color: #282828;
   font-family: "Roboto-Regular";
   flex-wrap: wrap;
-  margin: 20px 0 -10px 10px;
+  margin: 10px 0px  0px 10px;
   font-weight: 700;
 `;
 
@@ -45,7 +51,7 @@ export const ButtonEnviar = styled.TouchableOpacity`
   border-radius: 10px;
   align-items: center;
   justify-content: center;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
 `;
 
 export const ButtonEnviarCinza = styled.TouchableOpacity`
@@ -55,7 +61,7 @@ export const ButtonEnviarCinza = styled.TouchableOpacity`
   border-radius: 10px;
   align-items: center;
   justify-content: center;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
 `;
 
 export const ContainerButtons = styled.View`
@@ -71,7 +77,7 @@ export const ButtonExcluir = styled.TouchableOpacity`
   border-radius: 10px;
   align-items: center;
   justify-content: center;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
 `;
 
 export const ButtonApagar = styled.TouchableOpacity`
@@ -91,7 +97,7 @@ export const ButtonSalvar = styled.TouchableOpacity`
   border-radius: 10px;
   align-items: center;
   justify-content: center;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
 `;
 
 export const TextButtonAux = styled.Text`

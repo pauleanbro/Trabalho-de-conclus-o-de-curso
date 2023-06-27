@@ -16,6 +16,7 @@ import {
   ContainerButtons,
   ButtonEnviarCinza,
   ButtonApagar,
+  WordsItens1,
 } from "./styles";
 import Grid from "../../../../../components/Jogos/HuntingWords/Grid";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -121,22 +122,21 @@ const Ex2Md1 = ({ navigation }) => {
         </ContainerButtons>
         <TextWords>{selectedWord}</TextWords>
         <Border />
-        <View style={{flexDirection: 'row', justifyContent: 'space-evenly'}}>
-        <WordsItens>
-          <TextItens>{words[0]}</TextItens>
-          <TextItens>{words[1]}</TextItens>
-        </WordsItens>
-        <WordsItens>
-          <TextItens>{words[2]}</TextItens>
-          <TextItens>{words[3]}</TextItens>
-        </WordsItens>
+        <View style={{ flexDirection: "row" }}>
+          <WordsItens>
+            <TextItens>{words[0]}</TextItens>
+            <TextItens>{words[1]}</TextItens>
+          </WordsItens>
+          <WordsItens1>
+            <TextItens>{words[2]}</TextItens>
+            <TextItens>{words[3]}</TextItens>
+          </WordsItens1>
         </View>
         <View
           style={{
-            alignItems: "flex-end",
-            marginRight: 40,
-            marginTop: 50,
-            justifyContent: "flex-end",
+            position: "absolute",
+            left: 260,
+            top: 570,
           }}
         >
           <ButtonApagar onPress={handleDelete}>
