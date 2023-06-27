@@ -16,6 +16,7 @@ import {
   ContainerButtons,
   ButtonEnviarCinza,
   ButtonApagar,
+  WordsItens1
 } from "./styles";
 import Grid from "../../../../../components/Jogos/HuntingWords/Grid";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -124,25 +125,28 @@ const Ex1Md4 = ({ navigation }) => {
         </ContainerButtons>
         <TextWords>{selectedWord}</TextWords>
         <Border />
-        <WordsItens>
-          {words.map((words, index) => (
-            <>
-              <TextItens key={index}>{words}</TextItens>
-            </>
-          ))}
-        </WordsItens>
+        <View style={{ flexDirection: 'row' }}>
+          <WordsItens>
+            <TextItens>{words[0]}</TextItens>
+            <TextItens>{words[1]}</TextItens>
+          </WordsItens>
+          <WordsItens1>
+            <TextItens>{words[2]}</TextItens>
+            <TextItens>{words[3]}</TextItens>
+          </WordsItens1>
+        </View>
+        <View
+          style={{
+            position: "absolute",
+            left: 260,
+            top: 480,
+          }}
+        >
+          <ButtonApagar onPress={handleDelete}>
+            <TextButtonAux>Apagar</TextButtonAux>
+          </ButtonApagar>
+        </View>
       </Container>
-      <View
-        style={{
-          alignItems: "flex-end",
-          backgroundColor: "#FFFFFF",
-          marginRight: 42,
-        }}
-      >
-        <ButtonApagar onPress={handleDelete}>
-          <TextButtonAux>Apagar</TextButtonAux>
-        </ButtonApagar>
-      </View>
       {words.length < 4 ? (
         <View style={{ alignItems: "center", backgroundColor: "#FFFFFF" }}>
           <ButtonEnviarCinza>

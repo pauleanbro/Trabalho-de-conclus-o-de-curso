@@ -2,22 +2,25 @@ import React, { useState } from "react";
 import { StyleSheet, View, Text } from "react-native";
 import { PanGestureHandler, State } from "react-native-gesture-handler";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
-import { Title, Letras, ButtonEnviar, ButtonEnviarCinza, TextButton } from "./styles";
+import {
+  Title,
+  Letras,
+  ButtonEnviar,
+  ButtonEnviarCinza,
+  TextButton,
+} from "./styles";
 
 import HeaderBack from "../../../../../components/Header";
 
 const data = [
-  ["h", "I", "C", "I", "H", "I", "j"],
-  ["R", "O", "M", "A", "P", "A", "O"],
-  ["W", "L", "O", "P", "K", "O", "p"],
-  ["S", "C", "Z", "L", "M", "A", "R"],
-  ["T", "E", "M", "P", "O", "O", "T"],
-  ["D", "T", "E", "M", "Ã", "O", "Z"],
+  ["G", "U", "C", "I", "H", "O", "j"],
+  ["C", "O", "R", "A", "Ç", "Ã", "O"],
+  ["T", "E", "M", "P", "O", "Ç", "p"],
+  ["A", "C", "Z", "L", "M", "N", "R"],
+  ["Ç", "E", "R", "O", "M", "A", "T"],
+  ["I", "T", "E", "M", "Ã", "C", "Z"],
   ["O", "T", "E", "H", "Ç", "A", "U"],
   ["O", "T", "E", "H", "N", "A", "L"],
-  ["O", "T", "E", "H", "A", "A", "P"],
-  ["O", "T", "E", "H", "C", "A", "N"],
-  ["C", "O", "R", "A", "Ç", "Ã", "O"],
 ];
 
 const wordList = ["AMOR", "CANÇÃO", "TEMPO", "LUZ", "CORAÇÃO"];
@@ -103,20 +106,20 @@ export default function Ex3Md5({ navigation }) {
             ))}
           </View>
         </PanGestureHandler>
-        {foundWordsCells.length > 3 ? (
-          <View style={{ alignItems: "center", backgroundColor: "#FFFFFF" }}>
-            <ButtonEnviar onPress={() => navigation.navigate("Modules5")}>
-              <TextButton>Enviar</TextButton>
-            </ButtonEnviar>
-          </View>
-        ) : (
-          <View style={{ alignItems: "center", backgroundColor: "#FFFFFF" }}>
-            <ButtonEnviarCinza>
-              <TextButton>Enviar</TextButton>
-            </ButtonEnviarCinza>
-          </View>
-        )}
       </GestureHandlerRootView>
+      {foundWordsCells.length > 3 ? (
+        <View style={{ alignItems: "center", backgroundColor: "#FFFFFF" }}>
+          <ButtonEnviar onPress={() => navigation.navigate("Modules5")}>
+            <TextButton>Enviar</TextButton>
+          </ButtonEnviar>
+        </View>
+      ) : (
+        <View style={{ alignItems: "center", backgroundColor: "#FFFFFF" }}>
+          <ButtonEnviarCinza>
+            <TextButton>Enviar</TextButton>
+          </ButtonEnviarCinza>
+        </View>
+      )}
     </>
   );
 }

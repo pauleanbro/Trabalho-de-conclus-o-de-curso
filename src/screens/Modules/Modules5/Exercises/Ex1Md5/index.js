@@ -29,8 +29,8 @@ const wordList = [
   "SAUDADE",
 ];
 
-const ROW_HEIGHT = 50;
-const COL_WIDTH = 50;
+const ROW_HEIGHT = 40;
+const COL_WIDTH = 48;
 
 export default function Ex1Md5({navigation}) {
   const [selectedWord, setSelectedWord] = useState("");
