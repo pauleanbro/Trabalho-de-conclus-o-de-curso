@@ -161,7 +161,7 @@ const Ex1Md3 = ({ navigation }) => {
           </ContainerNames>
         </View>
       </Container>
-      {selectedNames.length < 11 ? (
+      {selectedNames.length < 12 ? (
         <View style={{ alignItems: "center", backgroundColor: "#FFFFFF" }}>
           <ButtonEnviarCinza>
             <TextButton>Enviar</TextButton>
@@ -169,7 +169,7 @@ const Ex1Md3 = ({ navigation }) => {
         </View>
       ) : (
         <View style={{ alignItems: "center", backgroundColor: "#FFFFFF" }}>
-          <ButtonEnviar onPress={() => navigation.navigate("Modules1")}>
+          <ButtonEnviar onPress={() => navigation.navigate("Modules3")}>
             <TextButton>Enviar</TextButton>
           </ButtonEnviar>
         </View>

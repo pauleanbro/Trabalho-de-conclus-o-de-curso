@@ -7,12 +7,12 @@ export const Container = styled.View`
 
 export const ContainerItens = styled.View`
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 `;
 
 export const ContainerNames = styled.View`
   width: 120px;
-  margin: 0px 10px 0px 0px;
+  margin: 0px 10px -10px 0px;
   align-items: center;
 `;
 

@@ -1,7 +1,6 @@
 import styled from "styled-components/native";
 
 export const Container = styled.View`
-  border: solid 2px #000000;
 `;
 
 export const ButtonWord = styled.TouchableOpacity`
@@ -11,6 +10,7 @@ export const ButtonWord = styled.TouchableOpacity`
   justify-content: center;
   background-color: #D9D9D9;
   margin: 2px;
+  border-radius: 4px;
 `;
 
 export const TextButton = styled.Text`

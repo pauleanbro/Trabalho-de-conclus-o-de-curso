@@ -133,7 +133,7 @@ const Ex4Md2 = ({ navigation }) => {
             <TextItens>{words[3]}</TextItens>
           </WordsItens1 >
         </View>
-        <View style={{ position: "absolute", left: 260, top: 470 }}>
+        <View style={{ position: "absolute", left: 260, top: 490 }}>
           <ButtonApagar onPress={handleDelete}>
             <TextButtonAux>Apagar</TextButtonAux>
           </ButtonApagar>
