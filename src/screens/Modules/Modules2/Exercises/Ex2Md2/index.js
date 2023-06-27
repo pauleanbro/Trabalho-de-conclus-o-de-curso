@@ -24,7 +24,7 @@ const data = [
 
 const wordList = ["FADIGA", "CAMINHO", "RETINA", "PEDRA", "TINHA", "VIDA"];
 
-const ROW_HEIGHT = 65;
+const ROW_HEIGHT = 55;
 const COL_WIDTH = 55;
 
 export default function Ex3Md1({ navigation }) {

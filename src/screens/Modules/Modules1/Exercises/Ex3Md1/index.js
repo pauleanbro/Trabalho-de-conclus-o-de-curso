@@ -2,7 +2,15 @@ import React, { useState, useEffect } from "react";
 import { StyleSheet, View, Text } from "react-native";
 import { PanGestureHandler, State } from "react-native-gesture-handler";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
-import { Title, ButtonEnviarCinza, ButtonEnviar, TextButton, TextCaçaPalavras } from "./styles";
+import {
+  Title,
+  ButtonEnviarCinza,
+  ButtonEnviar,
+  TextButton,
+  TextCaçaPalavras,
+} from "./styles";
+
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import HeaderBack from "../../../../../components/Header";
 
@@ -33,7 +41,44 @@ export default function Ex3Md1({ navigation }) {
   }, [foundWords]);
 
   const [isButtonEnabled, setButtonEnabled] = useState(false);
-  
+
+  useEffect(() => {
+    loadGame();
+  }, []);
+
+  useEffect(() => {
+    saveGame();
+  }, [selectedCells, foundWords]);
+
+  const loadGame = async () => {
+    try {
+      const gameDataString = await AsyncStorage.getItem("gameData");
+      if (gameDataString) {
+        const gameData = JSON.parse(gameDataString);
+        setSelectedCells(gameData.selectedCells);
+        setSelectedWord(gameData.selectedWord);
+        setFoundWordsCells(gameData.foundWordsCells);
+        setFoundWords(gameData.foundWords);
+      }
+    } catch (error) {
+      console.log("Erro ao carregar o jogo:", error);
+    }
+  };
+
+  const saveGame = async () => {
+    try {
+      const gameData = {
+        selectedCells,
+        selectedWord,
+        foundWordsCells,
+        foundWords,
+      };
+      await AsyncStorage.setItem("gameData", JSON.stringify(gameData));
+      console.log("Jogo salvo com sucesso!");
+    } catch (error) {
+      console.log("Erro ao salvar o jogo:", error);
+    }
+  };
 
   const handleGestureEvent = (event) => {
     const { x, y } = event.nativeEvent;
@@ -58,6 +103,26 @@ export default function Ex3Md1({ navigation }) {
       setFoundWordsCells((prevCells) => [...prevCells, ...selectedCells]);
       setFoundWords((prevWords) => [...prevWords, selectedWord]);
       setSelectedWord("");
+    }
+  };
+
+  const clearGameData = async () => {
+    try {
+      await AsyncStorage.removeItem('gameData');
+      console.log('Dados do jogo removidos com sucesso!');
+    } catch (error) {
+      console.log('Erro ao remover os dados do jogo:', error);
+    }
+  };
+
+  const saveWords = async () => {
+    try {
+      await AsyncStorage.setItem('foundWords', JSON.stringify(foundWords));
+      console.log('Palavras salvas com sucesso!');
+      clearGameData();
+      navigation.navigate("Modules1");
+    } catch (error) {
+      console.log('Erro ao salvar as palavras:', error);
     }
   };
 
@@ -120,7 +185,7 @@ export default function Ex3Md1({ navigation }) {
         }}
       >
         {isButtonEnabled ? (
-          <ButtonEnviar onPress={() => navigation.navigate("Modules1")}>
+          <ButtonEnviar onPress={() => saveWords()}>
             <TextButton>Enviar</TextButton>
           </ButtonEnviar>
         ) : (
