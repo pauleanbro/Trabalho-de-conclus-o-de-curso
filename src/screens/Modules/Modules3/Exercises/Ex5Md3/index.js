@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { View } from "react-native";
 import {
   Title,
@@ -12,45 +12,17 @@ import {
   ButtonColorRoxo,
   ButtonColorVerde,
   TextButton,
+  TextColors,
+  ContainerColors,
 } from "./styles";
 
 import HeaderBack from "../../../../../components/Header";
 
-export default function Ex5Md3({ navigation }) {
-  const [colors, setColors] = useState({
-    verde: null,
-    laranja: null,
-    roxo: null,
-  });
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
+export default function Ex5Md3({ navigation }) {
   const [selectedColors, setSelectedColors] = useState([]);
   const [colorPairs, setColorPairs] = useState([]);
-
-  console.log(selectedColors, "         aqui tem coisa          ", colorPairs);
-
-  const generateColor = () => {
-    const updatedColors = { ...colors };
-
-    colorPairs.forEach((pair) => {
-      const [color1, color2] = pair.map((color) => color.toLowerCase());
-
-      if (color1 === "vermelho" && color2 === "amarelo") {
-        updatedColors.laranja = "laranja";
-      } else if (color1 === "amarelo" && color2 === "vermelho") {
-        updatedColors.roxo = "laranja";
-      } else if (color1 === "amarelo" && color2 === "azul") {
-        updatedColors.verde = "verde";
-      } else if (color1 === "azul" && color2 === "amarelo") {
-        updatedColors.verde = "verde";
-      } else if (color1 === "vermelho" && color2 === "azul") {
-        updatedColors.verde = "roxo";
-      } else if (color1 === "azul" && color2 === "vermelho") {
-        updatedColors.verde = "roxo";
-      }
-    });
-
-    setColors(updatedColors);
-  };
 
   const handleColorPress = (color) => {
     setSelectedColors((prevSelectedColors) => {
@@ -72,6 +44,8 @@ export default function Ex5Md3({ navigation }) {
       }
 
       setSelectedColors([]);
+
+      saveColorPairs();
     }
   };
 
@@ -95,15 +69,40 @@ export default function Ex5Md3({ navigation }) {
     }
   };
 
+  const saveColorPairs = async () => {
+    try {
+      await AsyncStorage.setItem("colorPairs", JSON.stringify(colorPairs));
+      console.log("Color pairs saved successfully.");
+    } catch (error) {
+      console.log("Error saving color pairs:", error);
+    }
+  };
+
+  const loadColorPairs = async () => {
+    try {
+      const savedColorPairs = await AsyncStorage.getItem("colorPairs");
+      if (savedColorPairs) {
+        setColorPairs(JSON.parse(savedColorPairs));
+        console.log("Color pairs loaded successfully.", savedColorPairs);
+      }
+    } catch (error) {
+      console.log("Error loading color pairs:", error);
+    }
+  };
+
+  useEffect(() => {
+    loadColorPairs();
+  }, []);
+
   return (
     <>
       <Container>
         <HeaderBack
-          text="Exercicio 4"
+          text="Exercicio 3"
           onPress={() => navigation.navigate("Modules3")}
         />
 
-        <Title>Crie Cores:</Title>
+        <Title>Crie cores:</Title>
         <View
           style={{
             flexDirection: "row",
@@ -111,19 +110,29 @@ export default function Ex5Md3({ navigation }) {
             alignItems: "center",
           }}
         >
-          <ButtonColorVermelho
-            selected={selectedColors.includes("vermelho")}
-            onPress={() => handleColorPress("vermelho")}
-          />
-          <ButtonColorAmarelo
-            selected={selectedColors.includes("amarelo")}
-            onPress={() => handleColorPress("azul")}
-          />
-          <ButtonColorAzul
-            selected={selectedColors.includes("azul")}
-            onPress={() => handleColorPress("amarelo")}
-          />
+          <ContainerColors>
+            <TextColors>Vermelho</TextColors>
+            <ButtonColorVermelho
+              selected={selectedColors.includes("vermelho")}
+              onPress={() => handleColorPress("vermelho")}
+            />
+          </ContainerColors>
+          <ContainerColors>
+            <TextColors>Azul</TextColors>
+            <ButtonColorAmarelo
+              selected={selectedColors.includes("azul")}
+              onPress={() => handleColorPress("azul")}
+            />
+          </ContainerColors>
+          <ContainerColors>
+            <TextColors>Amarelo</TextColors>
+            <ButtonColorAzul
+              selected={selectedColors.includes("amarelo")}
+              onPress={() => handleColorPress("amarelo")}
+            />
+          </ContainerColors>
         </View>
+
         <Title>Cores Criadas:</Title>
         <View
           style={{
@@ -139,9 +148,24 @@ export default function Ex5Md3({ navigation }) {
               }}
               key={index}
             >
-              {color === "laranja" && <ButtonColorRoxo />}
-              {color === "roxo" && <ButtonColorLaranja />}
-              {color === "verde" && <ButtonColorVerde />}
+              {color === "laranja" && (
+                <ContainerColors>
+                  <TextColors>Laranja</TextColors>
+                  <ButtonColorRoxo />
+                </ContainerColors>
+              )}
+              {color === "roxo" && (
+                <ContainerColors>
+                  <TextColors>Roxo</TextColors>
+                  <ButtonColorLaranja />
+                </ContainerColors>
+              )}
+              {color === "verde" && (
+                <ContainerColors>
+                  <TextColors>Verde</TextColors>
+                  <ButtonColorVerde />
+                </ContainerColors>
+              )}
             </View>
           ))}
         </View>

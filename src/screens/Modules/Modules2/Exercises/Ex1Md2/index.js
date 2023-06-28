@@ -16,6 +16,8 @@ import {
   ContainerButtons,
   ButtonEnviarCinza,
   ContainerItensPalavras,
+  TextPalavra,
+  PalavrasJuntas
 } from "./styles";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import HeaderBack from "../../../../../components/Header";
@@ -124,13 +126,11 @@ const Ex1Md2 = ({ navigation }) => {
             <View
               key={index}
               style={{
-                backgroundColor: "#B3E3F6",
-                padding: 10,
                 marginRight: 5,
                 borderRadius: 5,
               }}
             >
-              <Text style={{ fontSize: 20 }}>{letter}</Text>
+              <Text style={{ fontSize: 25 }}>{letter}</Text>
             </View>
           ))}
         </ContainerItensPalavras>
@@ -143,19 +143,19 @@ const Ex1Md2 = ({ navigation }) => {
             <TextButtonAux>Excluir</TextButtonAux>
           </ButtonExcluir>
         </ContainerButtons>
-        {savedWord.map((word, index) => (
-          <View key={index}>
-            <Text style={{ fontSize: 22, marginLeft: 10, marginTop: 10 }}>
-              {word}
-            </Text>
-          </View>
-        ))}
-
+        <PalavrasJuntas>
+          <TextPalavra>{savedWord[0]}</TextPalavra>
+          <TextPalavra>{savedWord[1]}</TextPalavra>
+          <TextPalavra>{savedWord[2]}</TextPalavra>
+          <TextPalavra>{savedWord[3]}</TextPalavra>
+          <TextPalavra>{savedWord[4]}</TextPalavra>
+          <TextPalavra>{savedWord[5]}</TextPalavra>
+        </PalavrasJuntas>
         <View
           style={{
             position: "absolute",
-            left: 280,
-            top: 550,
+            left: 260,
+            top: 600,
           }}
         >
           <ButtonApagar onPress={handleDelete}>

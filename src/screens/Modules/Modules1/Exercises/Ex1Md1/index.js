@@ -134,9 +134,11 @@ const Ex1Md1 = ({ navigation }) => {
             <WordsLetras>Ubaldo</WordsLetras>
           </View>
           <View style={{ flexDirection: "column" }}>
-            {words.map((words, index) => (
-              <TextItens key={index}>{words}</TextItens>
-            ))}
+              <TextItens>{words[0]}</TextItens>
+              <TextItens>{words[1]}</TextItens>
+              <TextItens>{words[2]}</TextItens>
+              <TextItens>{words[3]}</TextItens>
+              <TextItens>{words[4]}</TextItens>
           </View>
         </WordsItens>
         <View style={{ position: "absolute", left: 260, top: 600 }}>

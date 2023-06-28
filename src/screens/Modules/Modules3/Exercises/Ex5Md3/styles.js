@@ -6,22 +6,22 @@ export const Container = styled.View`
 `;
 
 export const Title = styled.Text`
-  font-size: 22px;
+  font-size: 30px;
   color: #282828;
-  font-family: 'Roboto-Medium';
+  font-family: "Roboto-Medium";
   text-align: center;
-  margin: 10px 0px 40px 0px;
+  margin: 10px 0px 20px 0px;
 `;
 
 export const ButtonColorVermelho = styled.TouchableOpacity`
-  background-color: #FF0100;
+  background-color: #ff0100;
   width: 55px;
   height: 55px;
   border-radius: 10px;
 `;
 
 export const ButtonColorAzul = styled.TouchableOpacity`
-  background-color: #FFFF00;
+  background-color: #ffff00;
   width: 55px;
   height: 55px;
   border-radius: 10px;
@@ -37,7 +37,7 @@ export const ButtonColorAmarelo = styled.TouchableOpacity`
 export const Palavras = styled.Text`
   font-size: 22px;
   color: #282828;
-  font-family: 'Roboto-Medium';
+  font-family: "Roboto-Medium";
   margin: 20px 0px 20px 20px;
 `;
 
@@ -50,26 +50,25 @@ export const ColorBox = styled.View`
 `;
 
 export const ButtonColorLaranja = styled.View`
-  background-color: #7122AC;
+  background-color: #7122ac;
   width: 55px;
   height: 55px;
   border-radius: 10px;
 `;
 
 export const ButtonColorRoxo = styled.View`
-  background-color: #FF9B00;
+  background-color: #ff9b00;
   width: 55px;
   height: 55px;
   border-radius: 10px;
 `;
 
 export const ButtonColorVerde = styled.View`
-  background-color: #00A301;
+  background-color: #00a301;
   width: 55px;
   height: 55px;
   border-radius: 10px;
 `;
-
 
 export const Border = styled.View`
   margin-left: 10px;
@@ -100,3 +99,13 @@ export const TextButton = styled.Text`
   color: #ffffff;
 `;
 
+export const ContainerColors = styled.View`
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const TextColors = styled.Text`
+  font-size: 25px;
+  color: #000000;
+`;

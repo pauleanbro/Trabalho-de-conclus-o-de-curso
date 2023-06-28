@@ -14,8 +14,8 @@ export const ContainerItens = styled.View`
 
 export const ContainerItensPalavras = styled.View`
   flex-direction: row;
-  margin: 0px 0 0px 10px;
-  height: 48px;
+  margin: 20px 0 0px 10px;
+  min-height: 40px;
 `;
 
 export const ContainerWords = styled.View`
@@ -129,4 +129,14 @@ export const Border = styled.View`
   height: 1.5px;
   background-color: #000000;
   margin: 5px 0 10px 10px;
+`;
+
+export const TextPalavra = styled.Text`
+  font-size: 26px;
+  color: #000000;
+  font-weight: bold;
+`;
+
+export const PalavrasJuntas = styled.View`
+  padding: 0px 0px 20px 10px;
 `;
