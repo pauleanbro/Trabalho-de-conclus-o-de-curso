@@ -9,12 +9,12 @@ import {
   Text,
 } from "./styles";
 import HitCheck from "../../../assets/hitCheck.js";
-import DeniedCheck from "../../../assets/deniedCheck.js";
+import CheckMark from "../../../assets/checkmark.js";
 
 import HeaderBack from "../../../components/Header";
 
 const Hit = HitCheck;
-const Denied = DeniedCheck;
+const Denied = CheckMark;
 
 export default function Modules1({ navigation }) {
   return (
@@ -27,7 +27,7 @@ export default function Modules1({ navigation }) {
         <Text>Exercícios</Text>
         <ContainerExercicios onPress={() => navigation.navigate("Ex1Md1")}>
           <Title>Lição 1</Title>
-          <Check />
+          {parms1 ? <Check /> : <Denied />}
         </ContainerExercicios>
         <Border />
         <ContainerExercicios onPress={() => navigation.navigate("Ex2Md1")}>

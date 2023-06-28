@@ -21,7 +21,7 @@ import {
 import Grid from "../../../../../components/Jogos/NamesChoices";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-import HeaderBack from '../../../../../components/Header'
+import HeaderBack from "../../../../../components/Header";
 
 const data = [
   ["Dezembro", "Fevereiro", "Março", "Janeiro"],
@@ -81,84 +81,44 @@ const Ex1Md3 = ({ navigation }) => {
           </ButtonExcluir>
         </ContainerButtons>
         <View style={{ flexDirection: "row" }}>
-          <ContainerNames>
-            <TextItens onPress={() => handleNameClick(0)}>
-              {selectedNames[0]}
-            </TextItens>
-            <Border />
-          </ContainerNames>
-          <ContainerNames>
-            <TextItens onPress={() => handleNameClick(0)}>
-              {selectedNames[1]}
-            </TextItens>
-            <Border />
-          </ContainerNames>
-          <ContainerNames>
-            <TextItens onPress={() => handleNameClick(0)}>
-              {selectedNames[2]}
-            </TextItens>
-            <Border />
-          </ContainerNames>
+          {selectedNames.slice(0, 3).map((name, index) => (
+            <ContainerNames key={index}>
+              <TextItens onPress={() => handleNameClick(index)}>
+                {name}
+              </TextItens>
+              <Border />
+            </ContainerNames>
+          ))}
         </View>
         <View style={{ flexDirection: "row" }}>
-          <ContainerNames>
-            <TextItens onPress={() => handleNameClick(0)}>
-              {selectedNames[3]}
-            </TextItens>
-            <Border />
-          </ContainerNames>
-          <ContainerNames>
-            <TextItens onPress={() => handleNameClick(0)}>
-              {selectedNames[4]}
-            </TextItens>
-            <Border />
-          </ContainerNames>
-          <ContainerNames>
-            <TextItens onPress={() => handleNameClick(0)}>
-              {selectedNames[5]}
-            </TextItens>
-            <Border />
-          </ContainerNames>
+          {selectedNames.slice(3, 6).map((name, index) => (
+            <ContainerNames key={index + 3}>
+              <TextItens onPress={() => handleNameClick(index + 3)}>
+                {name}
+              </TextItens>
+              <Border />
+            </ContainerNames>
+          ))}
         </View>
         <View style={{ flexDirection: "row" }}>
-          <ContainerNames>
-            <TextItens onPress={() => handleNameClick(0)}>
-              {selectedNames[6]}
-            </TextItens>
-            <Border />
-          </ContainerNames>
-          <ContainerNames>
-            <TextItens onPress={() => handleNameClick(0)}>
-              {selectedNames[7]}
-            </TextItens>
-            <Border />
-          </ContainerNames>
-          <ContainerNames>
-            <TextItens onPress={() => handleNameClick(0)}>
-              {selectedNames[8]}
-            </TextItens>
-            <Border />
-          </ContainerNames>
+          {selectedNames.slice(6, 9).map((name, index) => (
+            <ContainerNames key={index + 6}>
+              <TextItens onPress={() => handleNameClick(index + 6)}>
+                {name}
+              </TextItens>
+              <Border />
+            </ContainerNames>
+          ))}
         </View>
         <View style={{ flexDirection: "row" }}>
-          <ContainerNames>
-            <TextItens onPress={() => handleNameClick(0)}>
-              {selectedNames[9]}
-            </TextItens>
-            <Border />
-          </ContainerNames>
-          <ContainerNames>
-            <TextItens onPress={() => handleNameClick(0)}>
-              {selectedNames[10]}
-            </TextItens>
-            <Border />
-          </ContainerNames>
-          <ContainerNames>
-            <TextItens onPress={() => handleNameClick(0)}>
-              {selectedNames[11]}
-            </TextItens>
-            <Border />
-          </ContainerNames>
+          {selectedNames.slice(9, 12).map((name, index) => (
+            <ContainerNames key={index + 9}>
+              <TextItens onPress={() => handleNameClick(index + 9)}>
+                {name}
+              </TextItens>
+              <Border />
+            </ContainerNames>
+          ))}
         </View>
       </Container>
       {selectedNames.length < 12 ? (

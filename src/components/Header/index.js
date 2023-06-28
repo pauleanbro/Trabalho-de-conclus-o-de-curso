@@ -44,7 +44,7 @@ const HeaderBack = (props) => {
               <BackText>{text}</BackText>
             </ColumnLeft>
             <ColumnRight
-              onPress={() => RootNavigation.toggleDrawer()}
+              onPress={() => {}}
               activeOpacity={0.7}
               hitSlop={{
                 top: 50,

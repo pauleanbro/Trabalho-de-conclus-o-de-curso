@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import { View, Text } from "react-native";
+import React, { useState, useEffect } from "react";
+import { View, Text, TouchableOpacity, Button } from "react-native";
 import {
   Container,
   ContainerItens,
-  TextItens,
+  ButtonApagar,
   WordsItens,
   ContainerWords,
   TextWords,
@@ -15,97 +15,146 @@ import {
   TextButtonAux,
   ContainerButtons,
   ButtonEnviarCinza,
-  ButtonApagar,
-  ContainerNames,
+  ContainerItensPalavras,
+  ContainerButtons1,
 } from "./styles";
-import Grid from "../../../../../components/Jogos/NamesOptions/GridName";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-
 import HeaderBack from "../../../../../components/Header";
 
 const data = [
-  ["Pedro", "Odete", "Sofia", "Antônio", "Carmem"],
-  ["Lina", "Maria", "João", "Alzira", "Jandira"],
-  ["Carla", "Rosa", "Paula", "Benedto", "Eduardo"],
+  ["P", "E", "I", "R", "D", "A", "B", "O"],
+  ["O", "T", "A", "R", "O", "N", "I", "E"],
+  ["O", "N", "J", "B", "O", "A", "T", "I"],
+  ["D", "E", "L", "U", "A", "R", "O", "T"],
+  ["R", "N", "O", "D", "I", "T", "B", "E"],
 ];
 
+const wordList = ["Pedro", "Antônio", "João", "Eduardo", "Benedito"];
+
 const Ex5Md2 = ({ navigation }) => {
-  const [selectedLetters, setSelectedLetters] = useState([]);
-  const [undo, setUndo] = useState(false);
-  const [selectedNames, setSelectedNames] = useState([]);
+  const [word, setWord] = useState([]);
+  const [savedWord, setSavedWord] = useState([]);
 
-  const handleLetterPress = (row, col) => {
-    const name = data[row][col];
-    setSelectedLetters([...selectedLetters, { row, col }]);
-    setSelectedNames([...selectedNames, name]);
-    setUndo(false);
+  const [currentWordIndex, setCurrentWordIndex] = useState(0);
+
+  const handleLetterClick = (letter) => {
+    setWord([...word, letter]);
   };
 
-  console.log(selectedNames);
+  const handleReset = () => {
+    setWord([]);
+  };
 
-  const handleUndo = () => {
-    const lastSelected = selectedLetters[selectedLetters.length - 1];
-    const name = data[lastSelected.row][lastSelected.col];
-    setSelectedLetters(selectedLetters.slice(0, -1));
-    setSelectedNames(
-      selectedNames.filter((selectedName) => selectedName !== name)
+  const handleSave = async () => {
+    const newWord = word.join("");
+    setSavedWord([...savedWord, newWord]);
+    await AsyncStorage.setItem(
+      "@saved_wordEx2Md2",
+      JSON.stringify([...savedWord, newWord])
     );
-    setUndo(true);
+    handleReset();
+    setCurrentWordIndex((currentWordIndex + 1) % wordList.length);
   };
 
-  const selectedWord = selectedLetters
-    .map((letter) => data[letter.row][letter.col])
-    .join("\n");
-
-  const handleNameClick = (index) => {
-    // Lógica para mostrar o nome selecionado embaixo da borda correspondente
+  const handleDelete = async () => {
+    const newSavedWords = savedWord.slice(0, -1); // remove a última palavra salva
+    setSavedWord(newSavedWords);
+    try {
+      const serializedWords = JSON.stringify(newSavedWords);
+      await AsyncStorage.setItem("@saved_wordEx2Md2", serializedWords);
+      console.log("Última palavra salva apagada com sucesso!");
+    } catch (error) {
+      console.log("Erro ao apagar a última palavra salva:", error);
+    }
   };
+
+  useEffect(() => {
+    const loadSavedWord = async () => {
+      const storedWord = await AsyncStorage.getItem("@saved_wordEx2Md2");
+      if (storedWord !== null) {
+        setSavedWord(JSON.parse(storedWord));
+      }
+    };
+
+    loadSavedWord();
+  }, []);
+
+  console.log(word);
 
   return (
     <>
-      <HeaderBack
-        text="Exercicio 5"
-        onPress={() => navigation.navigate("Modules2")}
-      />
-
       <Container>
+        <HeaderBack
+          text="Exercicio 4"
+          onPress={() => navigation.navigate("Modules2")}
+        />
+
         <ContainerWords>
-          <TextWords>Escolha nomes correspondentes:</TextWords>
+          <TextWords>{wordList[currentWordIndex]}</TextWords>
         </ContainerWords>
         <ContainerItens>
-          <Grid data={data} onLetterPress={handleLetterPress} />
+          {data[currentWordIndex].map((letter, index) => (
+            <TouchableOpacity
+              key={index}
+              style={{
+                width: 40,
+                height: 40,
+                alignItems: "center",
+                justifyContent: "center",
+                backgroundColor: "#D9D9D9",
+                margin: 5,
+                borderRadius: 5,
+              }}
+              onPress={() => handleLetterClick(letter)}
+            >
+              <Text
+                style={{
+                  fontSize: 25,
+                  color: "#000000",
+                  fontFamily: "Roboto-Bold",
+                }}
+              >
+                {letter}
+              </Text>
+            </TouchableOpacity>
+          ))}
         </ContainerItens>
+        <ContainerItensPalavras>
+          {word.map((letter, index) => (
+            <View
+              key={index}
+              style={{
+                padding: 10,
+                marginRight: 5,
+                borderBottomWidth: 2,
+              }}
+            >
+              <Text style={{ fontSize: 30 }}>{letter}</Text>
+            </View>
+          ))}
+        </ContainerItensPalavras>
         <ContainerButtons>
-          <ButtonExcluir onPress={handleUndo}>
+          <ButtonSalvar onPress={handleSave}>
+            <TextButtonAux>Salvar</TextButtonAux>
+          </ButtonSalvar>
+          <ButtonExcluir onPress={handleReset}>
             <TextButtonAux>Excluir</TextButtonAux>
           </ButtonExcluir>
         </ContainerButtons>
-        <ContainerNames>
-          <TextItens onPress={() => handleNameClick(0)}>
-            {selectedNames[0]}
-          </TextItens>
-          <Border />
-        </ContainerNames>
-        <ContainerNames>
-          <TextItens onPress={() => handleNameClick(0)}>
-            {selectedNames[1]}
-          </TextItens>
-          <Border />
-        </ContainerNames>
-        <ContainerNames>
-          <TextItens onPress={() => handleNameClick(0)}>
-            {selectedNames[2]}
-          </TextItens>
-          <Border />
-        </ContainerNames>
-        <ContainerNames>
-          <TextItens onPress={() => handleNameClick(0)}>
-            {selectedNames[3]}
-          </TextItens>
-          <Border />
-        </ContainerNames>
+        {savedWord.map((word, index) => (
+          <View key={index}>
+            <Text style={{ fontSize: 22, marginLeft: 10, marginTop: 10 }}>
+              {word}
+            </Text>
+          </View>
+        ))}
       </Container>
-      {selectedNames.length < 4 ? (
+      <ContainerButtons1>
+        <ButtonApagar onPress={handleDelete}>
+          <TextButtonAux>Apagar</TextButtonAux>
+        </ButtonApagar>
+      </ContainerButtons1>
+      {savedWord.length < 6 ? (
         <View style={{ alignItems: "center", backgroundColor: "#FFFFFF" }}>
           <ButtonEnviarCinza>
             <TextButton>Enviar</TextButton>
@@ -113,7 +162,7 @@ const Ex5Md2 = ({ navigation }) => {
         </View>
       ) : (
         <View style={{ alignItems: "center", backgroundColor: "#FFFFFF" }}>
-          <ButtonEnviar onPress={() => navigation.navigate("Modules1")}>
+          <ButtonEnviar onPress={() => navigation.navigate("Modules2")}>
             <TextButton>Enviar</TextButton>
           </ButtonEnviar>
         </View>

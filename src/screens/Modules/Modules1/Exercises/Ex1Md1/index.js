@@ -135,9 +135,7 @@ const Ex1Md1 = ({ navigation }) => {
           </View>
           <View style={{ flexDirection: "column" }}>
             {words.map((words, index) => (
-              <>
-                <TextItens key={index}>{words}</TextItens>
-              </>
+              <TextItens key={index}>{words}</TextItens>
             ))}
           </View>
         </WordsItens>

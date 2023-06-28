@@ -6,12 +6,16 @@ export const Container = styled.View`
 `;
 
 export const ContainerItens = styled.View`
+  flex-direction: row;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+  justify-content: center;
 `;
 
-export const ContainerNames = styled.View`
-  margin: 20px 17px 0px 17px;
+export const ContainerItensPalavras = styled.View`
+  flex-direction: row;
+  margin: 0px 0 0px 10px;
+  height: 60px;
 `;
 
 export const ContainerWords = styled.View`
@@ -24,21 +28,26 @@ export const ContainerWords = styled.View`
 export const TextWords = styled.Text`
   font-size: 22px;
   color: #000000;
+  font-weight: 500;
   margin-left: 10px;
-  border-bottom: 1px #000000;
 `;
 
 export const WordsItens = styled.View`
-  flex-direction: row;
+  flex: 3;
+  flex-direction: column;
   align-items: flex-start;
+  align-items: center;
+  justify-content: center;
+  background-color: #d9d9d9;
+  margin-top: 5px;
 `;
 
 export const TextItens = styled.Text`
-  font-size: 25px;
+  font-size: 20px;
   color: #282828;
-  font-family: 'Roboto-Regular';
+  font-family: "Roboto-Regular";
   flex-wrap: wrap;
-  margin: 20px 0 0px 10px;
+  margin: 20px 0 -10px 10px;
 `;
 
 export const ButtonEnviar = styled.TouchableOpacity`
@@ -48,7 +57,7 @@ export const ButtonEnviar = styled.TouchableOpacity`
   border-radius: 10px;
   align-items: center;
   justify-content: center;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
 `;
 
 export const ButtonEnviarCinza = styled.TouchableOpacity`
@@ -58,15 +67,31 @@ export const ButtonEnviarCinza = styled.TouchableOpacity`
   border-radius: 10px;
   align-items: center;
   justify-content: center;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
 `;
 
 export const ContainerButtons = styled.View`
   flex-direction: row;
-  justify-content: flex-end;
-  margin-right: 18px;
+  justify-content: space-around;
+  background-color: #ffffff;
+  margin-top: 10px;
 `;
 
+export const ContainerButtons1 = styled.View`
+  flex-direction: row;
+  justify-content: flex-end;
+  padding-right: 40px;
+  background-color: #ffffff;
+`;
+
+export const ContainerWord = styled.View`
+  max-width: 100%;
+  height: 50px;
+  align-items: center;
+  justify-content: center;
+  background-color: #d9d9d9;
+  margin: 5px;
+`;
 export const ButtonExcluir = styled.TouchableOpacity`
   background-color: #db675e;
   width: 100px;
@@ -74,30 +99,31 @@ export const ButtonExcluir = styled.TouchableOpacity`
   border-radius: 10px;
   align-items: center;
   justify-content: center;
-`;
-
-export const ButtonSalvar = styled.TouchableOpacity`
-  background-color: #5DB075;
-  width: 60px;
-  height: 30px;
-  border-radius: 30px;
-  align-items: center;
-  justify-content: center;
   margin-bottom: 30px;
 `;
 
 export const ButtonApagar = styled.TouchableOpacity`
-  background-color: #0099F0;
-  width: 60px;
-  height: 30px;
-  border-radius: 30px;
+  background-color: #000000;
+  width: 100px;
+  height: 40px;
+  border-radius: 10px;
   align-items: center;
   justify-content: center;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
+`;
+
+export const ButtonSalvar = styled.TouchableOpacity`
+  background-color: #5db075;
+  width: 100px;
+  height: 40px;
+  border-radius: 10px;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
 `;
 
 export const TextButtonAux = styled.Text`
-  font-size: 18px;
+  font-size: 20px;
   color: #ffffff;
   font-weight: bold;
 `;
@@ -111,6 +137,5 @@ export const Border = styled.View`
   width: 94%;
   height: 1.5px;
   background-color: #000000;
-  margin: 0 0 0 10px;
+  margin: 5px 0 10px 10px;
 `;
-

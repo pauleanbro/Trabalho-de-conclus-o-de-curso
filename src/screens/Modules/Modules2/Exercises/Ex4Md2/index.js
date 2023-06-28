@@ -103,7 +103,7 @@ const Ex4Md2 = ({ navigation }) => {
   return (
     <>
       <HeaderBack
-        text="Exercicio 4"
+        text="Exercicio 3"
         onPress={() => navigation.navigate("Modules2")}
       />
       <Container>

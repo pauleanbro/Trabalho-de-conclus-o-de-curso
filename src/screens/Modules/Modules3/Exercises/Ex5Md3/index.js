@@ -36,10 +36,16 @@ export default function Ex5Md3({ navigation }) {
 
       if (color1 === "vermelho" && color2 === "amarelo") {
         updatedColors.laranja = "laranja";
-      } else if (color1 === "azul" && color2 === "vermelho") {
-        updatedColors.roxo = "roxo";
+      } else if (color1 === "amarelo" && color2 === "vermelho") {
+        updatedColors.roxo = "laranja";
       } else if (color1 === "amarelo" && color2 === "azul") {
         updatedColors.verde = "verde";
+      } else if (color1 === "azul" && color2 === "amarelo") {
+        updatedColors.verde = "verde";
+      } else if (color1 === "vermelho" && color2 === "azul") {
+        updatedColors.verde = "roxo";
+      } else if (color1 === "azul" && color2 === "vermelho") {
+        updatedColors.verde = "roxo";
       }
     });
 
@@ -55,15 +61,38 @@ export default function Ex5Md3({ navigation }) {
       }
     });
 
-    if (selectedColors.length === 1) {
-      setColorPairs((prevColorPairs) => [
-        ...prevColorPairs,
-        [selectedColors[0], color],
-      ]);
+    if (selectedColors.length === 1 && isPrimaryColor(color)) {
+      const primaryColor1 = selectedColors[0];
+      const primaryColor2 = color;
+      const resultColor = mixColors(primaryColor1, primaryColor2);
+
+      // Verificar se a cor já existe em colorPairs
+      if (!colorPairs.includes(resultColor)) {
+        setColorPairs((prevColorPairs) => [...prevColorPairs, resultColor]);
+      }
+
       setSelectedColors([]);
     }
+  };
 
-    generateColor();
+  const isPrimaryColor = (color) => {
+    return color === "vermelho" || color === "amarelo" || color === "azul";
+  };
+
+  const mixColors = (color1, color2) => {
+    if (color1 === "vermelho" && color2 === "amarelo") {
+      return "laranja";
+    } else if (color1 === "amarelo" && color2 === "vermelho") {
+      return "laranja";
+    } else if (color1 === "azul" && color2 === "vermelho") {
+      return "roxo";
+    } else if (color1 === "vermelho" && color2 === "azul") {
+      return "roxo";
+    } else if (color1 === "amarelo" && color2 === "azul") {
+      return "verde";
+    } else if (color1 === "azul" && color2 === "amarelo") {
+      return "verde";
+    }
   };
 
   return (
@@ -103,37 +132,18 @@ export default function Ex5Md3({ navigation }) {
             justifyContent: "space-around",
           }}
         >
-          {colorPairs.map((pair, index) => {
-            const [color1, color2] = pair;
-
-            return (
-              <View
-                style={{
-                  marginTop: 20,
-                }}
-                key={index}
-              >
-                {color1 === "azul" && color2 === "vermelho" && (
-                  <ButtonColorLaranja />
-                )}
-                {color1 === "vermelho" && color2 === "azul" && (
-                  <ButtonColorLaranja />
-                )}
-                {color1 === "vermelho" && color2 === "amarelo" && (
-                  <ButtonColorRoxo />
-                )}
-                {color1 == "amarelo" && color2 == "vermelho" && (
-                  <ButtonColorRoxo />
-                )}
-                {color1 === "azul" && color2 === "amarelo" && (
-                  <ButtonColorVerde />
-                )}
-                {color1 === "amarelo" && color2 === "azul" && (
-                  <ButtonColorVerde />
-                )}
-              </View>
-            );
-          })}
+          {colorPairs.map((color, index) => (
+            <View
+              style={{
+                marginTop: 20,
+              }}
+              key={index}
+            >
+              {color === "laranja" && <ButtonColorRoxo />}
+              {color === "roxo" && <ButtonColorLaranja />}
+              {color === "verde" && <ButtonColorVerde />}
+            </View>
+          ))}
         </View>
       </Container>
       {colorPairs.length < 3 ? (

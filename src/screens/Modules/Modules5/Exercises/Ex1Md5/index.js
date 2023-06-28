@@ -1,8 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { StyleSheet, View, Text } from "react-native";
 import { PanGestureHandler, State } from "react-native-gesture-handler";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
-import { Title, Letras,ButtonEnviar, ButtonEnviarCinza, TextButton } from "./styles";
+import {
+  Title,
+  ButtonEnviarCinza,
+  ButtonEnviar,
+  TextButton,
+  TextCaçaPalavras,
+} from "./styles";
+
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import HeaderBack from "../../../../../components/Header";
 
@@ -29,13 +37,59 @@ const wordList = [
   "SAUDADE",
 ];
 
-const ROW_HEIGHT = 40;
-const COL_WIDTH = 48;
+const ROW_HEIGHT = 38;
+const COL_WIDTH = 45  ;
 
-export default function Ex1Md5({navigation}) {
+export default function Ex1Md5({ navigation }) {
   const [selectedWord, setSelectedWord] = useState("");
   const [selectedCells, setSelectedCells] = useState([]);
-  const [foundWordsCells, setFoundWordsCells] = useState([]); // novo estado
+  const [foundWordsCells, setFoundWordsCells] = useState([]);
+  const [foundWords, setFoundWords] = useState([]);
+
+  useEffect(() => {
+    const foundWordsCount = foundWords.length;
+    setButtonEnabled(foundWordsCount === 5);
+  }, [foundWords]);
+
+  const [isButtonEnabled, setButtonEnabled] = useState(false);
+
+  useEffect(() => {
+    loadGame();
+  }, []);
+
+  useEffect(() => {
+    saveGame();
+  }, [selectedCells, foundWords]);
+
+  const loadGame = async () => {
+    try {
+      const gameDataString = await AsyncStorage.getItem("gameDataEx1Md5");
+      if (gameDataString) {
+        const gameData = JSON.parse(gameDataString);
+        setSelectedCells(gameData.selectedCells);
+        setSelectedWord(gameData.selectedWord);
+        setFoundWordsCells(gameData.foundWordsCells);
+        setFoundWords(gameData.foundWords);
+      }
+    } catch (error) {
+      console.log("Erro ao carregar o jogo:", error);
+    }
+  };
+
+  const saveGame = async () => {
+    try {
+      const gameData = {
+        selectedCells,
+        selectedWord,
+        foundWordsCells,
+        foundWords,
+      };
+      await AsyncStorage.setItem("gameDataEx1Md5", JSON.stringify(gameData));
+      console.log("Jogo salvo com sucesso!");
+    } catch (error) {
+      console.log("Erro ao salvar o jogo:", error);
+    }
+  };
 
   const handleGestureEvent = (event) => {
     const { x, y } = event.nativeEvent;
@@ -57,23 +111,43 @@ export default function Ex1Md5({navigation}) {
 
   const checkIfWordExists = () => {
     if (wordList.includes(selectedWord)) {
-      console.log("Palavra encontrada: ", selectedWord);
-      setFoundWordsCells((prevCells) => [...prevCells, ...selectedCells]); // adiciona as células selecionadas ao estado
+      setFoundWordsCells((prevCells) => [...prevCells, ...selectedCells]);
+      setFoundWords((prevWords) => [...prevWords, selectedWord]);
+      setSelectedWord("");
+    }
+  };
+
+  const clearGameData = async () => {
+    try {
+      await AsyncStorage.removeItem("gameData");
+      console.log("Dados do jogo removidos com sucesso!");
+    } catch (error) {
+      console.log("Erro ao remover os dados do jogo:", error);
+    }
+  };
+
+  const saveWords = async () => {
+    try {
+      await AsyncStorage.setItem("foundWordsEx1Md5", JSON.stringify(foundWords));
+      console.log("Palavras salvas com sucesso!");
+      clearGameData();
+      navigation.navigate("Modules5");
+    } catch (error) {
+      console.log("Erro ao salvar as palavras:", error);
     }
   };
 
   return (
     <>
       <HeaderBack
-        text="Exercicio 1"
+        text="Exercicio 3"
         onPress={() => navigation.navigate("Modules5")}
       />
-
       <GestureHandlerRootView
         style={{
           flex: 1,
-          padding: 10,
-          alignItems: "center",
+          padding: 20,
+          marginLeft: 5,
           backgroundColor: "#ffffff",
         }}
       >
@@ -92,43 +166,51 @@ export default function Ex1Md5({navigation}) {
           >
             {data.map((row, rowIndex) => (
               <View key={rowIndex} style={{ flexDirection: "row" }}>
-                {row.map((letter, colIndex) => (
-                  <View
-                    key={colIndex}
-                    style={[
-                      styles.cell,
-                      foundWordsCells.includes(`${rowIndex}-${colIndex}`)
-                        ? styles.foundWordCell
-                        : null,
-                      selectedCells.includes(`${rowIndex}-${colIndex}`)
-                        ? styles.selectedCell
-                        : null,
-                    ]}
-                  >
-                    <Letras>{letter}</Letras>
-                  </View>
-                ))}
+                {row.map((letter, colIndex) => {
+                  const cellKey = `${rowIndex}-${colIndex}`;
+                  const isSelected = selectedCells.includes(cellKey);
+                  const isFound = foundWordsCells.includes(cellKey);
+                  const isWordFound = foundWords.includes(selectedWord);
+                  const isPartOfWord = selectedWord.includes(letter);
+
+                  const cellStyles = [
+                    styles.cell,
+                    isSelected ? styles.selectedCell : null,
+                    isFound ? styles.foundWordCell : null,
+                    isWordFound && isPartOfWord ? styles.correctLetter : null,
+                  ];
+
+                  return (
+                    <View key={colIndex} style={cellStyles}>
+                      <TextCaçaPalavras>{letter}</TextCaçaPalavras>
+                    </View>
+                  );
+                })}
               </View>
             ))}
           </View>
         </PanGestureHandler>
-        {foundWordsCells.length < 4 ? (
-          <View style={{ alignItems: "center", backgroundColor: "#FFFFFF" }}>
-            <ButtonEnviarCinza>
-              <TextButton>Enviar</TextButton>
-            </ButtonEnviarCinza>
-          </View>
-        ) : (
-          <View style={{ alignItems: "center", backgroundColor: "#FFFFFF" }}>
-            <ButtonEnviar onPress={() => navigation.navigate("Modules1")}>
-              <TextButton>Enviar</TextButton>
-            </ButtonEnviar>
-          </View>
-        )}
       </GestureHandlerRootView>
+      <View
+        style={{
+          alignItems: "center",
+          backgroundColor: "#FFFFFF",
+        }}
+      >
+        {isButtonEnabled ? (
+          <ButtonEnviar onPress={() => saveWords()}>
+            <TextButton>Enviar</TextButton>
+          </ButtonEnviar>
+        ) : (
+          <ButtonEnviarCinza>
+            <TextButton>Enviar</TextButton>
+          </ButtonEnviarCinza>
+        )}
+      </View>
     </>
   );
 }
+
 const styles = StyleSheet.create({
   cell: {
     height: ROW_HEIGHT,
@@ -144,5 +226,8 @@ const styles = StyleSheet.create({
   },
   foundWordCell: {
     backgroundColor: "lightgreen",
+  },
+  correctLetter: {
+    backgroundColor: "yellow",
   },
 });

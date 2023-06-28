@@ -6,37 +6,36 @@ export const Title = styled.Text`
   text-align: center;
   margin-bottom: 10px;
   font-family: 'Roboto';
-`;
-
-export const Letras = styled.Text`
-  font-size: 20px;
-  color: #282828;
-  text-align: center;
-  font-weight: bold;
-  font-family: 'Roboto';
-`;
-
-export const ButtonEnviar = styled.TouchableOpacity`
-  background-color: #5DB075;
-  width: 230px;
-  height: 55px;
-  border-radius: 10px;
-  align-items: center;
-  justify-content: center;
-  margin-top: 15px;
+  font-weight: 700;
 `;
 
 export const ButtonEnviarCinza = styled.TouchableOpacity`
-  background-color: #D9D9D9;
+  background-color: #d9d9d9;
   width: 230px;
   height: 55px;
   border-radius: 10px;
   align-items: center;
   justify-content: center;
-  margin-top: 15px;
+  margin-bottom: 10px;
+`;
+
+export const ButtonEnviar = styled.TouchableOpacity`
+  background-color: #5db075;
+  width: 230px;
+  height: 55px;
+  border-radius: 10px;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
 `;
 
 export const TextButton = styled.Text`
   font-size: 25px;
   color: #ffffff;
+`;
+
+export const TextCaçaPalavras = styled.Text`
+  font-size: 25px;
+  color: #000000;
+  font-weight: 500;
 `;

@@ -122,9 +122,7 @@ const Ex3Md3 = ({ navigation }) => {
         <Border />
         <WordsItens>
           {words.map((words, index) => (
-            <>
-              <TextItens key={index}>{words}</TextItens>
-            </>
+            <TextItens key={index}>{words}</TextItens>
           ))}
         </WordsItens>
         <View style={{ position: "absolute", left: 260, top: 480 }}>

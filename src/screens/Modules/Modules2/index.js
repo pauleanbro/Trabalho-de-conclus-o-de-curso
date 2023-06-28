@@ -32,23 +32,18 @@ export default function Modules2({ navigation }) {
           <Check />
         </ContainerExercicios>
         <Border />
-        <ContainerExercicios onPress={() => navigation.navigate("Ex3Md2")}>
+        <ContainerExercicios onPress={() => navigation.navigate("Ex4Md2")}>
           <Title>Lição 3</Title>
           <Check />
         </ContainerExercicios>
         <Border />
-        <ContainerExercicios onPress={() => navigation.navigate("Ex4Md2")}>
+        <ContainerExercicios onPress={() => navigation.navigate("Ex5Md2")}>
           <Title>Lição 4</Title>
           <Check />
         </ContainerExercicios>
         <Border />
-        <ContainerExercicios onPress={() => navigation.navigate("Ex5Md2")}>
-          <Title>Lição 5</Title>
-          <Check />
-        </ContainerExercicios>
-        <Border />
         <ContainerExercicios onPress={() => navigation.navigate("Ex6Md2")}>
-          <Title>Lição 6</Title>
+          <Title>Lição 5</Title>
           <Check />
         </ContainerExercicios>
         <Border />

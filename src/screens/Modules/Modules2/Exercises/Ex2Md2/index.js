@@ -10,6 +10,8 @@ import {
   TextCaçaPalavras,
 } from "./styles";
 
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
 import HeaderBack from "../../../../../components/Header";
 
 const data = [
@@ -40,6 +42,44 @@ export default function Ex3Md1({ navigation }) {
 
   const [isButtonEnabled, setButtonEnabled] = useState(false);
 
+  useEffect(() => {
+    loadGame();
+  }, []);
+
+  useEffect(() => {
+    saveGame();
+  }, [selectedCells, foundWords]);
+
+  const loadGame = async () => {
+    try {
+      const gameDataString = await AsyncStorage.getItem("gameDataEx2Md2");
+      if (gameDataString) {
+        const gameData = JSON.parse(gameDataString);
+        setSelectedCells(gameData.selectedCells);
+        setSelectedWord(gameData.selectedWord);
+        setFoundWordsCells(gameData.foundWordsCells);
+        setFoundWords(gameData.foundWords);
+      }
+    } catch (error) {
+      console.log("Erro ao carregar o jogo:", error);
+    }
+  };
+
+  const saveGame = async () => {
+    try {
+      const gameData = {
+        selectedCells,
+        selectedWord,
+        foundWordsCells,
+        foundWords,
+      };
+      await AsyncStorage.setItem("gameDataEx2Md2", JSON.stringify(gameData));
+      console.log("Jogo salvo com sucesso!");
+    } catch (error) {
+      console.log("Erro ao salvar o jogo:", error);
+    }
+  };
+
   const handleGestureEvent = (event) => {
     const { x, y } = event.nativeEvent;
     const rowIndex = Math.floor(y / ROW_HEIGHT);
@@ -63,6 +103,26 @@ export default function Ex3Md1({ navigation }) {
       setFoundWordsCells((prevCells) => [...prevCells, ...selectedCells]);
       setFoundWords((prevWords) => [...prevWords, selectedWord]);
       setSelectedWord("");
+    }
+  };
+
+  const clearGameData = async () => {
+    try {
+      await AsyncStorage.removeItem("gameData");
+      console.log("Dados do jogo removidos com sucesso!");
+    } catch (error) {
+      console.log("Erro ao remover os dados do jogo:", error);
+    }
+  };
+
+  const saveWords = async () => {
+    try {
+      await AsyncStorage.setItem("foundWordsEx2Md2", JSON.stringify(foundWords));
+      console.log("Palavras salvas com sucesso!");
+      clearGameData();
+      navigation.navigate("Modules2")
+    } catch (error) {
+      console.log("Erro ao salvar as palavras:", error);
     }
   };
 
@@ -122,7 +182,7 @@ export default function Ex3Md1({ navigation }) {
         }}
       >
         {isButtonEnabled ? (
-          <ButtonEnviar onPress={() => navigation.navigate("Modules2")}>
+          <ButtonEnviar onPress={() => saveWords()}>
             <TextButton>Enviar</TextButton>
           </ButtonEnviar>
         ) : (

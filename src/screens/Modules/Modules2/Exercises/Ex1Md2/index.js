@@ -41,7 +41,6 @@ const Ex1Md2 = ({ navigation }) => {
     setWord([...word, letter]);
   };
 
-
   const handleReset = () => {
     setWord([]);
   };
@@ -145,15 +144,13 @@ const Ex1Md2 = ({ navigation }) => {
           </ButtonExcluir>
         </ContainerButtons>
         {savedWord.map((word, index) => (
-          <View>
-            <Text
-              key={index}
-              style={{ fontSize: 22, marginLeft: 10, marginTop: 10 }}
-            >
+          <View key={index}>
+            <Text style={{ fontSize: 22, marginLeft: 10, marginTop: 10 }}>
               {word}
             </Text>
           </View>
         ))}
+
         <View
           style={{
             position: "absolute",

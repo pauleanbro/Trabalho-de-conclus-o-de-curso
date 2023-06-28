@@ -9,7 +9,7 @@ export const Title = styled.Text`
 `;
 
 export const Letras = styled.Text`
-  font-size: 20px;
+  font-size: 25px;
   color: #282828;
   text-align: center;
   font-weight: bold;
