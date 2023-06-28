@@ -38,7 +38,7 @@ export default function Ex3Md5({ navigation }) {
 
   useEffect(() => {
     const foundWordsCount = foundWords.length;
-    setButtonEnabled(foundWordsCount === 4);
+    setButtonEnabled(foundWordsCount === 5);
   }, [foundWords]);
 
   const [isButtonEnabled, setButtonEnabled] = useState(false);
@@ -65,7 +65,6 @@ export default function Ex3Md5({ navigation }) {
       console.log("Erro ao carregar o jogo:", error);
     }
   };
-
   const saveGame = async () => {
     try {
       const gameData = {
@@ -117,7 +116,10 @@ export default function Ex3Md5({ navigation }) {
 
   const saveWords = async () => {
     try {
-      await AsyncStorage.setItem("foundWordsEx3Md5", JSON.stringify(foundWords));
+      await AsyncStorage.setItem(
+        "foundWordsEx3Md5",
+        JSON.stringify(foundWords)
+      );
       console.log("Palavras salvas com sucesso!");
       clearGameData();
       navigation.navigate("Modules5");

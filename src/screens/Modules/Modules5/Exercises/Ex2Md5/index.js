@@ -12,7 +12,7 @@ import {
 import HeaderBack from "../../../../../components/Header";
 
 const Ex2Md5 = ({ navigation }) => {
-  const [selectedButtons, setSelectedButtons] = useState([]);
+  const [selectedButtons, setSelectedButtons] = useState({});
   const buttonNumbers = [85, 87, 89, 80];
   const buttonNumbers1 = [40, 46, 49, 48];
   const buttonNumbers2 = [33, 31, 30, 35];
@@ -49,15 +49,17 @@ const Ex2Md5 = ({ navigation }) => {
     }
   };
 
-  const handleButtonClick = (number) => {
-    if (selectedButtons.includes(number)) {
-      setSelectedButtons(selectedButtons.filter((btn) => btn !== number));
-    } else {
-      setSelectedButtons([...selectedButtons, number]);
-    }
+  const handleButtonClick = (container, number) => {
+    setSelectedButtons((prevState) => ({
+      ...prevState,
+      [container]: number,
+    }));
   };
 
-  const isButtonSelected = (number) => selectedButtons.includes(number);
+  const isButtonSelected = (container, number) =>
+    selectedButtons[container] === number;
+
+  const isContainerComplete = (container) => !!selectedButtons[container];
 
   return (
     <>
@@ -74,9 +76,10 @@ const Ex2Md5 = ({ navigation }) => {
               key={number}
               style={[
                 styles.button,
-                isButtonSelected(number) && styles.selectedButton,
+                isButtonSelected("container1", number) && styles.selectedButton,
               ]}
-              onPress={() => handleButtonClick(number)}
+              onPress={() => handleButtonClick("container1", number)}
+              disabled={isContainerComplete("container1")}
             >
               <Text style={styles.buttonText}>{number}</Text>
             </TouchableOpacity>
@@ -91,9 +94,10 @@ const Ex2Md5 = ({ navigation }) => {
               key={number}
               style={[
                 styles.button,
-                isButtonSelected(number) && styles.selectedButton,
+                isButtonSelected("container2", number) && styles.selectedButton,
               ]}
-              onPress={() => handleButtonClick(number)}
+              onPress={() => handleButtonClick("container2", number)}
+              disabled={isContainerComplete("container2")}
             >
               <Text style={styles.buttonText}>{number}</Text>
             </TouchableOpacity>
@@ -108,9 +112,10 @@ const Ex2Md5 = ({ navigation }) => {
               key={number}
               style={[
                 styles.button,
-                isButtonSelected(number) && styles.selectedButton,
+                isButtonSelected("container3", number) && styles.selectedButton,
               ]}
-              onPress={() => handleButtonClick(number)}
+              onPress={() => handleButtonClick("container3", number)}
+              disabled={isContainerComplete("container3")}
             >
               <Text style={styles.buttonText}>{number}</Text>
             </TouchableOpacity>
@@ -125,16 +130,17 @@ const Ex2Md5 = ({ navigation }) => {
               key={number}
               style={[
                 styles.button,
-                isButtonSelected(number) && styles.selectedButton,
+                isButtonSelected("container4", number) && styles.selectedButton,
               ]}
-              onPress={() => handleButtonClick(number)}
+              onPress={() => handleButtonClick("container4", number)}
+              disabled={isContainerComplete("container4")}
             >
               <Text style={styles.buttonText}>{number}</Text>
             </TouchableOpacity>
           ))}
         </View>
       </Container>
-      {selectedButtons.length > 3 ? (
+      {Object.keys(selectedButtons).length === 5 ? (
         <View style={{ alignItems: "center", backgroundColor: "#FFFFFF" }}>
           <ButtonEnviar onPress={() => navigation.navigate("Modules5")}>
             <TextButton>Enviar</TextButton>
@@ -158,7 +164,7 @@ const styles = StyleSheet.create({
   button: {
     backgroundColor: "#e0e0e0",
     borderRadius: 10,
-    paddingVertical: 10,  
+    paddingVertical: 10,
     paddingHorizontal: 20,
     marginHorizontal: 10,
   },

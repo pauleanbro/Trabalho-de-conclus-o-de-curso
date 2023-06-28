@@ -48,10 +48,11 @@ export default function Ex1Md5({ navigation }) {
 
   useEffect(() => {
     const foundWordsCount = foundWords.length;
-    setButtonEnabled(foundWordsCount === 5);
+    setButtonEnabled(foundWordsCount === 6);
   }, [foundWords]);
 
   const [isButtonEnabled, setButtonEnabled] = useState(false);
+  console.log(isButtonEnabled)
 
   useEffect(() => {
     loadGame();
@@ -140,7 +141,7 @@ export default function Ex1Md5({ navigation }) {
   return (
     <>
       <HeaderBack
-        text="Exercicio 3"
+        text="Exercicio 1"
         onPress={() => navigation.navigate("Modules5")}
       />
       <GestureHandlerRootView

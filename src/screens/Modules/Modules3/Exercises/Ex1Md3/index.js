@@ -19,6 +19,7 @@ import {
   ContainerNames,
 } from "./styles";
 import Grid from "../../../../../components/Jogos/NamesChoices";
+
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import HeaderBack from "../../../../../components/Header";
@@ -53,13 +54,18 @@ const Ex1Md3 = ({ navigation }) => {
     setUndo(true);
   };
 
-  const selectedWord = selectedLetters
-    .map((letter) => data[letter.row][letter.col])
-    .join("\n");
+  const saveData = async () => {
+  try {
+    await AsyncStorage.setItem(
+      "selectedNamesEx1Md3",
+      JSON.stringify(selectedNames)
+    );
+    navigation.navigate("Modules3");
+  } catch (error) {
+    console.log("Error saving data: ", error);
+  }
+};
 
-  const handleNameClick = (index) => {
-    // Lógica para mostrar o nome selecionado embaixo da borda correspondente
-  };
 
   return (
     <>
@@ -129,7 +135,7 @@ const Ex1Md3 = ({ navigation }) => {
         </View>
       ) : (
         <View style={{ alignItems: "center", backgroundColor: "#FFFFFF" }}>
-          <ButtonEnviar onPress={() => navigation.navigate("Modules3")}>
+          <ButtonEnviar onPress={() => saveData()}>
             <TextButton>Enviar</TextButton>
           </ButtonEnviar>
         </View>
