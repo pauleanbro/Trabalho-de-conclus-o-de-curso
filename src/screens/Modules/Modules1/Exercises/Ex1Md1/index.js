@@ -139,7 +139,7 @@ const Ex1Md1 = ({ navigation }) => {
             ))}
           </View>
         </WordsItens>
-        <View style={{ position: "absolute", left: 300, top: 550 }}>
+        <View style={{ position: "absolute", left: 260, top: 600 }}>
           <ButtonApagar onPress={handleDelete}>
             <TextButtonAux>Apagar</TextButtonAux>
           </ButtonApagar>
@@ -153,7 +153,7 @@ const Ex1Md1 = ({ navigation }) => {
         </View>
       ) : (
         <View style={{ alignItems: "center", backgroundColor: "#FFFFFF" }}>
-          <ButtonEnviar onPress={() => navigation.navigate("Modules1")}>
+          <ButtonEnviar onPress={() => navigation.navigate("Modules1", {params: true})}>
             <TextButton>Enviar</TextButton>
           </ButtonEnviar>
         </View>

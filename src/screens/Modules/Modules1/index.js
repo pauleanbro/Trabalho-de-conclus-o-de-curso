@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState, useEffect } from "react";
 import {
   Title,
   Container,
@@ -6,17 +6,26 @@ import {
   ContainerExercicios,
   Check,
   Border,
+  Separeitor,
   Text,
 } from "./styles";
-import HitCheck from "../../../assets/hitCheck.js";
 import CheckMark from "../../../assets/checkmark.js";
+import DeniedCheck from "../../../assets/deniedCheck.js";
 
 import HeaderBack from "../../../components/Header";
 
-const Hit = HitCheck;
-const Denied = CheckMark;
+const CheckMark1 = CheckMark;
+const DeniedCheck1 = DeniedCheck;
 
-export default function Modules1({ navigation }) {
+export default function Modules1({ navigation, route }) {
+  const params = route?.params;
+  const params2 = route?.params2;
+  const params3 = route?.params3;
+
+  console.log(params);
+  console.log(params2);
+  console.log(params3);
+
   return (
     <Container>
       <HeaderBack
@@ -27,17 +36,20 @@ export default function Modules1({ navigation }) {
         <Text>Exercícios</Text>
         <ContainerExercicios onPress={() => navigation.navigate("Ex1Md1")}>
           <Title>Lição 1</Title>
-          {parms1 ? <Check /> : <Denied />}
+          <Separeitor />
+          {params ? <CheckMark1 /> : <DeniedCheck1 />}
         </ContainerExercicios>
         <Border />
         <ContainerExercicios onPress={() => navigation.navigate("Ex2Md1")}>
           <Title>Lição 2</Title>
-          <Check />
+          <Separeitor />
+          {params2 ? <CheckMark1 /> : <DeniedCheck1 />}
         </ContainerExercicios>
         <Border />
         <ContainerExercicios onPress={() => navigation.navigate("Ex3Md1")}>
           <Title>Lição 3</Title>
-          <Check />
+          <Separeitor />
+          {params3 ? <CheckMark1 /> : <DeniedCheck1 />}
         </ContainerExercicios>
         <Border />
       </ContainerIteins>

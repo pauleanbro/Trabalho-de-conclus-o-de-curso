@@ -122,7 +122,7 @@ const Ex2Md1 = ({ navigation }) => {
         </ContainerButtons>
         <TextWords>{selectedWord}</TextWords>
         <Border />
-        <View style={{ flexDirection: "row" }}>
+        <View style={{ flexDirection: "row", width: "50%" }}>
           <WordsItens>
             <TextItens>{words[0]}</TextItens>
             <TextItens>{words[1]}</TextItens>
@@ -136,7 +136,7 @@ const Ex2Md1 = ({ navigation }) => {
           style={{
             position: "absolute",
             left: 260,
-            top: 570,
+            top: 600,
           }}
         >
           <ButtonApagar onPress={handleDelete}>
@@ -152,7 +152,7 @@ const Ex2Md1 = ({ navigation }) => {
         </View>
       ) : (
         <View style={{ alignItems: "center", backgroundColor: "#FFFFFF" }}>
-          <ButtonEnviar onPress={() => navigation.navigate("Modules1")}>
+          <ButtonEnviar onPress={() => navigation.navigate("Modules1", {params2: true})}>
             <TextButton>Enviar</TextButton>
           </ButtonEnviar>
         </View>

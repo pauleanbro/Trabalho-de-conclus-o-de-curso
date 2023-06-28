@@ -99,7 +99,7 @@ const Ex3Md3 = ({ navigation }) => {
   return (
     <>
       <HeaderBack
-        text="Exercicio 3"
+        text="Exercicio 2"
         onPress={() => navigation.navigate("Modules3")}
       />
 
@@ -121,11 +121,12 @@ const Ex3Md3 = ({ navigation }) => {
         <TextWords>{selectedWord}</TextWords>
         <Border />
         <WordsItens>
-          {words.map((words, index) => (
-            <TextItens key={index}>{words}</TextItens>
-          ))}
+          <TextItens>{words[0]}</TextItens>
+          <TextItens>{words[1]}</TextItens>
+          <TextItens>{words[2]}</TextItens>
+          <TextItens>{words[3]}</TextItens>
         </WordsItens>
-        <View style={{ position: "absolute", left: 260, top: 480 }}>
+        <View style={{ position: "absolute", left: 260, top: 500 }}>
           <ButtonApagar onPress={handleDelete}>
             <TextButtonAux>Apagar</TextButtonAux>
           </ButtonApagar>

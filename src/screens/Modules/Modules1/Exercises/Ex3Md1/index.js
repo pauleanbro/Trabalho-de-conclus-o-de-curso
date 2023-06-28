@@ -120,7 +120,7 @@ export default function Ex3Md1({ navigation }) {
       await AsyncStorage.setItem('foundWords', JSON.stringify(foundWords));
       console.log('Palavras salvas com sucesso!');
       clearGameData();
-      navigation.navigate("Modules1");
+      navigation.navigate("Modules1", {params3: true});
     } catch (error) {
       console.log('Erro ao salvar as palavras:', error);
     }

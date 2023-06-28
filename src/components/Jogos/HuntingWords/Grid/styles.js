@@ -4,8 +4,8 @@ export const Container = styled.View`
 `;
 
 export const ButtonWord = styled.TouchableOpacity`
-  width: 70px;
-  height: 70px;
+  width: 65px;
+  height: 65px;
   align-items: center;
   justify-content: center;
   background-color: #D9D9D9;
@@ -14,7 +14,7 @@ export const ButtonWord = styled.TouchableOpacity`
 `;
 
 export const TextButton = styled.Text`
-  font-size: 28px;
+  font-size: 26px;
   color: #000000;
   font-family: 'Roboto-Bold';
 `;

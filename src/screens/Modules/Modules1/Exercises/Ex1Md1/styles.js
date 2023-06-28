@@ -26,7 +26,7 @@ export const TextWords = styled.Text`
 
 export const WordsItens = styled.View`
   flex-direction: row;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
 `;
 
