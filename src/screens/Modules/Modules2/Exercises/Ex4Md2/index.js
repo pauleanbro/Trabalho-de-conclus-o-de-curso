@@ -16,7 +16,7 @@ import {
   ContainerButtons,
   ButtonEnviarCinza,
   ButtonApagar,
-  WordsItens1
+  WordsItens1,
 } from "./styles";
 import Grid from "../../../../../components/Jogos/HuntingWords/Grid";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -100,6 +100,15 @@ const Ex4Md2 = ({ navigation }) => {
     .map((letter) => data[letter.row][letter.col])
     .join("");
 
+  const handleGoBack = async () => {
+    try {
+      await AsyncStorage.setItem("paramsEx2Md2", "true");
+      navigation.navigate("Modules2");
+    } catch (error) {
+      console.log("Erro ao armazenar os parâmetros no AsyncStorage:", error);
+    }
+  };
+
   return (
     <>
       <HeaderBack
@@ -123,21 +132,19 @@ const Ex4Md2 = ({ navigation }) => {
         </ContainerButtons>
         <TextWords>{selectedWord}</TextWords>
         <Border />
-        <View style={{ flexDirection: 'row' }}>
+        <View style={{ flexDirection: "row" }}>
           <WordsItens>
             <TextItens>{words[0]}</TextItens>
             <TextItens>{words[1]}</TextItens>
           </WordsItens>
           <WordsItens1>
-            <TextItens>{words[2]}</TextItens>
+            <TextItens>{words[2]  }</TextItens>
             <TextItens>{words[3]}</TextItens>
-          </WordsItens1 >
+          </WordsItens1>
         </View>
-        <View style={{ position: "absolute", left: 260, top: 490 }}>
-          <ButtonApagar onPress={handleDelete}>
-            <TextButtonAux>Apagar</TextButtonAux>
-          </ButtonApagar>
-        </View>
+        <ButtonApagar onPress={handleDelete}>
+          <TextButtonAux>Apagar</TextButtonAux>
+        </ButtonApagar>
       </Container>
       {words.length < 4 ? (
         <View style={{ alignItems: "center", backgroundColor: "#FFFFFF" }}>
@@ -147,7 +154,7 @@ const Ex4Md2 = ({ navigation }) => {
         </View>
       ) : (
         <View style={{ alignItems: "center", backgroundColor: "#FFFFFF" }}>
-          <ButtonEnviar onPress={() => navigation.navigate("Modules1")}>
+          <ButtonEnviar onPress={() => handleGoBack()}>
             <TextButton>Enviar</TextButton>
           </ButtonEnviar>
         </View>
