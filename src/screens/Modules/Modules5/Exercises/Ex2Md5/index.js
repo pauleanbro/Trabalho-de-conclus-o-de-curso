@@ -61,6 +61,15 @@ const Ex2Md5 = ({ navigation }) => {
 
   const isContainerComplete = (container) => !!selectedButtons[container];
 
+  const handleGoBack = async () => {
+    try {
+      await AsyncStorage.setItem("paramsEx2Md5", "true");
+      navigation.navigate("Modules5");
+    } catch (error) {
+      console.log("Erro ao armazenar os parâmetros no AsyncStorage:", error);
+    }
+  };
+
   return (
     <>
       <HeaderBack
@@ -140,9 +149,9 @@ const Ex2Md5 = ({ navigation }) => {
           ))}
         </View>
       </Container>
-      {Object.keys(selectedButtons).length === 5 ? (
+      {Object.keys(selectedButtons).length === 4 ? (
         <View style={{ alignItems: "center", backgroundColor: "#FFFFFF" }}>
-          <ButtonEnviar onPress={() => navigation.navigate("Modules5")}>
+          <ButtonEnviar onPress={() => handleGoBack()}>
             <TextButton>Enviar</TextButton>
           </ButtonEnviar>
         </View>

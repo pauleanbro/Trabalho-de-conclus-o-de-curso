@@ -14,9 +14,6 @@ export const ContainerExercicios = styled.TouchableOpacity`
   flex-direction: row;
   justify-content: space-between;
 `;
-export const Separador = styled.View`
-  margin-right: 5px;
-`;
 
 export const Check = styled.TouchableOpacity`
   width: 30px;
@@ -31,18 +28,22 @@ export const Text = styled.Text`
   color: #282828;
   text-align: center;
   margin-bottom: 30px;
-  font-family: 'Roboto';
+  font-family: "Roboto";
 `;
 
 export const Title = styled.Text`
   font-size: 22px;
   color: #282828;
-  font-family: 'Roboto-Medium';
+  font-family: "Roboto-Medium";
 `;
 
 export const Border = styled.View`
   width: 100%;
   height: 1.5px;
-  background-color: #E8E8E8;
+  background-color: #e8e8e8;
   margin: 15px 0 25px 0;
+`;
+
+export const Separador = styled.View`
+  margin-left: 95px;
 `;

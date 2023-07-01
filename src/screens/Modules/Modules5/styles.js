@@ -14,8 +14,9 @@ export const ContainerExercicios = styled.TouchableOpacity`
   flex-direction: row;
   justify-content: space-between;
 `;
+
 export const Separador = styled.View`
-  margin-right: 5px;
+  margin-left: 95px;
 `;
 
 export const Check = styled.TouchableOpacity`

@@ -60,6 +60,7 @@ const Ex1Md3 = ({ navigation }) => {
       "selectedNamesEx1Md3",
       JSON.stringify(selectedNames)
     );
+    await AsyncStorage.setItem("paramsEx1Md3", "true");
     navigation.navigate("Modules3");
   } catch (error) {
     console.log("Error saving data: ", error);

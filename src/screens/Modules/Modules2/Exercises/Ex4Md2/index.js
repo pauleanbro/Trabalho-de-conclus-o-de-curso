@@ -102,7 +102,7 @@ const Ex4Md2 = ({ navigation }) => {
 
   const handleGoBack = async () => {
     try {
-      await AsyncStorage.setItem("paramsEx2Md2", "true");
+      await AsyncStorage.setItem("params2Ex2Md2", "true");
       navigation.navigate("Modules2");
     } catch (error) {
       console.log("Erro ao armazenar os parâmetros no AsyncStorage:", error);
@@ -138,13 +138,15 @@ const Ex4Md2 = ({ navigation }) => {
             <TextItens>{words[1]}</TextItens>
           </WordsItens>
           <WordsItens1>
-            <TextItens>{words[2]  }</TextItens>
+            <TextItens>{words[2]}</TextItens>
             <TextItens>{words[3]}</TextItens>
           </WordsItens1>
         </View>
-        <ButtonApagar onPress={handleDelete}>
-          <TextButtonAux>Apagar</TextButtonAux>
-        </ButtonApagar>
+        <View style={{ position: "absolute", left: 260, top: 520 }}>
+          <ButtonApagar onPress={handleDelete}>
+            <TextButtonAux>Apagar</TextButtonAux>
+          </ButtonApagar>
+        </View>
       </Container>
       {words.length < 4 ? (
         <View style={{ alignItems: "center", backgroundColor: "#FFFFFF" }}>

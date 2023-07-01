@@ -101,6 +101,15 @@ const Ex1Md4 = ({ navigation }) => {
     .map((letter) => data[letter.row][letter.col])
     .join("");
 
+    const handleGoBack = async () => {
+      try {
+        await AsyncStorage.setItem("paramsEx1Md4", "true");
+        navigation.navigate("Modules4");
+      } catch (error) {
+        console.log("Erro ao armazenar os parâmetros no AsyncStorage:", error);
+      }
+    };
+
   return (
     <>
       <HeaderBack
@@ -155,7 +164,7 @@ const Ex1Md4 = ({ navigation }) => {
         </View>
       ) : (
         <View style={{ alignItems: "center", backgroundColor: "#FFFFFF" }}>
-          <ButtonEnviar onPress={() => navigation.navigate("Modules1")}>
+          <ButtonEnviar onPress={() => handleGoBack()}>
             <TextButton>Enviar</TextButton>
           </ButtonEnviar>
         </View>

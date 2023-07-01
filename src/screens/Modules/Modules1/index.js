@@ -11,9 +11,8 @@ import {
 } from "./styles";
 import CheckMark from "../../../assets/checkmark.js";
 import DeniedCheck from "../../../assets/deniedCheck.js";
-
+import { useIsFocused } from '@react-navigation/native';
 import HeaderBack from "../../../components/Header";
-
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const CheckMark1 = CheckMark;
@@ -24,7 +23,7 @@ export default function Modules1({ navigation, route }) {
   const [params2, setParams2] = useState(false);
   const [params3, setParams3] = useState(false);
 
-  console.log(params)
+  const isFocused = useIsFocused();
 
   const getParamsFromStorage = async () => {
     try {
@@ -41,8 +40,12 @@ export default function Modules1({ navigation, route }) {
   };
   
   useEffect(() => {
+    if(isFocused){
     getParamsFromStorage();
-  }, []);
+    }
+  }, [isFocused]);
+
+  console.log(params3)
   
 
   return (

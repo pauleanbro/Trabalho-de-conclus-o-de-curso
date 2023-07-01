@@ -38,7 +38,7 @@ const wordList = [
 ];
 
 const ROW_HEIGHT = 38;
-const COL_WIDTH = 45  ;
+const COL_WIDTH = 45;
 
 export default function Ex1Md5({ navigation }) {
   const [selectedWord, setSelectedWord] = useState("");
@@ -52,7 +52,7 @@ export default function Ex1Md5({ navigation }) {
   }, [foundWords]);
 
   const [isButtonEnabled, setButtonEnabled] = useState(false);
-  console.log(isButtonEnabled)
+  console.log(isButtonEnabled);
 
   useEffect(() => {
     loadGame();
@@ -129,9 +129,13 @@ export default function Ex1Md5({ navigation }) {
 
   const saveWords = async () => {
     try {
-      await AsyncStorage.setItem("foundWordsEx1Md5", JSON.stringify(foundWords));
-      console.log("Palavras salvas com sucesso!");
+      await AsyncStorage.setItem(
+        "foundWordsEx1Md5",
+        JSON.stringify(foundWords)
+      );
+
       clearGameData();
+      await AsyncStorage.setItem("paramsEx1Md5", "true");
       navigation.navigate("Modules5");
     } catch (error) {
       console.log("Erro ao salvar as palavras:", error);

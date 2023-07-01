@@ -81,7 +81,7 @@ const Ex5Md2 = ({ navigation }) => {
 
   const handleGoBack = async () => {
     try {
-      await AsyncStorage.setItem("params4Ex1Md2", "true");
+      await AsyncStorage.setItem("params3Ex3Md2", "true");
       navigation.navigate("Modules2");
     } catch (error) {
       console.log("Erro ao armazenar os parâmetros no AsyncStorage:", error);
@@ -169,7 +169,7 @@ const Ex5Md2 = ({ navigation }) => {
           <TextButtonAux>Apagar</TextButtonAux>
         </ButtonApagar>
       </ContainerButtons1>
-      {savedWord.length < 6 ? (
+      {savedWord.length < 5 ? (
         <View style={{ alignItems: "center", backgroundColor: "#FFFFFF" }}>
           <ButtonEnviarCinza>
             <TextButton>Enviar</TextButton>

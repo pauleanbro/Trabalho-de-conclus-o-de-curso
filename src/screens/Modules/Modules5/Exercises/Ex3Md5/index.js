@@ -40,6 +40,7 @@ export default function Ex3Md5({ navigation }) {
     const foundWordsCount = foundWords.length;
     setButtonEnabled(foundWordsCount === 5);
   }, [foundWords]);
+  
 
   const [isButtonEnabled, setButtonEnabled] = useState(false);
 
@@ -120,8 +121,8 @@ export default function Ex3Md5({ navigation }) {
         "foundWordsEx3Md5",
         JSON.stringify(foundWords)
       );
-      console.log("Palavras salvas com sucesso!");
       clearGameData();
+      await AsyncStorage.setItem("paramsEx3Md5", "true");
       navigation.navigate("Modules5");
     } catch (error) {
       console.log("Erro ao salvar as palavras:", error);
