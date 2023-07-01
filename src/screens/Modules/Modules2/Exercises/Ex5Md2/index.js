@@ -79,7 +79,14 @@ const Ex5Md2 = ({ navigation }) => {
     loadSavedWord();
   }, []);
 
-  console.log(word);
+  const handleGoBack = async () => {
+    try {
+      await AsyncStorage.setItem("params4Ex1Md2", "true");
+      navigation.navigate("Modules2");
+    } catch (error) {
+      console.log("Erro ao armazenar os parâmetros no AsyncStorage:", error);
+    }
+  };
 
   return (
     <>
@@ -141,13 +148,21 @@ const Ex5Md2 = ({ navigation }) => {
             <TextButtonAux>Excluir</TextButtonAux>
           </ButtonExcluir>
         </ContainerButtons>
-        {savedWord.map((word, index) => (
-          <View key={index}>
-            <Text style={{ fontSize: 22, marginLeft: 10, marginTop: 10 }}>
-              {word}
-            </Text>
-          </View>
-        ))}
+        <Text style={{ fontSize: 22, marginLeft: 10, marginTop: 10 }}>
+          {savedWord[0]}
+        </Text>
+        <Text style={{ fontSize: 22, marginLeft: 10, marginTop: 10 }}>
+          {savedWord[1]}
+        </Text>
+        <Text style={{ fontSize: 22, marginLeft: 10, marginTop: 10 }}>
+          {savedWord[2]}
+        </Text>
+        <Text style={{ fontSize: 22, marginLeft: 10, marginTop: 10 }}>
+          {savedWord[3]}
+        </Text>
+        <Text style={{ fontSize: 22, marginLeft: 10, marginTop: 10 }}>
+          {savedWord[4]}
+        </Text>
       </Container>
       <ContainerButtons1>
         <ButtonApagar onPress={handleDelete}>
@@ -162,7 +177,7 @@ const Ex5Md2 = ({ navigation }) => {
         </View>
       ) : (
         <View style={{ alignItems: "center", backgroundColor: "#FFFFFF" }}>
-          <ButtonEnviar onPress={() => navigation.navigate("Modules2")}>
+          <ButtonEnviar onPress={() => handleGoBack()}>
             <TextButton>Enviar</TextButton>
           </ButtonEnviar>
         </View>

@@ -17,7 +17,7 @@ import {
   ButtonEnviarCinza,
   ContainerItensPalavras,
   TextPalavra,
-  PalavrasJuntas
+  PalavrasJuntas,
 } from "./styles";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import HeaderBack from "../../../../../components/Header";
@@ -82,6 +82,15 @@ const Ex1Md2 = ({ navigation }) => {
   }, []);
 
   console.log(savedWord);
+
+  const handleGoBack = async () => {
+    try {
+      await AsyncStorage.setItem("paramsEx1Md2", "true");
+      navigation.navigate("Modules2");
+    } catch (error) {
+      console.log("Erro ao armazenar os parâmetros no AsyncStorage:", error);
+    }
+  };
 
   return (
     <>
@@ -155,7 +164,7 @@ const Ex1Md2 = ({ navigation }) => {
           style={{
             position: "absolute",
             left: 260,
-            top: 600,
+            top: 620,
           }}
         >
           <ButtonApagar onPress={handleDelete}>
@@ -171,7 +180,7 @@ const Ex1Md2 = ({ navigation }) => {
         </View>
       ) : (
         <View style={{ alignItems: "center", backgroundColor: "#FFFFFF" }}>
-          <ButtonEnviar onPress={() => navigation.navigate("Modules2")}>
+          <ButtonEnviar onPress={() => handleGoBack()}>
             <TextButton>Enviar</TextButton>
           </ButtonEnviar>
         </View>

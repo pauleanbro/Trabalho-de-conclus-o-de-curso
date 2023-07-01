@@ -14,17 +14,36 @@ import DeniedCheck from "../../../assets/deniedCheck.js";
 
 import HeaderBack from "../../../components/Header";
 
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 const CheckMark1 = CheckMark;
 const DeniedCheck1 = DeniedCheck;
 
 export default function Modules1({ navigation, route }) {
-  const params = route?.params;
-  const params2 = route?.params2;
-  const params3 = route?.params3;
+  const [params, setParams] = useState(false);
+  const [params2, setParams2] = useState(false);
+  const [params3, setParams3] = useState(false);
 
-  console.log(params);
-  console.log(params2);
-  console.log(params3);
+  console.log(params)
+
+  const getParamsFromStorage = async () => {
+    try {
+      const storedParams = await AsyncStorage.getItem('params');
+      const storedParams2 = await AsyncStorage.getItem('params2');
+      const storedParams3 = await AsyncStorage.getItem('params3');
+      
+      setParams(storedParams === 'true');
+      setParams2(storedParams2 === 'true');
+      setParams3(storedParams3 === 'true');
+    } catch (error) {
+      console.log('Erro ao obter os parâmetros do AsyncStorage:', error);
+    }
+  };
+  
+  useEffect(() => {
+    getParamsFromStorage();
+  }, []);
+  
 
   return (
     <Container>
@@ -33,7 +52,7 @@ export default function Modules1({ navigation, route }) {
         onPress={() => navigation.navigate("Activites")}
       />
       <ContainerIteins>
-        <Text>Exercícios</Text>
+        <Text>Exercícios</Text> 
         <ContainerExercicios onPress={() => navigation.navigate("Ex1Md1")}>
           <Title>Lição 1</Title>
           <Separeitor />

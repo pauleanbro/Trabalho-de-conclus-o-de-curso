@@ -73,7 +73,7 @@ export default function Ex3Md1({ navigation }) {
         foundWordsCells,
         foundWords,
       };
-      await AsyncStorage.setItem("gameDataEx2Md2", JSON.stringify(gameData));
+      await AsyncStorage.setItem("gameData1Ex2Md2", JSON.stringify(gameData));
       console.log("Jogo salvo com sucesso!");
     } catch (error) {
       console.log("Erro ao salvar o jogo:", error);
@@ -117,10 +117,14 @@ export default function Ex3Md1({ navigation }) {
 
   const saveWords = async () => {
     try {
-      await AsyncStorage.setItem("foundWordsEx2Md2", JSON.stringify(foundWords));
+      await AsyncStorage.setItem(
+        "foundWordsEx2Md2",
+        JSON.stringify(foundWords)
+      );
+      await AsyncStorage.setItem("params1Ex1Md2", "true");
       console.log("Palavras salvas com sucesso!");
       clearGameData();
-      navigation.navigate("Modules2")
+      navigation.navigate("Modules2");
     } catch (error) {
       console.log("Erro ao salvar as palavras:", error);
     }

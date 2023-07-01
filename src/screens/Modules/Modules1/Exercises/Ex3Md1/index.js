@@ -108,21 +108,25 @@ export default function Ex3Md1({ navigation }) {
 
   const clearGameData = async () => {
     try {
-      await AsyncStorage.removeItem('gameData');
-      console.log('Dados do jogo removidos com sucesso!');
+      await AsyncStorage.removeItem("gameData");
+      console.log("Dados do jogo removidos com sucesso!");
     } catch (error) {
-      console.log('Erro ao remover os dados do jogo:', error);
+      console.log("Erro ao remover os dados do jogo:", error);
     }
   };
 
   const saveWords = async () => {
     try {
-      await AsyncStorage.setItem('foundWordsEx3Md1', JSON.stringify(foundWords));
-      console.log('Palavras salvas com sucesso!');
+      await AsyncStorage.setItem(
+        "foundWordsEx3Md1",
+        JSON.stringify(foundWords)
+      );
+      await AsyncStorage.setItem("param3", "true");
+      console.log("Palavras salvas com sucesso!");
       clearGameData();
-      navigation.navigate("Modules1", {params3: true});
+      navigation.navigate("Modules1");
     } catch (error) {
-      console.log('Erro ao salvar as palavras:', error);
+      console.log("Erro ao salvar as palavras:", error);
     }
   };
 

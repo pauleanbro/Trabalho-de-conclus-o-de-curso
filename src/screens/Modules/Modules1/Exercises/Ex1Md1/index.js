@@ -71,7 +71,7 @@ const Ex1Md1 = ({ navigation }) => {
     setUndo(true);
   };
 
-  const handleSave = () => {
+  const handleSave = async () => {
     const selectedWord = selectedLetters
       .map((letter) => data[letter.row][letter.col])
       .join("");
@@ -101,6 +101,15 @@ const Ex1Md1 = ({ navigation }) => {
   const selectedWord = selectedLetters
     .map((letter) => data[letter.row][letter.col])
     .join("");
+
+  const handleGoBack = async () => {
+    try {
+      await AsyncStorage.setItem("params", "true");
+      navigation.navigate("Modules1");
+    } catch (error) {
+      console.log("Erro ao armazenar os parâmetros no AsyncStorage:", error);
+    }
+  };
 
   return (
     <>
@@ -134,11 +143,11 @@ const Ex1Md1 = ({ navigation }) => {
             <WordsLetras>Ubaldo</WordsLetras>
           </View>
           <View style={{ flexDirection: "column" }}>
-              <TextItens>{words[0]}</TextItens>
-              <TextItens>{words[1]}</TextItens>
-              <TextItens>{words[2]}</TextItens>
-              <TextItens>{words[3]}</TextItens>
-              <TextItens>{words[4]}</TextItens>
+            <TextItens>{words[0]}</TextItens>
+            <TextItens>{words[1]}</TextItens>
+            <TextItens>{words[2]}</TextItens>
+            <TextItens>{words[3]}</TextItens>
+            <TextItens>{words[4]}</TextItens>
           </View>
         </WordsItens>
         <View style={{ position: "absolute", left: 260, top: 600 }}>
@@ -155,7 +164,11 @@ const Ex1Md1 = ({ navigation }) => {
         </View>
       ) : (
         <View style={{ alignItems: "center", backgroundColor: "#FFFFFF" }}>
-          <ButtonEnviar onPress={() => navigation.navigate("Modules1", {params: true})}>
+          <ButtonEnviar
+            onPress={() => {
+              handleGoBack();
+            }}
+          >
             <TextButton>Enviar</TextButton>
           </ButtonEnviar>
         </View>

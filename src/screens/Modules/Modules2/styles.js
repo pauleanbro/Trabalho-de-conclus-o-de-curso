@@ -46,3 +46,7 @@ export const Border = styled.View`
   background-color: #E8E8E8;
   margin: 15px 0 25px 0;
 `;
+
+export const Separeitor = styled.View`
+  margin-left: 95px;
+`;

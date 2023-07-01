@@ -99,6 +99,15 @@ const Ex2Md1 = ({ navigation }) => {
     .map((letter) => data[letter.row][letter.col])
     .join("");
 
+  const handleGoBack = async () => {
+    try {
+      await AsyncStorage.setItem("params2", "true");
+      navigation.navigate("Modules1");
+    } catch (error) {
+      console.log("Erro ao armazenar os parâmetros no AsyncStorage:", error);
+    }
+  };
+
   return (
     <>
       <Container>
@@ -136,7 +145,7 @@ const Ex2Md1 = ({ navigation }) => {
           style={{
             position: "absolute",
             left: 260,
-            top: 600,
+            top: 620,
           }}
         >
           <ButtonApagar onPress={handleDelete}>
@@ -152,7 +161,7 @@ const Ex2Md1 = ({ navigation }) => {
         </View>
       ) : (
         <View style={{ alignItems: "center", backgroundColor: "#FFFFFF" }}>
-          <ButtonEnviar onPress={() => navigation.navigate("Modules1", {params2: true})}>
+          <ButtonEnviar onPress={() => handleGoBack()}>
             <TextButton>Enviar</TextButton>
           </ButtonEnviar>
         </View>
