@@ -121,7 +121,7 @@ export default function Ex3Md1({ navigation }) {
         "foundWordsEx3Md1",
         JSON.stringify(foundWords)
       );
-      await AsyncStorage.setItem("param3", "true");
+      await AsyncStorage.setItem("params3", "true");
       console.log("Palavras salvas com sucesso!");
       clearGameData();
       navigation.navigate("Modules1");
