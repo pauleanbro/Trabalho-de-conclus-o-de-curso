@@ -137,6 +137,3 @@ export const TextPalavra = styled.Text`
   font-weight: bold;
 `;
 
-export const PalavrasJuntas = styled.View`
-  padding: 0px 0px 20px 10px;
-`;

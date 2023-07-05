@@ -48,7 +48,7 @@ const Ex1Md2 = ({ navigation }) => {
   };
 
   const handleSave = async () => {
-    const newWord = word.join("");
+    const newWord = { word: word.join(""), index: currentWordIndex };
     setSavedWord([...savedWord, newWord]);
     await AsyncStorage.setItem(
       "@saved_word",
@@ -59,14 +59,18 @@ const Ex1Md2 = ({ navigation }) => {
   };
 
   const handleDelete = async () => {
-    const newSavedWords = savedWord.slice(0, -1); // remove a última palavra salva
-    setSavedWord(newSavedWords);
-    try {
-      const serializedWords = JSON.stringify(newSavedWords);
-      await AsyncStorage.setItem("@saved_word", serializedWords);
-      console.log("Última palavra salva apagada com sucesso!");
-    } catch (error) {
-      console.log("Erro ao apagar a última palavra salva:", error);
+    if (savedWord.length > 0) {
+      const lastWordIndex = savedWord[savedWord.length - 1].index;
+      const newSavedWords = savedWord.slice(0, -1); // remove a última palavra salva
+      setSavedWord(newSavedWords);
+      setCurrentWordIndex(lastWordIndex);
+      try {
+        const serializedWords = JSON.stringify(newSavedWords);
+        await AsyncStorage.setItem("@saved_word", serializedWords);
+        console.log("Última palavra salva apagada com sucesso!");
+      } catch (error) {
+        console.log("Erro ao apagar a última palavra salva:", error);
+      }
     }
   };
 
@@ -81,8 +85,6 @@ const Ex1Md2 = ({ navigation }) => {
     loadSavedWord();
   }, []);
 
-  console.log(savedWord);
-
   const handleGoBack = async () => {
     try {
       await AsyncStorage.setItem("paramsEx1Md2", "true");
@@ -91,6 +93,8 @@ const Ex1Md2 = ({ navigation }) => {
       console.log("Erro ao armazenar os parâmetros no AsyncStorage:", error);
     }
   };
+
+  console.log(savedWord?.length)
 
   return (
     <>
@@ -152,14 +156,9 @@ const Ex1Md2 = ({ navigation }) => {
             <TextButtonAux>Excluir</TextButtonAux>
           </ButtonExcluir>
         </ContainerButtons>
-        <PalavrasJuntas>
-          <TextPalavra>{savedWord[0]}</TextPalavra>
-          <TextPalavra>{savedWord[1]}</TextPalavra>
-          <TextPalavra>{savedWord[2]}</TextPalavra>
-          <TextPalavra>{savedWord[3]}</TextPalavra>
-          <TextPalavra>{savedWord[4]}</TextPalavra>
-          <TextPalavra>{savedWord[5]}</TextPalavra>
-        </PalavrasJuntas>
+          {savedWord.map((item, index) => (
+            <TextPalavra key={index}>{item?.word}</TextPalavra>
+          ))}
         <View
           style={{
             position: "absolute",
