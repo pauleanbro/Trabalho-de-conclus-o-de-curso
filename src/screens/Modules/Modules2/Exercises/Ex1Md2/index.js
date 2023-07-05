@@ -31,7 +31,7 @@ const data = [
   ["VI", "JU", "QUE", "DA", "FE"],
 ];
 
-const wordList = ["Fadiga", "Caminho", "Retina", "Pedra", "Tinha", "Vida"];
+const wordList = ["FADIGA", "CAMINHO", "RETINA", "PEDRA", "TINHA", "VIDA"];
 
 const Ex1Md2 = ({ navigation }) => {
   const [word, setWord] = useState([]);

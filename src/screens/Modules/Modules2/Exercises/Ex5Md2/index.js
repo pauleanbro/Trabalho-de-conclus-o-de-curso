@@ -23,13 +23,13 @@ import HeaderBack from "../../../../../components/Header";
 
 const data = [
   ["P", "E", "I", "R", "D", "A", "B", "O"],
-  ["O", "T", "A", "R", "O", "N", "I", "E"],
-  ["O", "N", "J", "B", "O", "A", "T", "I"],
+  ["Ô", "T", "A", "R", "O", "N", "I", "E"],
+  ["O", "Ã", "J", "B", "O", "A", "T", "I"],
   ["D", "E", "L", "U", "A", "R", "O", "T"],
   ["R", "N", "O", "D", "I", "T", "B", "E"],
 ];
 
-const wordList = ["Pedro", "Antônio", "João", "Eduardo", "Benedito"];
+const wordList = ["PEDRO", "ANTÔNIO", "JOÃO", "EDUARDO", "BENEDITO"];
 
 const Ex5Md2 = ({ navigation }) => {
   const [word, setWord] = useState([]);
@@ -46,7 +46,7 @@ const Ex5Md2 = ({ navigation }) => {
   };
 
   const handleSave = async () => {
-    const newWord = word.join("");
+    const newWord = { word: word.join(""), index: currentWordIndex };
     setSavedWord([...savedWord, newWord]);
     await AsyncStorage.setItem(
       "@saved_wordEx2Md2",
@@ -57,14 +57,18 @@ const Ex5Md2 = ({ navigation }) => {
   };
 
   const handleDelete = async () => {
-    const newSavedWords = savedWord.slice(0, -1); // remove a última palavra salva
-    setSavedWord(newSavedWords);
-    try {
-      const serializedWords = JSON.stringify(newSavedWords);
-      await AsyncStorage.setItem("@saved_wordEx2Md2", serializedWords);
-      console.log("Última palavra salva apagada com sucesso!");
-    } catch (error) {
-      console.log("Erro ao apagar a última palavra salva:", error);
+    if (savedWord.length > 0) {
+      const lastWordIndex = savedWord[savedWord.length - 1].index;
+      const newSavedWords = savedWord.slice(0, -1); // remove a última palavra salva
+      setSavedWord(newSavedWords);
+      setCurrentWordIndex(lastWordIndex);
+      try {
+        const serializedWords = JSON.stringify(newSavedWords);
+        await AsyncStorage.setItem("@saved_wordEx2Md2", serializedWords);
+        console.log("Última palavra salva apagada com sucesso!");
+      } catch (error) {
+        console.log("Erro ao apagar a última palavra salva:", error);
+      }
     }
   };
 
@@ -87,6 +91,17 @@ const Ex5Md2 = ({ navigation }) => {
       console.log("Erro ao armazenar os parâmetros no AsyncStorage:", error);
     }
   };
+
+  useEffect(() => {
+    const loadSavedWord = async () => {
+      const storedWord = await AsyncStorage.getItem("@saved_wordEx2Md2");
+      if (storedWord !== null) {
+        setSavedWord(JSON.parse(storedWord));
+      }
+    };
+
+    loadSavedWord();
+  }, []);
 
   return (
     <>
@@ -148,21 +163,14 @@ const Ex5Md2 = ({ navigation }) => {
             <TextButtonAux>Excluir</TextButtonAux>
           </ButtonExcluir>
         </ContainerButtons>
-        <Text style={{ fontSize: 22, marginLeft: 10, marginTop: 10 }}>
-          {savedWord[0]}
-        </Text>
-        <Text style={{ fontSize: 22, marginLeft: 10, marginTop: 10 }}>
-          {savedWord[1]}
-        </Text>
-        <Text style={{ fontSize: 22, marginLeft: 10, marginTop: 10 }}>
-          {savedWord[2]}
-        </Text>
-        <Text style={{ fontSize: 22, marginLeft: 10, marginTop: 10 }}>
-          {savedWord[3]}
-        </Text>
-        <Text style={{ fontSize: 22, marginLeft: 10, marginTop: 10 }}>
-          {savedWord[4]}
-        </Text>
+          {savedWord.map((item, index) => (
+            <Text
+              key={index}
+              style={{ fontSize: 22, marginLeft: 10, marginBottom: 10 }}
+            >
+              {item?.word}
+            </Text>
+          ))}
       </Container>
       <ContainerButtons1>
         <ButtonApagar onPress={handleDelete}>

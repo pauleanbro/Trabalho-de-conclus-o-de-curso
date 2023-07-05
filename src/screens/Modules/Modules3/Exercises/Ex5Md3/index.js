@@ -94,6 +94,19 @@ export default function Ex5Md3({ navigation }) {
     loadColorPairs();
   }, []);
 
+  useEffect(() => {
+    saveColorPairs();
+  }, [colorPairs]);
+
+  const saveData = async () => {
+    try {
+      await AsyncStorage.setItem("paramsEx3Md3", "true");
+      navigation.navigate("Modules3");
+    } catch (error) {
+      console.log("Error saving data: ", error);
+    }
+  };
+
   return (
     <>
       <Container>
@@ -160,6 +173,7 @@ export default function Ex5Md3({ navigation }) {
                   <ButtonColorLaranja />
                 </ContainerColors>
               )}
+
               {color === "verde" && (
                 <ContainerColors>
                   <TextColors>Verde</TextColors>
@@ -184,7 +198,7 @@ export default function Ex5Md3({ navigation }) {
         </View>
       ) : (
         <View style={{ alignItems: "center", backgroundColor: "#FFFFFF" }}>
-          <ButtonEnviar onPress={() => navigation.navigate("Modules3")}>
+          <ButtonEnviar onPress={() => saveData()}>
             <TextButton>Enviar</TextButton>
           </ButtonEnviar>
         </View>
