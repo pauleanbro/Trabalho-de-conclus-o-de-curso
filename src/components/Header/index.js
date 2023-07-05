@@ -4,7 +4,6 @@ import {
   StatusBar,
   Modal,
   View,
-  Text,
   TouchableOpacity,
 } from "react-native";
 
@@ -14,6 +13,13 @@ import {
   ColumnLeft,
   BackText,
   ColumnRight,
+  TitleModal,
+  TextBackModal,
+  ContainerModal,
+  ButtonBack,
+  TextResetModal,
+  ButtonReset,
+  ButtonMod
 } from "./styles";
 
 import IconBack from "../../assets/IconBack.js";
@@ -79,15 +85,35 @@ const HeaderBack = (props) => {
               flex: 1,
               justifyContent: "center",
               alignItems: "flex-end",
-              backgroundColor: "rgba(0,0,0,0.5)",
+              backgroundColor: "rgba(0,0,0,.5)",
             }}
           >
             <View
-              style={{ width: "50%", height: "100%", backgroundColor: "white" }}
+              style={{ width: "45%", height: "100%", backgroundColor: "white" }}
             >
-              <TouchableOpacity onPress={closeModal}>
-                <Text>Fechar Modal</Text>
-              </TouchableOpacity>
+              <ButtonBack onPress={closeModal}>
+                <TextBackModal>Sair</TextBackModal>
+              </ButtonBack>
+              <ContainerModal>
+                <ButtonMod>
+                  <TitleModal>Módulo 1</TitleModal>
+                </ButtonMod>
+                <ButtonMod>
+                  <TitleModal>Módulo 2</TitleModal>
+                </ButtonMod>
+                <ButtonMod>
+                  <TitleModal>Módulo 3</TitleModal>
+                </ButtonMod>
+                <ButtonMod>
+                  <TitleModal>Módulo 4</TitleModal>
+                </ButtonMod>
+                <ButtonMod>
+                  <TitleModal>Módulo 5</TitleModal>
+                </ButtonMod>
+              </ContainerModal>
+              <ButtonReset>
+                <TextResetModal>Reset</TextResetModal>
+              </ButtonReset>
             </View>
           </View>
         </Modal>
