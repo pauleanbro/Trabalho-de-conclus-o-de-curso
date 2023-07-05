@@ -140,12 +140,13 @@ export default function Ex3Md1({ navigation }) {
       <GestureHandlerRootView
         style={{
           flex: 1,
-          padding: 20,
-          alignItems: "center",
+          paddingTop: 20,
+          marginLeft: 5,
+          alignItems: 'center',
           backgroundColor: "#ffffff",
         }}
       >
-        <Title>FADIGA - CAMINHO - RETINA{"\n"}PEDRA - TINHA - VIDA</Title>
+        <Title>FADIGA - CAMINHO - RETINA - PEDRA - TINHA - VIDA</Title>
         <PanGestureHandler
           onGestureEvent={handleGestureEvent}
           onHandlerStateChange={handleStateChange}

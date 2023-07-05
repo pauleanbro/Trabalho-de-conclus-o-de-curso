@@ -142,8 +142,9 @@ export default function Ex3Md5({ navigation }) {
       <GestureHandlerRootView
         style={{
           flex: 1,
-          padding: 20,
-          alignItems: "center",
+          paddingTop: 20,
+          marginLeft: 5,
+          alignItems: 'center',
           backgroundColor: "#ffffff",
         }}
       >

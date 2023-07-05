@@ -138,9 +138,9 @@ export default function Ex3Md1({ navigation }) {
       />
       <GestureHandlerRootView
         style={{
-          flex: 1,
-          padding: 20,
+          paddingTop: 20,
           marginLeft: 5,
+          alignItems: "center",
           backgroundColor: "#ffffff",
         }}
       >

@@ -14,7 +14,7 @@ export const ButtonWord = styled.TouchableOpacity`
 `;
 
 export const TextButton = styled.Text`
-  font-size: 26px;
+  font-size: 23px;
   color: #000000;
   font-family: 'Roboto-Bold';
 `;
