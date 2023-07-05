@@ -1,4 +1,3 @@
-import { shuffle } from "lodash";
 import React, { useState } from "react";
 import { Dimensions, PanResponder, StyleSheet, View } from "react-native";
 import Svg, { Circle, Line, Text } from "react-native-svg";
@@ -10,7 +9,7 @@ const Ex6Md2 = () => {
   const [lines, setLines] = useState([]);
   const [currentLine, setCurrentLine] = useState(null);
 
-  const dots = shuffle([
+  const dots = [
     { x: 50, y: window.height / 5, color: "blue", letter: "A" },
     { x: 50, y: (window.height / 5) * 2, color: "black", letter: "B" },
     { x: 50, y: (window.height / 5) * 3, color: "red", letter: "C" },
@@ -34,7 +33,7 @@ const Ex6Md2 = () => {
       color: "orange",
       letter: "d",
     },
-  ]);
+  ];
 
   const panResponder = PanResponder.create({
     onStartShouldSetPanResponder: () => true,
