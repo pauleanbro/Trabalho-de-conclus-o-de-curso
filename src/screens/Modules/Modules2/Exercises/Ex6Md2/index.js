@@ -1,12 +1,7 @@
+import { shuffle } from "lodash";
 import React, { useState } from "react";
-import {
-  Dimensions,
-  PanResponder,
-  Button,
-  View,
-  StyleSheet,
-} from "react-native";
-import Svg, { Circle, Line } from "react-native-svg";
+import { Dimensions, PanResponder, StyleSheet, View } from "react-native";
+import Svg, { Circle, Line, Text } from "react-native-svg";
 import { Container, ContainerButton, TextButton } from "./styles";
 
 const window = Dimensions.get("window");
@@ -15,16 +10,31 @@ const Ex6Md2 = () => {
   const [lines, setLines] = useState([]);
   const [currentLine, setCurrentLine] = useState(null);
 
-  const dots = [
-    { x: 50, y: window.height / 5, color: "blue" },
-    { x: 50, y: (window.height / 5) * 2, color: "black" },
-    { x: 50, y: (window.height / 5) * 3, color: "red" },
-    { x: 50, y: (window.height / 5) * 4, color: "yellow" },
-    { x: window.width - 50, y: window.height / 5, color: "blue" },
-    { x: window.width - 50, y: (window.height / 5) * 2, color: "black" },
-    { x: window.width - 50, y: (window.height / 5) * 3, color: "red" },
-    { x: window.width - 50, y: (window.height / 5) * 4, color: "yellow" },
-  ];
+  const dots = shuffle([
+    { x: 50, y: window.height / 5, color: "blue", letter: "A" },
+    { x: 50, y: (window.height / 5) * 2, color: "black", letter: "B" },
+    { x: 50, y: (window.height / 5) * 3, color: "red", letter: "C" },
+    { x: 50, y: (window.height / 5) * 4, color: "orange", letter: "D" },
+    { x: window.width - 50, y: window.height / 5, color: "blue", letter: "a" },
+    {
+      x: window.width - 50,
+      y: (window.height / 5) * 2,
+      color: "black",
+      letter: "b",
+    },
+    {
+      x: window.width - 50,
+      y: (window.height / 5) * 3,
+      color: "red",
+      letter: "c",
+    },
+    {
+      x: window.width - 50,
+      y: (window.height / 5) * 4,
+      color: "orange",
+      letter: "d",
+    },
+  ]);
 
   const panResponder = PanResponder.create({
     onStartShouldSetPanResponder: () => true,
@@ -52,21 +62,18 @@ const Ex6Md2 = () => {
     },
     onPanResponderRelease: (evt, gestureState) => {
       if (currentLine) {
+        const radius = 20; // Define o raio máximo permitido
+
         dots.forEach((dot, index) => {
-          if (
-            Math.abs(gestureState.moveX - dot.x) < 30 &&
-            Math.abs(gestureState.moveY - dot.y) < 30 &&
-            dot.x === window.width - 50 &&
-            dot.color === currentLine.start.color
-          ) {
-            setLines([
-              ...lines,
-              {
-                ...currentLine,
-                end: { x: dot.x, y: dot.y, color: dot.color },
-              },
-            ]);
-            setCurrentLine(null);
+          const dotX = dot.x;
+          const dotY = dot.y;
+
+          const distance = Math.sqrt(
+            (currentLine.end.x - dotX) ** 2 + (currentLine.end.y - dotY) ** 2
+          );
+
+          if (distance <= radius) {
+            setLines([...lines, currentLine]);
           }
         });
       }
@@ -76,7 +83,7 @@ const Ex6Md2 = () => {
     },
   });
 
-  console.log(currentLine)
+  console.log(currentLine);
 
   return (
     <>
@@ -87,7 +94,12 @@ const Ex6Md2 = () => {
           viewBox={`0 0 ${window.width} ${window.height}`}
         >
           {dots.map((dot, index) => (
-            <Circle key={index} cx={dot.x} cy={dot.y} r="20" fill={dot.color} />
+            <Svg key={index}>
+              <Circle cx={dot.x} cy={dot.y} r="20" fill={dot.color} />
+              <Text x={dot.x - 5} y={dot.y + 5} fill="white">
+                {dot.letter}
+              </Text>
+            </Svg>
           ))}
           {lines.map((line, index) => (
             <Line
