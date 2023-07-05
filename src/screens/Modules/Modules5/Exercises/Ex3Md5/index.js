@@ -36,13 +36,7 @@ export default function Ex3Md5({ navigation }) {
   const [foundWordsCells, setFoundWordsCells] = useState([]); // novo estado
   const [foundWords, setFoundWords] = useState([]);
 
-  useEffect(() => {
-    const foundWordsCount = foundWords.length;
-    setButtonEnabled(foundWordsCount === 5);
-  }, [foundWords]);
-  
-
-  const [isButtonEnabled, setButtonEnabled] = useState(false);
+  const [isButtonEnabled, setIsButtonEnabled] = useState(false);
 
   useEffect(() => {
     loadGame();
@@ -103,8 +97,17 @@ export default function Ex3Md5({ navigation }) {
     if (wordList.includes(selectedWord)) {
       console.log("Palavra encontrada: ", selectedWord);
       setFoundWordsCells((prevCells) => [...prevCells, ...selectedCells]); // adiciona as células selecionadas ao estado
+      setFoundWords((prevWords) => [...prevWords, selectedWord]); // adiciona a palavra encontrada ao array de palavras encontradas
     }
   };
+
+  console.log(foundWords)
+
+  useEffect(() => {
+    if (foundWords.length === 5) {
+      setIsButtonEnabled(true);
+    }
+  }, [foundWords]);
 
   const clearGameData = async () => {
     try {

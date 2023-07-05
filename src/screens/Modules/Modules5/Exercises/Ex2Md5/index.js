@@ -88,7 +88,6 @@ const Ex2Md5 = ({ navigation }) => {
                 isButtonSelected("container1", number) && styles.selectedButton,
               ]}
               onPress={() => handleButtonClick("container1", number)}
-              disabled={isContainerComplete("container1")}
             >
               <Text style={styles.buttonText}>{number}</Text>
             </TouchableOpacity>
@@ -106,7 +105,6 @@ const Ex2Md5 = ({ navigation }) => {
                 isButtonSelected("container2", number) && styles.selectedButton,
               ]}
               onPress={() => handleButtonClick("container2", number)}
-              disabled={isContainerComplete("container2")}
             >
               <Text style={styles.buttonText}>{number}</Text>
             </TouchableOpacity>
@@ -124,7 +122,6 @@ const Ex2Md5 = ({ navigation }) => {
                 isButtonSelected("container3", number) && styles.selectedButton,
               ]}
               onPress={() => handleButtonClick("container3", number)}
-              disabled={isContainerComplete("container3")}
             >
               <Text style={styles.buttonText}>{number}</Text>
             </TouchableOpacity>
@@ -142,7 +139,6 @@ const Ex2Md5 = ({ navigation }) => {
                 isButtonSelected("container4", number) && styles.selectedButton,
               ]}
               onPress={() => handleButtonClick("container4", number)}
-              disabled={isContainerComplete("container4")}
             >
               <Text style={styles.buttonText}>{number}</Text>
             </TouchableOpacity>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { View, Text } from "react-native";
 import {
   Container,
@@ -35,6 +35,21 @@ const Ex1Md3 = ({ navigation }) => {
   const [undo, setUndo] = useState(false);
   const [selectedNames, setSelectedNames] = useState([]);
 
+  useEffect(() => {
+    const loadData = async () => {
+      try {
+        const storedNames = await AsyncStorage.getItem("selectedNamesEx1Md3");
+        if (storedNames) {
+          setSelectedNames(JSON.parse(storedNames));
+        }
+      } catch (error) {
+        console.log("Error loading data: ", error);
+      }
+    };
+
+    loadData();
+  }, []);
+
   const handleLetterPress = (row, col) => {
     const name = data[row][col];
     setSelectedLetters([...selectedLetters, { row, col }]);
@@ -42,31 +57,34 @@ const Ex1Md3 = ({ navigation }) => {
     setUndo(false);
   };
 
-  console.log(selectedNames);
-
   const handleUndo = () => {
-    const lastSelected = selectedLetters[selectedLetters.length - 1];
-    const name = data[lastSelected.row][lastSelected.col];
-    setSelectedLetters(selectedLetters.slice(0, -1));
-    setSelectedNames(
-      selectedNames.filter((selectedName) => selectedName !== name)
-    );
-    setUndo(true);
+    if (selectedLetters.length > 0) {
+      const lastSelectionIndex = selectedLetters.length - 1;
+      const lastSelection = selectedLetters[lastSelectionIndex];
+      const newSelectedLetters = [...selectedLetters];
+      newSelectedLetters.splice(lastSelectionIndex, 1);
+      setSelectedLetters(newSelectedLetters);
+
+      const name = data[lastSelection.row][lastSelection.col];
+      const newSelectedNames = selectedNames.filter(
+        (selectedName, index) => index !== lastSelectionIndex
+      );
+      setSelectedNames(newSelectedNames);
+    }
   };
 
   const saveData = async () => {
-  try {
-    await AsyncStorage.setItem(
-      "selectedNamesEx1Md3",
-      JSON.stringify(selectedNames)
-    );
-    await AsyncStorage.setItem("paramsEx1Md3", "true");
-    navigation.navigate("Modules3");
-  } catch (error) {
-    console.log("Error saving data: ", error);
-  }
-};
-
+    try {
+      await AsyncStorage.setItem(
+        "selectedNamesEx1Md3",
+        JSON.stringify(selectedNames)
+      );
+      await AsyncStorage.setItem("paramsEx1Md3", "true");
+      navigation.navigate("Modules3");
+    } catch (error) {
+      console.log("Error saving data: ", error);
+    }
+  };
 
   return (
     <>
@@ -74,10 +92,9 @@ const Ex1Md3 = ({ navigation }) => {
         text="Exercicio 1"
         onPress={() => navigation.navigate("Modules3")}
       />
-
       <Container>
         <ContainerWords>
-          <TextWords>Escolha nomes correspondentes:</TextWords>
+          <TextWords>Escolha os meses sequencialmente:</TextWords>
         </ContainerWords>
         <ContainerItens>
           <Grid data={data} onLetterPress={handleLetterPress} />
@@ -87,46 +104,28 @@ const Ex1Md3 = ({ navigation }) => {
             <TextButtonAux>Excluir</TextButtonAux>
           </ButtonExcluir>
         </ContainerButtons>
-        <View style={{ flexDirection: "row" }}>
-          {selectedNames.slice(0, 3).map((name, index) => (
-            <ContainerNames key={index}>
-              <TextItens onPress={() => handleNameClick(index)}>
-                {name}
-              </TextItens>
-              <Border />
-            </ContainerNames>
-          ))}
-        </View>
-        <View style={{ flexDirection: "row" }}>
-          {selectedNames.slice(3, 6).map((name, index) => (
-            <ContainerNames key={index + 3}>
-              <TextItens onPress={() => handleNameClick(index + 3)}>
-                {name}
-              </TextItens>
-              <Border />
-            </ContainerNames>
-          ))}
-        </View>
-        <View style={{ flexDirection: "row" }}>
-          {selectedNames.slice(6, 9).map((name, index) => (
-            <ContainerNames key={index + 6}>
-              <TextItens onPress={() => handleNameClick(index + 6)}>
-                {name}
-              </TextItens>
-              <Border />
-            </ContainerNames>
-          ))}
-        </View>
-        <View style={{ flexDirection: "row" }}>
-          {selectedNames.slice(9, 12).map((name, index) => (
-            <ContainerNames key={index + 9}>
-              <TextItens onPress={() => handleNameClick(index + 9)}>
-                {name}
-              </TextItens>
-              <Border />
-            </ContainerNames>
-          ))}
-        </View>
+
+        {[0, 3, 6, 9].map((start) => (
+          <View style={{ flexDirection: "row" }} key={start}>
+            {Array(3)
+              .fill(null)
+              .map((_, index) => {
+                const name = selectedNames[start + index];
+                return (
+                  <ContainerNames key={index}>
+                    {name ? (
+                      <TextItens onPress={() => handleNameClick(index)}>
+                        {name}
+                      </TextItens>
+                    ) : (
+                      <View style={{ height: 46 }} /> // Substitua 20 pela altura que você deseja para a borda
+                    )}
+                    <Border />
+                  </ContainerNames>
+                );
+              })}
+          </View>
+        ))}
       </Container>
       {selectedNames.length < 12 ? (
         <View style={{ alignItems: "center", backgroundColor: "#FFFFFF" }}>

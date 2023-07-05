@@ -23,7 +23,7 @@ export const ButtonEnviar = styled.TouchableOpacity`
   border-radius: 10px;
   align-items: center;
   justify-content: center;
-  margin-top: 20px;
+  margin-bottom: 20px;
 `;
 
 export const ButtonEnviarCinza = styled.TouchableOpacity`
